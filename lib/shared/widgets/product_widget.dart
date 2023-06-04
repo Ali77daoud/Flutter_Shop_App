@@ -1,5 +1,6 @@
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
@@ -26,19 +27,22 @@ class ProductWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ClipPath(
-                clipper: MyClipper(),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage(img),
-                      fit: BoxFit.cover,
-                    ),
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
                   ),
+                ),
+                child: CachedNetworkImage(
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Center(
+                    child: CircularProgressIndicator(
+                        value: downloadProgress.progress, strokeWidth: 3),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  imageUrl: img,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
@@ -60,7 +64,7 @@ class ProductWidget extends StatelessWidget {
                                 color: Get.isDarkMode
                                     ? AppColors.lightGray
                                     : AppColors.primaryDark,
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 textAlign: TextAlign.start,
                                 overflow: TextOverflow.ellipsis,
@@ -72,30 +76,37 @@ class ProductWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Row(
                               children: [
-                                TextWidget(
-                                    text: '\$$minPrice',
-                                    color: AppColors.grey,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    textAlign: TextAlign.start,
-                                    overflow: TextOverflow.ellipsis,
-                                    minFontSize: 8,
-                                    maxline: 1),
-                                const SizedBox(
-                                  width: 15,
+                                Expanded(
+                                  child: TextWidget(
+                                      text: '\$$minPrice',
+                                      color: AppColors.grey,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      textAlign: TextAlign.start,
+                                      overflow: TextOverflow.ellipsis,
+                                      minFontSize: 9,
+                                      maxline: 1),
                                 ),
-                                TextWidget(
-                                    text: '\$$maxPrice',
-                                    color: Get.isDarkMode
-                                        ? const Color.fromARGB(255, 233, 81, 81)
-                                        : const Color.fromARGB(255, 109, 3, 3),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    textAlign: TextAlign.start,
-                                    overflow: TextOverflow.ellipsis,
-                                    textDecoration: TextDecoration.lineThrough,
-                                    minFontSize: 8,
-                                    maxline: 1),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Expanded(
+                                  child: TextWidget(
+                                      text: '\$$maxPrice',
+                                      color: Get.isDarkMode
+                                          ? const Color.fromARGB(
+                                              255, 233, 81, 81)
+                                          : const Color.fromARGB(
+                                              255, 109, 3, 3),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      textAlign: TextAlign.start,
+                                      overflow: TextOverflow.ellipsis,
+                                      textDecoration:
+                                          TextDecoration.lineThrough,
+                                      minFontSize: 9,
+                                      maxline: 1),
+                                ),
                               ],
                             ),
                           ),

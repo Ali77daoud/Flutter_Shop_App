@@ -11,7 +11,7 @@ class Themes {
     appBarTheme: AppBarTheme(
         //for status bar
         systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: AppColors.primaryDark,
+            statusBarColor: AppColors.blackLight,
             statusBarIconBrightness: Brightness.light),
         titleTextStyle: const TextStyle(
             color: AppColors.primaryDark, fontWeight: FontWeight.w600),
@@ -73,6 +73,9 @@ class Themes {
           TextStyle(color: AppColors.grey, fontWeight: FontWeight.w600),
       elevation: 0,
       iconTheme: IconThemeData(color: AppColors.grey),
+      systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: AppColors.blackLight,
+          statusBarIconBrightness: Brightness.light),
     ),
     bottomAppBarColor: AppColors.darkGrey,
     // text form field theme

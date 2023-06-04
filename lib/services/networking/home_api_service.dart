@@ -3,7 +3,6 @@ import 'package:agora_shop/models/HomeData/home_data_model.dart';
 import 'package:agora_shop/shared/errors/exceptions.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import 'api_constants.dart';
 
 abstract class HomeApiService {
@@ -30,11 +29,11 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
       debugPrint('2');
       final data = jsonDecode(response.body);
       if (data['status'] == true) {
-        debugPrint('logIn success');
-        final resposeData = HomeDataModel.fromJson(data['data']);
+        debugPrint('get home data success');
+        final resposeData = HomeDataModel.fromJson(data);
         return resposeData;
       } else {
-        debugPrint('logIn field');
+        debugPrint('get home data field');
         throw ServerException();
       }
     } else {

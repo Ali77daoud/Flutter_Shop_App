@@ -11,7 +11,7 @@ class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
 
   final MainController mainController = Get.find<MainController>();
-  final ThemesController themesController = Get.find();
+  final ThemesController themesController = Get.find<ThemesController>();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ThemesController>(builder: (_) {
@@ -27,7 +27,7 @@ class MainPage extends StatelessWidget {
     });
   }
 
-  DotNavigationBar buildNavBar() {
+  Widget buildNavBar() {
     return DotNavigationBar(
       items: [
         DotNavigationBarItem(
@@ -79,36 +79,25 @@ class MainPage extends StatelessWidget {
       ],
       onTap: (index) async {
         if (index == 0) {
-          // if (mainController.i != 0) {
-          //   videoController.changePage(0);
-          //   videoController1.getTrendingVideoPageData();
-          // }
-
-          print(0);
+          if (mainController.i != 0) {
+            debugPrint('0');
+          }
         }
         if (index == 1) {
-          // if (mainController.i != 1) {
-          //   videoController.getMusicVideoPageData();
-
-          //   showRewardedAd();
-          // }
-
-          print(1);
+          if (mainController.i != 1) {
+            debugPrint('1');
+          }
         }
 
         if (index == 2) {
-          // if (mainController.i != 2) {
-          //   showInterstitialAd();
-          // }
-
-          print(2);
+          if (mainController.i != 2) {
+            debugPrint('2');
+          }
         }
         if (index == 3) {
-          // if (mainController.i != 2) {
-          //   showInterstitialAd();
-          // }
-
-          print(3);
+          if (mainController.i != 3) {
+            debugPrint('3');
+          }
         }
         mainController.changeIndex(index);
       },

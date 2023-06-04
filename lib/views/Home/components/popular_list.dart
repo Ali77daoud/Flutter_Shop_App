@@ -1,16 +1,12 @@
+import 'package:agora_shop/controllers/Main/home_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
 import 'package:agora_shop/shared/widgets/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomePopularList extends StatefulWidget {
-  const HomePopularList({Key? key}) : super(key: key);
-
-  @override
-  State<HomePopularList> createState() => _HomePopularListState();
-}
-
-class _HomePopularListState extends State<HomePopularList> {
+class HomePopularList extends StatelessWidget {
+  HomePopularList({Key? key}) : super(key: key);
+  final HomeController homeController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -25,16 +21,18 @@ class _HomePopularListState extends State<HomePopularList> {
         delegate: SliverChildBuilderDelegate(
           (ctx, i) {
             return ProductWidget(
-              img: 'assets/pictures/popular1.jpg',
-              maxPrice: '250',
-              minPrice: '200',
-              productName: 'Product',
+              img: homeController.homeData.data.products[i].image,
+              maxPrice:
+                  homeController.homeData.data.products[i].oldPrice.toString(),
+              minPrice:
+                  homeController.homeData.data.products[i].price.toString(),
+              productName: homeController.homeData.data.products[i].name,
               onTap: () {
                 Get.toNamed(Routes.productDetailsPage);
               },
             );
           },
-          childCount: 9,
+          childCount: homeController.homeData.data.products.length,
         ),
       ),
     );

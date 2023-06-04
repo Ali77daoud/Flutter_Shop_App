@@ -1,6 +1,4 @@
-import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 AppBar appBar() {
@@ -13,7 +11,7 @@ AppBar appBar() {
         Icons.menu_sharp,
       ),
     ),
-    title: Text(
+    title: const Text(
       'AgOrA Shop',
       style: TextStyle(
         fontSize: 16,

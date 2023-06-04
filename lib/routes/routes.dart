@@ -3,7 +3,6 @@ import 'package:agora_shop/controllers/Main/main_binding.dart';
 import 'package:agora_shop/views/Auth/signup_page.dart';
 import 'package:agora_shop/views/Welcome/welcome_screen.dart';
 import 'package:get/get.dart';
-
 import '../views/Auth/login_page.dart';
 import '../views/Main/main_page.dart';
 import '../views/ProductDetails/detail_page.dart';
@@ -51,7 +50,7 @@ class AppRoutes {
       transitionDuration: const Duration(milliseconds: 800),
     ),
 
-    /// app route
+    /// app route //////////////////////////////
     GetPage(
       name: Routes.mainPage,
       page: () => MainPage(),

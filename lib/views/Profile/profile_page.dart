@@ -215,7 +215,7 @@ class ProfilePage extends StatelessWidget {
   _showAppearanceModal(ThemeData theme, String current) {
     Get.bottomSheet(Container(
       padding: const EdgeInsets.all(16),
-      height: 200,
+      height: 220,
       decoration: BoxDecoration(
           color: Get.isDarkMode ? Colors.grey.shade900 : Colors.grey.shade200,
           borderRadius: const BorderRadius.only(

@@ -62,7 +62,9 @@ class AuthController extends GetxController {
     final failureOrLogin = await loginProvider.call(loginModel);
     failureOrLogin.fold((failure) {
       HandlingErrors.networkErrorrHandling(
-          failure: failure, hideCircleIndicator: hideCircleIndicator);
+          failure: failure,
+          hideCircleIndicator: hideCircleIndicator,
+          showNoInternetPage: () {});
     }, (getUserData) {
       userData = getUserData;
       tokenBox.write('token', userData.token);
@@ -80,7 +82,9 @@ class AuthController extends GetxController {
     final failureOrLogin = await registerProvider.call(registerModel);
     failureOrLogin.fold((failure) {
       HandlingErrors.networkErrorrHandling(
-          failure: failure, hideCircleIndicator: hideCircleIndicator);
+          failure: failure,
+          hideCircleIndicator: hideCircleIndicator,
+          showNoInternetPage: () {});
     }, (getUserData) {
       userData = getUserData;
       tokenBox.write('token', userData.token);

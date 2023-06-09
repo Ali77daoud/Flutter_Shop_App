@@ -1,5 +1,6 @@
-import 'package:agora_shop/controllers/Main/home_controller.dart';
+import 'package:agora_shop/controllers/Home/home_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
+import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,11 @@ class HomePopularList extends StatelessWidget {
                   homeController.homeData.data.products[i].price.toString(),
               productName: homeController.homeData.data.products[i].name,
               onTap: () {
+                print(homeController.homeData.data.products[i].id);
+                homeController.getProductDetails(
+                    lang: 'en',
+                    token: token!,
+                    id: homeController.homeData.data.products[i].id);
                 Get.toNamed(Routes.productDetailsPage);
               },
             );

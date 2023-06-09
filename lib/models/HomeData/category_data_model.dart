@@ -1,5 +1,5 @@
 class CategoryDataModel {
-  Data data;
+  final Data data;
   CategoryDataModel({
     required this.data,
   });
@@ -11,18 +11,18 @@ class CategoryDataModel {
 }
 
 class Data {
-  int currentPage;
-  List<Datum> data;
-  String firstPageUrl;
-  int from;
-  int lastPage;
-  String lastPageUrl;
-  dynamic nextPageUrl;
-  String path;
-  int perPage;
-  dynamic prevPageUrl;
-  int to;
-  int total;
+  final int currentPage;
+  final List<Datum> data;
+  final String firstPageUrl;
+  final int from;
+  final int lastPage;
+  final String lastPageUrl;
+  final dynamic nextPageUrl;
+  final String path;
+  final int perPage;
+  final dynamic prevPageUrl;
+  final int to;
+  final int total;
 
   Data({
     required this.currentPage,
@@ -56,9 +56,9 @@ class Data {
 }
 
 class Datum {
-  int id;
-  String name;
-  String image;
+  final int id;
+  final String name;
+  final String image;
 
   Datum({
     required this.id,

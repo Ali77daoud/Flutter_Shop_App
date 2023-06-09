@@ -1,5 +1,5 @@
 class HomeDataModel {
-  Data data;
+  final Data data;
 
   HomeDataModel({
     required this.data,
@@ -11,9 +11,9 @@ class HomeDataModel {
 }
 
 class Data {
-  List<Banner> banners;
-  List<Product> products;
-  String ad;
+  final List<Banner> banners;
+  final List<Product> products;
+  final String ad;
 
   Data({
     required this.banners,
@@ -31,10 +31,10 @@ class Data {
 }
 
 class Banner {
-  int id;
-  String image;
-  Category? category;
-  dynamic product;
+  final int id;
+  final String image;
+  final Category? category;
+  final dynamic product;
 
   Banner({
     required this.id,
@@ -61,9 +61,9 @@ class Banner {
 }
 
 class Category {
-  int id;
-  String image;
-  String name;
+  final int id;
+  final String image;
+  final String name;
 
   Category({
     required this.id,
@@ -85,16 +85,16 @@ class Category {
 }
 
 class Product {
-  int id;
-  double price;
-  double oldPrice;
-  int discount;
-  String image;
-  String name;
-  String description;
-  List<String> images;
-  bool inFavorites;
-  bool inCart;
+  final int id;
+  final double price;
+  final double oldPrice;
+  final int discount;
+  final String image;
+  final String name;
+  final String description;
+  final List<String> images;
+  final bool inFavorites;
+  final bool inCart;
 
   Product({
     required this.id,

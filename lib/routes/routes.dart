@@ -15,12 +15,6 @@ class Routes {
   static const signUpPage = '/signUpPage';
   static const mainPage = '/mainPage';
   static const productDetailsPage = '/productDetailsPage';
-  // static const videoDetailsScreen = '/videoDetailsScreen';
-  // static const settingScreen = '/settingScreen';
-  // static const searchBarScreen = '/searchBarScreen';
-  // static const searchedVideoScreen = '/searchedVideoScreen';
-  // static const channelScreen = '/subscriptionScreen';
-  // static const channelVideosScreen = '/channelVideosScreen';
 }
 
 class AppRoutes {
@@ -62,7 +56,7 @@ class AppRoutes {
     /// ///////////////////////
     GetPage(
       name: Routes.productDetailsPage,
-      page: () => const DetailPage(),
+      page: () => DetailPage(),
       // binding: MainBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),

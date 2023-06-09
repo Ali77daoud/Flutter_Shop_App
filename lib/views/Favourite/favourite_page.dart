@@ -1,4 +1,4 @@
-import 'package:agora_shop/controllers/Main/fav_controller.dart';
+import 'package:agora_shop/controllers/Favorite/fav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'components/favourite_item.dart';

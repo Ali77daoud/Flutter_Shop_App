@@ -1,5 +1,6 @@
 import 'package:agora_shop/controllers/Main/main_controller.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_category_data_provider.dart';
+import 'package:agora_shop/providers/Home_providers.dart/get_product_details.dart';
 import 'package:agora_shop/repositories/home_repository.dart';
 import 'package:agora_shop/services/networking/home_api_service.dart';
 import 'package:get/get.dart';
@@ -22,5 +23,9 @@ class MainBinding implements Bindings {
     ///
     Get.lazyPut<GetCategoryDataProvider>(
         () => GetCategoryDataProvider(Get.find()));
+
+    ///
+    Get.lazyPut<GetProductDetailsProvider>(
+        () => GetProductDetailsProvider(Get.find()));
   }
 }

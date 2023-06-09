@@ -1,3 +1,4 @@
+import 'package:agora_shop/models/HomeData/category_data_model.dart';
 import 'package:agora_shop/services/networking/home_api_service.dart';
 import 'package:dartz/dartz.dart';
 import '../models/HomeData/home_data_model.dart';
@@ -18,6 +19,21 @@ class HomeRepository {
         final homeDataResponse =
             await homeApiService.getHomeDataApi(token, lang);
         return Right(homeDataResponse);
+      } on ServerException {
+        return left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  Future<Either<Failure, CategoryDataModel>> getCategoryData(
+      String token, String lang) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final categoryDataResponse =
+            await homeApiService.getCategoryDataApi(token, lang);
+        return Right(categoryDataResponse);
       } on ServerException {
         return left(ServerFailure());
       }

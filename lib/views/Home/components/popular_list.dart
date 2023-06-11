@@ -38,13 +38,21 @@ class HomePopularList extends StatelessWidget {
                   'ProductId': homeController.homeData.data.products[i].id,
                 });
               },
-              onTapCart: () {
-                print('cart');
+              onTapCart: () async {
+                await mainController
+                    .addOrRemoveCart(
+                        id: homeController.homeData.data.products[i].id,
+                        lang: 'en',
+                        token: token!)
+                    .then((value) async {
+                  await homeController.getHomeData(lang: 'en', token: token!);
+                });
               },
               onTapFav: () async {
                 await mainController
                     .addOrDeleteFav(
                         id: homeController.homeData.data.products[i].id,
+                        lang: 'en',
                         token: token!)
                     .then((value) async {
                   await homeController.getHomeData(lang: 'en', token: token!);

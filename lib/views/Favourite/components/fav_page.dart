@@ -30,6 +30,7 @@ class FavPage extends StatelessWidget {
                   await mainController
                       .addOrDeleteFav(
                           id: favController.favData.data.data[index].product.id,
+                          lang: 'en',
                           token: token!)
                       .then((value) async {
                     await favController.getFavData(lang: 'en', token: token!);

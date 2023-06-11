@@ -1,8 +1,8 @@
 import 'package:agora_shop/models/Auth/login_model.dart';
 import 'package:agora_shop/models/Auth/register_model.dart';
 import 'package:agora_shop/models/Auth/user_data_model.dart';
-import 'package:agora_shop/providers/Auth_providers.dart/login_provider.dart';
-import 'package:agora_shop/providers/Auth_providers.dart/register_provider.dart';
+import 'package:agora_shop/providers/Auth_providers/login_provider.dart';
+import 'package:agora_shop/providers/Auth_providers/register_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

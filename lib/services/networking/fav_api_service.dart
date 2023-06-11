@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 abstract class FavApiService {
   Future<FavDataModel> getFavDataApi(String token, String lang);
-  Future<String> addOrDeleteFavApi(String token, int id);
+  Future<String> addOrDeleteFavApi(String token, String lang, int id);
 }
 
 class FavApiServiceImpWithHttp implements FavApiService {
@@ -45,7 +45,7 @@ class FavApiServiceImpWithHttp implements FavApiService {
   }
 
   @override
-  Future<String> addOrDeleteFavApi(String token, int id) async {
+  Future<String> addOrDeleteFavApi(String token, String lang, int id) async {
     final uri = Uri.parse('${ApiConstants.baseUrl}/favorites');
 
     final response = await clientController.client
@@ -53,6 +53,7 @@ class FavApiServiceImpWithHttp implements FavApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'lang': lang,
     });
     debugPrint('1');
     debugPrint(response.statusCode.toString());

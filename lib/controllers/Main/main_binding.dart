@@ -1,9 +1,14 @@
 import 'package:agora_shop/controllers/Main/main_controller.dart';
+import 'package:agora_shop/providers/Cart_providers/add_or_remove_cart_provider.dart';
+import 'package:agora_shop/providers/Cart_providers/delete_cart_provider.dart';
+import 'package:agora_shop/providers/Cart_providers/get_cart_data_provider.dart';
+import 'package:agora_shop/providers/Cart_providers/update_cart_provider.dart';
 import 'package:agora_shop/providers/Fav_providers/get_fav_data_provider.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_category_data_provider.dart';
-import 'package:agora_shop/providers/Home_providers.dart/get_product_details.dart';
+import 'package:agora_shop/repositories/cart_repository.dart';
 import 'package:agora_shop/repositories/fav_repository.dart';
 import 'package:agora_shop/repositories/home_repository.dart';
+import 'package:agora_shop/services/networking/cart_api_service.dart';
 import 'package:agora_shop/services/networking/fav_api_service.dart';
 import 'package:agora_shop/services/networking/home_api_service.dart';
 import 'package:get/get.dart';
@@ -37,5 +42,19 @@ class MainBinding implements Bindings {
     //////////
     Get.lazyPut<AddOrDeleteFavProvider>(
         () => AddOrDeleteFavProvider(Get.find()));
+
+    ///////////CartData/////////////////////////////////////////////////////////
+    Get.lazyPut<CartApiService>(() => CartApiServiceImpWithHttp(
+        clientController: Get.find<HttpClientController>()));
+    Get.lazyPut<CartRepository>(() =>
+        CartRepository(cartApiService: Get.find(), networkInfo: Get.find()));
+    Get.lazyPut<GetCartDataProvider>(() => GetCartDataProvider(Get.find()));
+    //////
+    Get.lazyPut<AddOrRemoveCartProvider>(
+        () => AddOrRemoveCartProvider(Get.find()));
+    //////
+    Get.lazyPut<UpdateCartProvider>(() => UpdateCartProvider(Get.find()));
+    //////
+    Get.lazyPut<DeleteCartProvider>(() => DeleteCartProvider(Get.find()));
   }
 }

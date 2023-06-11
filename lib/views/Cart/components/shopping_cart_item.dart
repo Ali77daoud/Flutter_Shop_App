@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
@@ -6,7 +7,19 @@ import '../../../shared/constants/color_constants.dart';
 import '../../../shared/widgets/text_widget.dart';
 
 class ShoppingCartItem extends StatelessWidget {
-  const ShoppingCartItem({super.key});
+  final String img, title, price, quantity;
+  final Function() addOne;
+  final Function() removeOne;
+  final Function() onTapDelete;
+  const ShoppingCartItem(
+      {super.key,
+      required this.img,
+      required this.title,
+      required this.price,
+      required this.addOne,
+      required this.removeOne,
+      required this.quantity,
+      required this.onTapDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +34,17 @@ class ShoppingCartItem extends StatelessWidget {
               width: (MediaQuery.of(context).size.width) / 3,
               child: Column(
                 children: [
-                  Container(
+                  CachedNetworkImage(
                     height: 100,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage('assets/pictures/popular1.jpg'),
-                      fit: BoxFit.cover,
-                    )),
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress, strokeWidth: 3),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    imageUrl: img,
+                    fit: BoxFit.cover,
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(2.0, 10, 2, 10),
@@ -35,7 +52,7 @@ class ShoppingCartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: removeOne,
                           splashColor: AppColors.primaryLight,
                           borderRadius: BorderRadius.circular(30),
                           child: const Icon(
@@ -43,7 +60,7 @@ class ShoppingCartItem extends StatelessWidget {
                           ),
                         ),
                         TextWidget(
-                            text: '1',
+                            text: quantity,
                             color: Get.isDarkMode
                                 ? AppColors.lightGray
                                 : AppColors.primaryDark,
@@ -52,7 +69,7 @@ class ShoppingCartItem extends StatelessWidget {
                             textAlign: TextAlign.center,
                             maxline: 1),
                         InkWell(
-                          onTap: () {},
+                          onTap: addOne,
                           splashColor: AppColors.primaryLight,
                           borderRadius: BorderRadius.circular(30),
                           child: const Icon(
@@ -79,15 +96,16 @@ class ShoppingCartItem extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 12, top: 5),
                           child: TextWidget(
-                              text: 'Philips 42FYHFH45 81 Cm FullHD',
+                              text: title,
                               color: Get.isDarkMode
                                   ? AppColors.grey
                                   : AppColors.primaryDark,
                               fontSize: 13,
+                              minFontSize: 11,
                               fontWeight: FontWeight.normal,
                               textAlign: TextAlign.start,
                               overflow: TextOverflow.ellipsis,
-                              maxline: 2),
+                              maxline: 4),
                         ),
                       ),
                       Expanded(
@@ -98,7 +116,7 @@ class ShoppingCartItem extends StatelessWidget {
                             size: 25,
                             // color: AppColors.primaryDark,
                           ),
-                          onPressed: () {},
+                          onPressed: onTapDelete,
                         ),
                       ),
                     ],
@@ -111,7 +129,7 @@ class ShoppingCartItem extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: TextWidget(
-                              text: '\$ 2.500',
+                              text: '\$ $price',
                               color: Get.isDarkMode
                                   ? AppColors.secondary
                                   : AppColors.primaryLight,

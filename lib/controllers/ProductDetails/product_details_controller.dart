@@ -11,7 +11,7 @@ class ProductDetailsController extends GetxController {
   bool isProductNoInternetConnection = false;
   bool isProductCircleShown = false;
 
-  final HomeController homeController = Get.find<HomeController>();
+  // final HomeController homeController = Get.find<HomeController>();
   final HttpClientController clientController =
       Get.find<HttpClientController>();
 
@@ -46,7 +46,6 @@ class ProductDetailsController extends GetxController {
   void onInit() async {
     super.onInit();
     debugPrint('Product Details Controller Init');
-    homeController.isProductCircleShown = true;
     final int productId = Get.arguments['ProductId'];
     await getProductDetails(lang: 'en', token: token!, id: productId);
   }
@@ -55,25 +54,26 @@ class ProductDetailsController extends GetxController {
   void onClose() async {
     super.onClose();
     debugPrint('Product Details Controller closed');
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
+    // await clientController.closeClient().then((value) async {
+    //   await clientController.reOpenClient();
+    // });
   }
 
   //////////////////////
   Future<void> getProductDetails(
       {required String lang, required String token, required int id}) async {
+    showProductCircleIndicator();
     final failureOrProductDetails =
         await getProductDetailsProvider.call(token: token, lang: lang, id: id);
     failureOrProductDetails.fold((failure) {
       HandlingErrors.networkErrorrHandling(
           failure: failure,
-          hideCircleIndicator: homeController.hideProductCircleIndicator,
-          showNoInternetPage: homeController.showProductNoInternetPage);
+          hideCircleIndicator: hideProductCircleIndicator,
+          showNoInternetPage: showProductNoInternetPage);
     }, (productDetails) {
       productDetailsData = productDetails;
-      homeController.hideProductCircleIndicator();
-      homeController.hideProductNoInternetPage();
+      hideProductCircleIndicator();
+      hideProductNoInternetPage();
     });
   }
 }

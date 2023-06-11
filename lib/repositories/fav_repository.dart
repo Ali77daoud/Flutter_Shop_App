@@ -25,11 +25,12 @@ class FavRepository {
     }
   }
 
-  Future<Either<Failure, String>> addOrDeleteFav(String token, int id) async {
+  Future<Either<Failure, String>> addOrDeleteFav(
+      String token, String lang, int id) async {
     if (await networkInfo.isConnected) {
       try {
         final addOrDeleteFavResponse =
-            await favApiService.addOrDeleteFavApi(token, id);
+            await favApiService.addOrDeleteFavApi(token, lang, id);
         return Right(addOrDeleteFavResponse);
       } on ServerException {
         return left(ServerFailure());

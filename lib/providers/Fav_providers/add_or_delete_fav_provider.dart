@@ -8,7 +8,7 @@ class AddOrDeleteFavProvider {
   AddOrDeleteFavProvider(this.favRepository);
 
   Future<Either<Failure, String>> call(
-      {required String token, required int id}) async {
-    return favRepository.addOrDeleteFav(token, id);
+      {required String token, required String lang, required int id}) async {
+    return favRepository.addOrDeleteFav(token, lang, id);
   }
 }

@@ -1,5 +1,5 @@
-import 'package:agora_shop/providers/Auth_providers.dart/login_provider.dart';
-import 'package:agora_shop/providers/Auth_providers.dart/register_provider.dart';
+import 'package:agora_shop/providers/Auth_providers/login_provider.dart';
+import 'package:agora_shop/providers/Auth_providers/register_provider.dart';
 import 'package:agora_shop/repositories/auth_repository.dart';
 import 'package:agora_shop/services/networking/auth_api_service.dart';
 import 'package:get/get.dart';

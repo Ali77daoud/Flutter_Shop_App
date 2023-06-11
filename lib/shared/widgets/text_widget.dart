@@ -22,7 +22,7 @@ class TextWidget extends StatelessWidget {
       required this.maxline,
       this.overflow = TextOverflow.clip,
       this.textDecoration = TextDecoration.none,
-      this.minFontSize = 5})
+      this.minFontSize = 10})
       : super(key: key);
 
   @override

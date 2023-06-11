@@ -6,8 +6,13 @@ import '../../../shared/widgets/app_buttons.dart';
 import '../../../shared/widgets/text_widget.dart';
 
 class CheckOutWidget extends StatelessWidget {
+  final String subTotal, total;
+  final Function() onTapCheck;
   const CheckOutWidget({
     Key? key,
+    required this.subTotal,
+    required this.total,
+    required this.onTapCheck,
   }) : super(key: key);
 
   @override
@@ -53,7 +58,7 @@ class CheckOutWidget extends StatelessWidget {
                             maxline: 1),
                         // const Text("Subtotal"),
                         TextWidget(
-                            text: '\$278.78',
+                            text: '\$ $subTotal',
                             color: AppColors.secondary,
                             fontSize: 13,
                             fontWeight: FontWeight.normal,
@@ -80,7 +85,7 @@ class CheckOutWidget extends StatelessWidget {
                             maxline: 1),
                         // const Text("Subtotal"),
                         TextWidget(
-                            text: '\$308.78',
+                            text: '\$ $total',
                             color: AppColors.secondary,
                             fontSize: 15,
                             fontWeight: FontWeight.normal,
@@ -97,6 +102,7 @@ class CheckOutWidget extends StatelessWidget {
               padding:
                   const EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 5),
               child: AppButton.normalButton(
+                  onPress: onTapCheck,
                   title: 'Checkout',
                   shadow: false,
                   height: 40,

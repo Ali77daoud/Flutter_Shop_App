@@ -12,8 +12,6 @@ import '../../providers/Home_providers.dart/get_home_data_provider.dart';
 class HomeController extends GetxController {
   bool isHomeNoInternetConnection = false;
   bool isHomeCircleShown = false;
-  bool isProductNoInternetConnection = false;
-  bool isProductCircleShown = false;
 
   int currentBanner = 0;
 
@@ -52,27 +50,6 @@ class HomeController extends GetxController {
   }
 
   //////////////////////
-  // ///////////////////////////
-  void showProductCircleIndicator() {
-    isProductCircleShown = true;
-    update();
-  }
-
-  void hideProductCircleIndicator() {
-    isProductCircleShown = false;
-    update();
-  }
-
-  ////////////////////////////////////////////////////
-  void showProductNoInternetPage() {
-    isProductNoInternetConnection = true;
-    update();
-  }
-
-  void hideProductNoInternetPage() {
-    isProductNoInternetConnection = false;
-    update();
-  }
 
   void changeBanner(int index) {
     currentBanner = index;

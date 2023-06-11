@@ -1,12 +1,21 @@
 import 'package:agora_shop/shared/constants/color_constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-
 import '../../../shared/widgets/text_widget.dart';
 
 class FavouriteItem extends StatelessWidget {
-  const FavouriteItem({super.key});
+  final String img, title;
+  final Function() onTapFav;
+  final Function() onTapCart;
+
+  const FavouriteItem(
+      {super.key,
+      required this.img,
+      required this.title,
+      required this.onTapFav,
+      required this.onTapCart});
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +29,18 @@ class FavouriteItem extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: Container(
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                    image: AssetImage('assets/pictures/popular1.jpg'),
-                    fit: BoxFit.cover,
-                  )),
+                child: Center(
+                  child: CachedNetworkImage(
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress, strokeWidth: 3),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    imageUrl: img,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               //////////////
@@ -39,15 +54,16 @@ class FavouriteItem extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(left: 12, top: 10, right: 5),
                       child: TextWidget(
-                          text: 'Philips 42FYHFH45 81 Cm FullHD',
+                          text: title,
                           color: Get.isDarkMode
                               ? AppColors.grey
                               : AppColors.primaryDark,
                           fontSize: 13,
+                          minFontSize: 10,
                           fontWeight: FontWeight.normal,
                           textAlign: TextAlign.start,
                           overflow: TextOverflow.ellipsis,
-                          maxline: 2),
+                          maxline: 3),
                     ),
                     ////////////////////
                     Container(
@@ -71,16 +87,22 @@ class FavouriteItem extends StatelessWidget {
                           ]),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            Icon(
-                              IconlyBold.heart,
-                              color: Colors.red,
-                              size: 25,
+                          children: [
+                            InkWell(
+                              onTap: onTapFav,
+                              child: const Icon(
+                                IconlyBold.heart,
+                                color: Colors.red,
+                                size: 25,
+                              ),
                             ),
-                            Icon(
-                              IconlyBold.buy,
-                              // color: AppColors.primaryDark,
-                              size: 25,
+                            InkWell(
+                              onTap: onTapCart,
+                              child: const Icon(
+                                IconlyBold.buy,
+                                // color: AppColors.primaryDark,
+                                size: 25,
+                              ),
                             ),
                           ]),
                     ),

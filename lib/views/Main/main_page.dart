@@ -1,5 +1,6 @@
 import 'package:agora_shop/controllers/Main/main_controller.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
+import 'package:agora_shop/shared/widgets/circle_indecator_widget.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,11 +18,18 @@ class MainPage extends StatelessWidget {
     return GetBuilder<ThemesController>(builder: (_) {
       return GetBuilder<MainController>(builder: (_) {
         return SafeArea(
-            child: Scaffold(
-          appBar: appBar(),
-          extendBody: true,
-          bottomNavigationBar: buildNavBar(),
-          body: mainController.screens[mainController.i],
+            child: Stack(
+          children: [
+            Scaffold(
+              appBar: appBar(),
+              extendBody: true,
+              bottomNavigationBar: buildNavBar(),
+              body: mainController.screens[mainController.i],
+            ),
+            mainController.isMainCircleShown
+                ? const CircleIndicatorWidget()
+                : Container()
+          ],
         ));
       });
     });

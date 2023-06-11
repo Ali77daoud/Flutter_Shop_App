@@ -43,7 +43,7 @@ class HandlingErrors {
     required bool isCircleShown,
     required bool isNoInternetConnection,
     required Widget page,
-    required Function() onTapTry,
+    required dynamic Function() onTapTry,
   }) {
     return isCircleShown
         ? const CircleIndicatorWidget(

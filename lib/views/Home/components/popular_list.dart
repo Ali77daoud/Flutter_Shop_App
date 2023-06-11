@@ -1,4 +1,5 @@
 import 'package:agora_shop/controllers/Home/home_controller.dart';
+import 'package:agora_shop/controllers/Main/main_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/product_widget.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 class HomePopularList extends StatelessWidget {
   HomePopularList({Key? key}) : super(key: key);
   final HomeController homeController = Get.find<HomeController>();
+  final MainController mainController = Get.find<MainController>();
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -28,13 +30,25 @@ class HomePopularList extends StatelessWidget {
               minPrice:
                   homeController.homeData.data.products[i].price.toString(),
               productName: homeController.homeData.data.products[i].name,
+              inFav: homeController.homeData.data.products[i].inFavorites,
+              inCart: homeController.homeData.data.products[i].inCart,
               onTap: () {
                 print(homeController.homeData.data.products[i].id);
-                homeController.getProductDetails(
-                    lang: 'en',
-                    token: token!,
-                    id: homeController.homeData.data.products[i].id);
-                Get.toNamed(Routes.productDetailsPage);
+                Get.toNamed(Routes.productDetailsPage, arguments: {
+                  'ProductId': homeController.homeData.data.products[i].id,
+                });
+              },
+              onTapCart: () {
+                print('cart');
+              },
+              onTapFav: () async {
+                await mainController
+                    .addOrDeleteFav(
+                        id: homeController.homeData.data.products[i].id,
+                        token: token!)
+                    .then((value) async {
+                  await homeController.getHomeData(lang: 'en', token: token!);
+                });
               },
             );
           },

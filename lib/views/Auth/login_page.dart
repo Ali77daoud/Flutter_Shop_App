@@ -45,7 +45,9 @@ class LoginPage extends StatelessWidget {
               ),
               ///////////
               authController.isCircleShown
-                  ? const CircleIndicatorWidget()
+                  ? const CircleIndicatorWidget(
+                      isBgWhite: false,
+                    )
                   : Container()
             ],
           );

@@ -1,8 +1,6 @@
 import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/HomeData/category_data_model.dart';
-import 'package:agora_shop/models/HomeData/product_details_model.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_category_data_provider.dart';
-import 'package:agora_shop/providers/Home_providers.dart/get_product_details.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:carousel_slider/carousel_controller.dart';
@@ -12,8 +10,11 @@ import '../../models/HomeData/home_data_model.dart';
 import '../../providers/Home_providers.dart/get_home_data_provider.dart';
 
 class HomeController extends GetxController {
-  bool isNoInternetConnection = false;
-  bool isCircleShown = false;
+  bool isHomeNoInternetConnection = false;
+  bool isHomeCircleShown = false;
+  bool isProductNoInternetConnection = false;
+  bool isProductCircleShown = false;
+
   int currentBanner = 0;
 
   final HttpClientController clientController =
@@ -23,35 +24,55 @@ class HomeController extends GetxController {
 
   late HomeDataModel homeData;
   late CategoryDataModel categoryData;
-  late ProductDetailsModel productDetailsData;
 
   GetHomeDataProvider getHomeDataProvider = Get.find<GetHomeDataProvider>();
   GetCategoryDataProvider getCategoryDataProvider =
       Get.find<GetCategoryDataProvider>();
-  GetProductDetailsProvider getProductDetailsProvider =
-      Get.find<GetProductDetailsProvider>();
+
   // ///////////////////////////
-  void showCircleIndicator() {
-    isCircleShown = true;
+  void showHomeCircleIndicator() {
+    isHomeCircleShown = true;
     update();
   }
 
-  void hideCircleIndicator() {
-    isCircleShown = false;
+  void hideHomeCircleIndicator() {
+    isHomeCircleShown = false;
     update();
   }
 
   ////////////////////////////////////////////////////
-  void showNoInternetPage() {
-    isNoInternetConnection = true;
+  void showHomeNoInternetPage() {
+    isHomeNoInternetConnection = true;
     update();
   }
 
-  void hideNoInternetPage() {
-    isNoInternetConnection = false;
+  void hideHomeNoInternetPage() {
+    isHomeNoInternetConnection = false;
     update();
   }
+
   //////////////////////
+  // ///////////////////////////
+  void showProductCircleIndicator() {
+    isProductCircleShown = true;
+    update();
+  }
+
+  void hideProductCircleIndicator() {
+    isProductCircleShown = false;
+    update();
+  }
+
+  ////////////////////////////////////////////////////
+  void showProductNoInternetPage() {
+    isProductNoInternetConnection = true;
+    update();
+  }
+
+  void hideProductNoInternetPage() {
+    isProductNoInternetConnection = false;
+    update();
+  }
 
   void changeBanner(int index) {
     currentBanner = index;
@@ -62,7 +83,7 @@ class HomeController extends GetxController {
   void onInit() async {
     super.onInit();
     debugPrint('Home Controller Init');
-    print(token);
+    debugPrint(token);
     carouselController = CarouselController();
     await getHomeData(lang: 'en', token: token!).then((value) async {
       await getCategoryData(lang: 'en', token: token!);
@@ -70,61 +91,45 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onClose() {
+  void onClose() async {
     super.onClose();
     debugPrint('Home Controller closed');
-    clientController.closeClient();
-    clientController.reOpenClient();
+    await clientController.closeClient().then((value) async {
+      await clientController.reOpenClient();
+    });
   }
 
   Future<void> getHomeData(
       {required String lang, required String token}) async {
-    showCircleIndicator();
+    showHomeCircleIndicator();
     final failureOrGetHomeData =
         await getHomeDataProvider.call(token: token, lang: lang);
     failureOrGetHomeData.fold((failure) {
       HandlingErrors.networkErrorrHandling(
           failure: failure,
-          hideCircleIndicator: hideCircleIndicator,
-          showNoInternetPage: showNoInternetPage);
+          hideCircleIndicator: hideHomeCircleIndicator,
+          showNoInternetPage: showHomeNoInternetPage);
     }, (getHomeData) {
       homeData = getHomeData;
-      hideCircleIndicator();
-      hideNoInternetPage();
+      hideHomeCircleIndicator();
+      hideHomeNoInternetPage();
     });
   }
 
   Future<void> getCategoryData(
       {required String lang, required String token}) async {
-    showCircleIndicator();
+    showHomeCircleIndicator();
     final failureOrGetCategoryData =
         await getCategoryDataProvider.call(token: token, lang: lang);
     failureOrGetCategoryData.fold((failure) {
       HandlingErrors.networkErrorrHandling(
           failure: failure,
-          hideCircleIndicator: hideCircleIndicator,
-          showNoInternetPage: showNoInternetPage);
+          hideCircleIndicator: hideHomeCircleIndicator,
+          showNoInternetPage: showHomeNoInternetPage);
     }, (getcategoryData) {
       categoryData = getcategoryData;
-      hideCircleIndicator();
-      hideNoInternetPage();
-    });
-  }
-
-  Future<void> getProductDetails(
-      {required String lang, required String token, required int id}) async {
-    showCircleIndicator();
-    final failureOrProductDetails =
-        await getProductDetailsProvider.call(token: token, lang: lang, id: id);
-    failureOrProductDetails.fold((failure) {
-      HandlingErrors.networkErrorrHandling(
-          failure: failure,
-          hideCircleIndicator: hideCircleIndicator,
-          showNoInternetPage: showNoInternetPage);
-    }, (productDetails) {
-      productDetailsData = productDetails;
-      hideCircleIndicator();
-      hideNoInternetPage();
+      hideHomeCircleIndicator();
+      hideHomeNoInternetPage();
     });
   }
 }

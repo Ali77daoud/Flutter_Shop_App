@@ -20,12 +20,12 @@ class HttpClientController extends GetxController {
     super.onClose();
   }
 
-  void closeClient() {
+  Future<void> closeClient() async {
     _client.close();
     debugPrint('closeClient');
   }
 
-  void reOpenClient() {
+  Future<void> reOpenClient() async {
     _client = http.Client();
     debugPrint('reopenClient');
   }

@@ -95,4 +95,14 @@ class AuthController extends GetxController {
       SnackBarWidgets.showSuccessSnackBar('SignUp Succeeded', '');
     });
   }
+
+  //////////////////
+  Future<void> logOut() async {
+    await tokenBox.remove('token').then((value) async {
+      isLogin = false;
+      await authBox.write('isLogin', isLogin).then((value) {
+        Get.offAllNamed(Routes.welcomePage);
+      });
+    });
+  }
 }

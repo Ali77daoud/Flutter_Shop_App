@@ -15,7 +15,6 @@ abstract class HomeApiService {
 }
 
 class HomeApiServiceImpWithHttp implements HomeApiService {
-  // final http.Client client;
   final HttpClientController clientController;
 
   HomeApiServiceImpWithHttp({required this.clientController});

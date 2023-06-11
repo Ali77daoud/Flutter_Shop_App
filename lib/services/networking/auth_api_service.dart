@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/Auth/login_model.dart';
 import 'package:agora_shop/models/Auth/user_data_model.dart';
 import 'package:agora_shop/services/networking/api_constants.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
 import '../../models/Auth/register_model.dart';
 import '../../shared/errors/exceptions.dart';
 
@@ -13,15 +13,16 @@ abstract class AuthApiService {
 }
 
 class AuthApiServiceImpWithHttp implements AuthApiService {
-  final http.Client client;
+  final HttpClientController clientController;
 
-  AuthApiServiceImpWithHttp({required this.client});
+  AuthApiServiceImpWithHttp({required this.clientController});
 
   @override
   Future<UserDataModel> postLoginApi(LoginModel loginModel) async {
     final uri = Uri.parse('${ApiConstants.baseUrl}/login');
     final body = loginModel.toJson();
-    final response = await client.post(uri, body: json.encode(body), headers: {
+    final response = await clientController.client
+        .post(uri, body: json.encode(body), headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
     });
@@ -49,7 +50,8 @@ class AuthApiServiceImpWithHttp implements AuthApiService {
   Future<UserDataModel> postRegisterApi(RegisterModel registerModel) async {
     final uri = Uri.parse('${ApiConstants.baseUrl}/register');
     final body = registerModel.toJson();
-    final response = await client.post(uri, body: json.encode(body), headers: {
+    final response = await clientController.client
+        .post(uri, body: json.encode(body), headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
     });

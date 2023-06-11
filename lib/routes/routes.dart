@@ -1,5 +1,6 @@
 import 'package:agora_shop/controllers/Auth/auth_binding.dart';
 import 'package:agora_shop/controllers/Main/main_binding.dart';
+import 'package:agora_shop/controllers/ProductDetails/product_details_binding.dart';
 import 'package:agora_shop/views/Auth/signup_page.dart';
 import 'package:agora_shop/views/Welcome/welcome_screen.dart';
 import 'package:get/get.dart';
@@ -49,15 +50,14 @@ class AppRoutes {
       name: Routes.mainPage,
       page: () => MainPage(),
       binding: MainBinding(),
-      transition: Transition.fade,
-      transitionDuration: const Duration(milliseconds: 200),
+      transitionDuration: const Duration(milliseconds: 0),
     ),
 
     /// ///////////////////////
     GetPage(
       name: Routes.productDetailsPage,
       page: () => DetailPage(),
-      // binding: MainBinding(),
+      binding: ProductDetailsBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),
     ),

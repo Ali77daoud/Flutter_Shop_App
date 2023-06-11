@@ -1,7 +1,8 @@
-import 'package:agora_shop/controllers/Favorite/fav_controller.dart';
+import 'package:agora_shop/controllers/Favourite/fav_controller.dart';
+import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
+import 'package:agora_shop/views/Favourite/components/fav_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'components/favourite_item.dart';
 
 class FavouritePage extends StatelessWidget {
   const FavouritePage({
@@ -13,12 +14,11 @@ class FavouritePage extends StatelessWidget {
     return GetBuilder<FavController>(
       init: FavController(),
       builder: (favController) {
-        return ListView.builder(
-          itemBuilder: (context, index) {
-            return const FavouriteItem();
-          },
-          itemCount: 5,
-        );
+        return HandlingErrors.pageErrorHandling(
+            isCircleShown: favController.isFavCircleShown,
+            isNoInternetConnection: favController.isFavNoInternetConnection,
+            onTapTry: () {},
+            page: FavPage());
       },
     );
   }

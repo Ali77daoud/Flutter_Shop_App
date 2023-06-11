@@ -19,8 +19,8 @@ class HomePage extends StatelessWidget {
         init: HomeController(),
         builder: (homeController) {
           return HandlingErrors.pageErrorHandling(
-              isCircleShown: homeController.isCircleShown,
-              isNoInternetConnection: homeController.isNoInternetConnection,
+              isCircleShown: homeController.isHomeCircleShown,
+              isNoInternetConnection: homeController.isHomeNoInternetConnection,
               onTapTry: () {
                 print('try');
               },

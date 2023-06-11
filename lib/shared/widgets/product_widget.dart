@@ -7,14 +7,21 @@ import 'package:iconly/iconly.dart';
 
 class ProductWidget extends StatelessWidget {
   final String img, productName, minPrice, maxPrice;
+  final bool inFav, inCart;
   final Function()? onTap;
+  final Function()? onTapFav;
+  final Function()? onTapCart;
   const ProductWidget(
       {Key? key,
       required this.img,
       required this.productName,
       required this.minPrice,
       required this.maxPrice,
-      required this.onTap})
+      required this.onTap,
+      required this.onTapFav,
+      required this.onTapCart,
+      required this.inFav,
+      required this.inCart})
       : super(key: key);
 
   @override
@@ -34,15 +41,18 @@ class ProductWidget extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ),
                 ),
-                child: CachedNetworkImage(
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      Center(
-                    child: CircularProgressIndicator(
-                        value: downloadProgress.progress, strokeWidth: 3),
+                child: Center(
+                  child: CachedNetworkImage(
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress, strokeWidth: 3),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    imageUrl: img,
+                    fit: BoxFit.contain,
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  imageUrl: img,
-                  fit: BoxFit.contain,
                 ),
               ),
             ),
@@ -117,30 +127,41 @@ class ProductWidget extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: IconButton(
-                        onPressed: () {
-                          // setState(() {
-                          //   popularList[i].favorite =
-                          //       !popularList[i].favorite;
-                          // });
-                        },
-                        icon: const Icon(
-                          IconlyBold.heart,
-                          color: Colors.red,
-                          size: 18,
-                        )),
+                        onPressed: onTapFav,
+                        icon: inFav
+                            ? const Icon(
+                                IconlyBold.heart,
+                                color: Colors.red,
+                                size: 18,
+                              )
+                            : const Icon(
+                                IconlyLight.heart,
+                                color: Colors.red,
+                                size: 18,
+                              )),
                   ),
                 ],
               ),
             ),
-            Container(
-              height: 30,
-              width: double.infinity,
-              color:
-                  Get.isDarkMode ? AppColors.secondary : AppColors.primaryDark,
-              child: const Icon(
-                IconlyBold.buy,
-                size: 15,
-                color: AppColors.white,
+            InkWell(
+              onTap: onTapCart,
+              child: Container(
+                height: 30,
+                width: double.infinity,
+                color: Get.isDarkMode
+                    ? AppColors.secondary
+                    : AppColors.primaryDark,
+                child: inCart
+                    ? const Icon(
+                        IconlyBold.buy,
+                        size: 18,
+                        color: AppColors.white,
+                      )
+                    : const Icon(
+                        IconlyLight.buy,
+                        size: 18,
+                        color: AppColors.white,
+                      ),
               ),
             )
           ],

@@ -1,3 +1,4 @@
+import 'package:agora_shop/controllers/Auth/auth_controller.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/helpers/extensions/StringExtension.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,8 @@ import '../../shared/widgets/text_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
-  final ThemesController _themesController = Get.find();
+  final ThemesController _themesController = Get.find<ThemesController>();
+  final AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +151,9 @@ class ProfilePage extends StatelessWidget {
                     const SizedBox(height: 8),
                     _buildListTile(
                         'Logout', Icons.exit_to_app, '', Colors.red, theme,
-                        onTab: () {}),
+                        onTab: () async {
+                      await authController.logOut();
+                    }),
                   ],
                 ),
                 Text("Version 1.0.0",

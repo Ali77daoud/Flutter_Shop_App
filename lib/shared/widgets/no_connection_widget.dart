@@ -11,43 +11,45 @@ class NoConnectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        // Expanded(
-        //     flex: 2,
-        //     child: Image.asset(
-        //       'assets/pictures/no-wifi.png',
-        //       fit: BoxFit.contain,
-        //       width: getWidthInPercent(context, 60),
-        //     )),
-        TextWidget(
-            text: 'No Connection',
-            color: AppColors.primaryLight,
-            fontSize: getSp(context, 18),
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.center,
-            maxline: 2),
-        TextWidget(
-            text: 'Try again',
-            color: AppColors.primaryLight,
-            fontSize: getSp(context, 20),
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.center,
-            maxline: 2),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-          child: AppButton.normalButton(
-            height: 50,
-            width: double.infinity,
-            title: 'Try Again',
-            backgroundColor: AppColors.primaryDark,
-            shadow: false,
-            titleColor: AppColors.white,
-          ),
-        )
-      ],
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Expanded(
+          //     flex: 2,
+          //     child: Image.asset(
+          //       'assets/pictures/no-wifi.png',
+          //       fit: BoxFit.contain,
+          //       width: getWidthInPercent(context, 60),
+          //     )),
+          TextWidget(
+              text: 'No Connection',
+              color: AppColors.primaryLight,
+              fontSize: getSp(context, 18),
+              fontWeight: FontWeight.bold,
+              textAlign: TextAlign.center,
+              maxline: 2),
+          TextWidget(
+              text: 'Try again',
+              color: AppColors.primaryLight,
+              fontSize: getSp(context, 20),
+              fontWeight: FontWeight.bold,
+              textAlign: TextAlign.center,
+              maxline: 2),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+            child: AppButton.normalButton(
+                height: 50,
+                width: double.infinity,
+                title: 'Try Again',
+                backgroundColor: AppColors.primaryDark,
+                shadow: false,
+                titleColor: AppColors.white,
+                onPress: onTap),
+          )
+        ],
+      ),
     );
   }
 }

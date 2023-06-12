@@ -285,22 +285,6 @@ class ProfilePage extends StatelessWidget {
                   current == 'dark' ? AppColors.secondary : Colors.transparent,
             ),
           ),
-          // SizedBox(height: 16),
-          // ListTile(
-          //   leading: Icon(
-          //     Icons.brightness_6,
-          //     color: Colors.blueGrey,
-          //   ),
-          //   title: Text("System", style: theme.textTheme.bodyText1),
-          //   onTap: () {
-          //     _themesController.setTheme('system');
-          //     Get.back();
-          //   },
-          //   trailing: Icon(
-          //     Icons.check,
-          //     color: current == 'system' ? Colors.blueGrey : Colors.transparent,
-          //   ),
-          // ),
         ],
       ),
     ));

@@ -15,6 +15,8 @@ class AuthController extends GetxController {
 
   GetStorage tokenBox = GetStorage();
   GetStorage authBox = GetStorage();
+  GetStorage nameBox = GetStorage();
+  GetStorage emailBox = GetStorage();
 
   late LoginProvider loginProvider = Get.find();
   late RegisterProvider registerProvider = Get.find();
@@ -32,31 +34,6 @@ class AuthController extends GetxController {
     update();
   }
 
-  // void errorHandling(Failure failure) {
-  //   switch (failure.runtimeType) {
-  //     case WrongDataFailure:
-  //       hideCircleIndicator();
-  //       SnackBarWidgets.showFailureSnackBar(
-  //           'Wrong Data', wrongDataFailureMessage);
-  //       break;
-  //     case ServerFailure:
-  //       hideCircleIndicator();
-  //       SnackBarWidgets.showFailureSnackBar(
-  //           'Server Error', serverFailureMessage);
-  //       break;
-  //     case OfflineFailure:
-  //       hideCircleIndicator();
-  //       SnackBarWidgets.showFailureSnackBar(
-  //           'No Connection', offlineFailureMessage);
-  //       break;
-  //     default:
-  //       hideCircleIndicator();
-  //       SnackBarWidgets.showFailureSnackBar(
-  //           'Unexpected error', " Please try again later.");
-  //       break;
-  //   }
-  // }
-
   Future<void> login({required LoginModel loginModel}) async {
     showCircleIndicator();
     final failureOrLogin = await loginProvider.call(loginModel);
@@ -65,11 +42,15 @@ class AuthController extends GetxController {
           failure: failure,
           hideCircleIndicator: hideCircleIndicator,
           showNoInternetPage: () {});
-    }, (getUserData) {
+    }, (getUserData) async {
       userData = getUserData;
-      tokenBox.write('token', userData.token);
       isLogin = true;
-      authBox.write('isLogin', isLogin);
+      Future.wait([
+        tokenBox.write('token', userData.token),
+        authBox.write('isLogin', isLogin),
+        nameBox.write('name', userData.name),
+        nameBox.write('email', userData.email),
+      ]);
       hideCircleIndicator();
       Get.offAllNamed(Routes.mainPage);
       SnackBarWidgets.showSuccessSnackBar('Login Succeeded', '');
@@ -85,11 +66,15 @@ class AuthController extends GetxController {
           failure: failure,
           hideCircleIndicator: hideCircleIndicator,
           showNoInternetPage: () {});
-    }, (getUserData) {
+    }, (getUserData) async {
       userData = getUserData;
-      tokenBox.write('token', userData.token);
       isLogin = true;
-      authBox.write('isLogin', isLogin);
+      Future.wait([
+        tokenBox.write('token', userData.token),
+        authBox.write('isLogin', isLogin),
+        nameBox.write('name', userData.name),
+        nameBox.write('email', userData.email),
+      ]);
       hideCircleIndicator();
       Get.offAllNamed(Routes.mainPage);
       SnackBarWidgets.showSuccessSnackBar('SignUp Succeeded', '');
@@ -98,11 +83,8 @@ class AuthController extends GetxController {
 
   //////////////////
   Future<void> logOut() async {
-    await tokenBox.remove('token').then((value) async {
-      isLogin = false;
-      await authBox.write('isLogin', isLogin).then((value) {
-        Get.offAllNamed(Routes.welcomePage);
-      });
-    });
+    isLogin = false;
+    Future.wait([tokenBox.remove('token'), authBox.write('isLogin', isLogin)]);
+    Get.offAllNamed(Routes.welcomePage);
   }
 }

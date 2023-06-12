@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: SizedBox(height: getHeightInPercent(context, 2)),
                   ),
-                  const SearchBar(),
+                  SearchBar(),
                   SliverToBoxAdapter(
                     child: SizedBox(height: getHeightInPercent(context, 2)),
                   ),

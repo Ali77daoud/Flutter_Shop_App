@@ -39,8 +39,8 @@ class Datum {
 
 class Product {
   final int id;
-  final int price;
-  final int oldPrice;
+  // final double price;
+  // final double oldPrice;
   final int discount;
   final String image;
   final String name;
@@ -48,8 +48,8 @@ class Product {
 
   Product({
     required this.id,
-    required this.price,
-    required this.oldPrice,
+    // required this.price,
+    // required this.oldPrice,
     required this.discount,
     required this.image,
     required this.name,
@@ -58,8 +58,8 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
-        price: json["price"],
-        oldPrice: json["old_price"],
+        // price: json["price"],
+        // oldPrice: json["old_price"],
         discount: json["discount"],
         image: json["image"],
         name: json["name"],

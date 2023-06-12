@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 class ProductWidget extends StatelessWidget {
-  final String img, productName, minPrice, maxPrice;
+  final String img, productName, minPrice;
+  // maxPrice;
   final bool inFav, inCart;
   final Function()? onTap;
   final Function()? onTapFav;
@@ -16,7 +17,7 @@ class ProductWidget extends StatelessWidget {
       required this.img,
       required this.productName,
       required this.minPrice,
-      required this.maxPrice,
+      // required this.maxPrice,
       required this.onTap,
       required this.onTapFav,
       required this.onTapCart,
@@ -97,26 +98,26 @@ class ProductWidget extends StatelessWidget {
                                       minFontSize: 9,
                                       maxline: 1),
                                 ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Expanded(
-                                  child: TextWidget(
-                                      text: '\$$maxPrice',
-                                      color: Get.isDarkMode
-                                          ? const Color.fromARGB(
-                                              255, 233, 81, 81)
-                                          : const Color.fromARGB(
-                                              255, 109, 3, 3),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      textAlign: TextAlign.start,
-                                      overflow: TextOverflow.ellipsis,
-                                      textDecoration:
-                                          TextDecoration.lineThrough,
-                                      minFontSize: 9,
-                                      maxline: 1),
-                                ),
+                                // const SizedBox(
+                                //   width: 8,
+                                // ),
+                                // Expanded(
+                                //   child: TextWidget(
+                                //       text: '\$$maxPrice',
+                                //       color: Get.isDarkMode
+                                //           ? const Color.fromARGB(
+                                //               255, 233, 81, 81)
+                                //           : const Color.fromARGB(
+                                //               255, 109, 3, 3),
+                                //       fontSize: 12,
+                                //       fontWeight: FontWeight.bold,
+                                //       textAlign: TextAlign.start,
+                                //       overflow: TextOverflow.ellipsis,
+                                //       textDecoration:
+                                //           TextDecoration.lineThrough,
+                                //       minFontSize: 9,
+                                //       maxline: 1),
+                                // ),
                               ],
                             ),
                           ),

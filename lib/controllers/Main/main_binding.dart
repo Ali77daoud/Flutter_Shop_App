@@ -5,6 +5,7 @@ import 'package:agora_shop/providers/Cart_providers/get_cart_data_provider.dart'
 import 'package:agora_shop/providers/Cart_providers/update_cart_provider.dart';
 import 'package:agora_shop/providers/Fav_providers/get_fav_data_provider.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_category_data_provider.dart';
+import 'package:agora_shop/providers/Home_providers.dart/search_product_provider.dart';
 import 'package:agora_shop/repositories/cart_repository.dart';
 import 'package:agora_shop/repositories/fav_repository.dart';
 import 'package:agora_shop/repositories/home_repository.dart';
@@ -32,6 +33,9 @@ class MainBinding implements Bindings {
     //////////
     Get.lazyPut<GetCategoryDataProvider>(
         () => GetCategoryDataProvider(Get.find()));
+
+    //////////
+    Get.lazyPut<SearchProductProvider>(() => SearchProductProvider(Get.find()));
 
     ////////////FavData/////////////////////////////////////////////////////////
     Get.lazyPut<FavApiService>(() => FavApiServiceImpWithHttp(

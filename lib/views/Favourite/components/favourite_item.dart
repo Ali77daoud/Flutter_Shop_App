@@ -29,7 +29,8 @@ class FavouriteItem extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
                   child: CachedNetworkImage(
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(

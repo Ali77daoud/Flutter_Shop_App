@@ -1,6 +1,7 @@
 import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/HomeData/category_data_model.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_category_data_provider.dart';
+import 'package:agora_shop/providers/Home_providers.dart/search_product_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:carousel_slider/carousel_controller.dart';
@@ -12,6 +13,8 @@ import '../../providers/Home_providers.dart/get_home_data_provider.dart';
 class HomeController extends GetxController {
   bool isHomeNoInternetConnection = false;
   bool isHomeCircleShown = false;
+  bool isSearchNoInternetConnection = false;
+  bool isSearchCircleShown = false;
 
   int currentBanner = 0;
 
@@ -26,6 +29,8 @@ class HomeController extends GetxController {
   GetHomeDataProvider getHomeDataProvider = Get.find<GetHomeDataProvider>();
   GetCategoryDataProvider getCategoryDataProvider =
       Get.find<GetCategoryDataProvider>();
+  SearchProductProvider searchProductProvider =
+      Get.find<SearchProductProvider>();
 
   // ///////////////////////////
   void showHomeCircleIndicator() {
@@ -46,6 +51,30 @@ class HomeController extends GetxController {
 
   void hideHomeNoInternetPage() {
     isHomeNoInternetConnection = false;
+    update();
+  }
+
+  //////////////////////
+  ///
+  // ///////////////////////////
+  void showSearchCircleIndicator() {
+    isSearchCircleShown = true;
+    update();
+  }
+
+  void hideSearchCircleIndicator() {
+    isSearchCircleShown = false;
+    update();
+  }
+
+  ////////////////////////////////////////////////////
+  void showSearchNoInternetPage() {
+    isSearchNoInternetConnection = true;
+    update();
+  }
+
+  void hideSearchNoInternetPage() {
+    isSearchNoInternetConnection = false;
     update();
   }
 
@@ -107,6 +136,25 @@ class HomeController extends GetxController {
       categoryData = getcategoryData;
       hideHomeCircleIndicator();
       hideHomeNoInternetPage();
+    });
+  }
+
+  Future<void> searchProduct(
+      {required String lang,
+      required String token,
+      required String text}) async {
+    showSearchCircleIndicator();
+    final failureOrsearchProduct =
+        await searchProductProvider.call(token: token, lang: lang, text: text);
+    failureOrsearchProduct.fold((failure) {
+      HandlingErrors.networkErrorrHandling(
+          failure: failure,
+          hideCircleIndicator: hideSearchCircleIndicator,
+          showNoInternetPage: showSearchNoInternetPage);
+    }, (searchProduct) {
+      homeData.data.products = searchProduct.data.products;
+      hideSearchCircleIndicator();
+      hideSearchNoInternetPage();
     });
   }
 }

@@ -3,6 +3,7 @@ import 'package:agora_shop/models/HomeData/product_details_model.dart';
 import 'package:agora_shop/services/networking/home_api_service.dart';
 import 'package:dartz/dartz.dart';
 import '../models/HomeData/home_data_model.dart';
+import '../models/HomeData/search_product_data_model.dart';
 import '../shared/errors/exceptions.dart';
 import '../shared/errors/failures.dart';
 import '../shared/network_info/network_info.dart';
@@ -50,6 +51,21 @@ class HomeRepository {
         final productDetailsResponse =
             await homeApiService.getProductDetailsApi(token, lang, id);
         return Right(productDetailsResponse);
+      } on ServerException {
+        return left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  Future<Either<Failure, SearchProductDataModel>> searchProduct(
+      String token, String lang, String text) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final searchProductResponse =
+            await homeApiService.searchProductApi(token, lang, text);
+        return Right(searchProductResponse);
       } on ServerException {
         return left(ServerFailure());
       }

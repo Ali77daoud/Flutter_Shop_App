@@ -23,8 +23,11 @@ class FavPage extends StatelessWidget {
               return FavouriteItem(
                 img: favController.favData.data.data[index].product.image,
                 title: favController.favData.data.data[index].product.name,
-                onTapCart: () {
-                  print('cart');
+                onTapCart: () async {
+                  await mainController.addOrRemoveCart(
+                      id: favController.favData.data.data[index].product.id,
+                      lang: 'en',
+                      token: token!);
                 },
                 onTapFav: () async {
                   await mainController

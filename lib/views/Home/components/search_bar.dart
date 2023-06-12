@@ -1,13 +1,13 @@
+import 'package:agora_shop/controllers/Home/home_controller.dart';
+import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-
 import '../../../shared/constants/color_constants.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
-
+  final HomeController homeController = Get.find<HomeController>();
+  SearchBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -17,6 +17,18 @@ class SearchBar extends StatelessWidget {
           height: 45,
           child: TextFormField(
             cursorColor: AppColors.primaryDark,
+            onFieldSubmitted: (value) async {
+              if (value != '') {
+                await homeController.searchProduct(
+                    lang: 'en', token: token!, text: value);
+              }
+            },
+            onChanged: (value) async {
+              if (value == '') {
+                await homeController.searchProduct(
+                    lang: 'en', token: token!, text: value);
+              }
+            },
             style: TextStyle(
                 color: Get.isDarkMode ? AppColors.darkGrey : AppColors.grey),
             decoration: InputDecoration(

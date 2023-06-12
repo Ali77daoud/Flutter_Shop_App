@@ -3,6 +3,7 @@ import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/HomeData/category_data_model.dart';
 import 'package:agora_shop/models/HomeData/home_data_model.dart';
 import 'package:agora_shop/models/HomeData/product_details_model.dart';
+import 'package:agora_shop/models/HomeData/search_product_data_model.dart';
 import 'package:agora_shop/shared/errors/exceptions.dart';
 import 'package:flutter/material.dart';
 import 'api_constants.dart';
@@ -12,6 +13,9 @@ abstract class HomeApiService {
   Future<CategoryDataModel> getCategoryDataApi(String token, String lang);
   Future<ProductDetailsModel> getProductDetailsApi(
       String token, String lang, int id);
+
+  Future<SearchProductDataModel> searchProductApi(
+      String token, String lang, String text);
 }
 
 class HomeApiServiceImpWithHttp implements HomeApiService {
@@ -99,6 +103,37 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
         return resposeData;
       } else {
         debugPrint('get product details field');
+        throw ServerException();
+      }
+    } else {
+      debugPrint('3');
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<SearchProductDataModel> searchProductApi(
+      String token, String lang, String text) async {
+    final uri = Uri.parse('${ApiConstants.baseUrl}/products/search');
+
+    final response = await clientController.client
+        .post(uri, body: json.encode({'text': text}), headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': token,
+      'lang': lang,
+    });
+    debugPrint('1');
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      debugPrint('2');
+      final data = jsonDecode(response.body);
+      if (data['status'] == true) {
+        debugPrint('search success');
+        final resposeData = SearchProductDataModel.fromJson(data);
+        return resposeData;
+      } else {
+        debugPrint('search field');
         throw ServerException();
       }
     } else {

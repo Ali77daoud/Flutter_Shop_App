@@ -9,7 +9,6 @@ import 'package:agora_shop/views/Profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../../providers/Cart_providers/delete_cart_provider.dart';
 import '../../providers/Cart_providers/update_cart_provider.dart';
 

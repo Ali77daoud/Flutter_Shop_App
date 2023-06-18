@@ -1,3 +1,15 @@
+class UserModel {
+  final String message;
+  final UserDataModel data;
+
+  UserModel({required this.message, required this.data});
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+        message: json['message'], data: UserDataModel.fromJson(json['data']));
+  }
+}
+
 class UserDataModel {
   final int id;
   final String name, email, phone, image, token;

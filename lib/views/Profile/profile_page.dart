@@ -1,4 +1,5 @@
 import 'package:agora_shop/controllers/Auth/auth_controller.dart';
+import 'package:agora_shop/routes/routes.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/helpers/extensions/StringExtension.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,10 @@ class ProfilePage extends StatelessWidget {
                     _buildListTile('Notifications',
                         Icons.notifications_outlined, '', Colors.blue, theme,
                         onTab: () {}),
+                    _buildListTile('Edit Profile', Icons.person_outline, '',
+                        Colors.lime, theme, onTab: () {
+                      Get.toNamed(Routes.editProfilePage);
+                    }),
                     const SizedBox(height: 8),
                     _buildListTile('Help', Icons.help, '', Colors.green, theme,
                         onTab: () {}),

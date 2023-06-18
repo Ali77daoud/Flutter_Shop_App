@@ -11,15 +11,14 @@ import '../../shared/widgets/snackbar_widgets.dart';
 
 class AuthController extends GetxController {
   bool isCircleShown = false;
+  bool isNoInternetConnection = false;
   bool isLogin = false;
 
-  GetStorage tokenBox = GetStorage();
-  GetStorage authBox = GetStorage();
-  GetStorage nameBox = GetStorage();
-  GetStorage emailBox = GetStorage();
+  GetStorage storageBox = GetStorage();
 
   late LoginProvider loginProvider = Get.find();
   late RegisterProvider registerProvider = Get.find();
+
   late UserDataModel userData;
 
 /////////////////////////
@@ -34,6 +33,19 @@ class AuthController extends GetxController {
     update();
   }
 
+///////////////////////////////////
+  void showNoInternetPage() {
+    isNoInternetConnection = true;
+    update();
+  }
+
+  void hideNoInternetPage() {
+    isNoInternetConnection = false;
+    update();
+  }
+
+/////////////////////////////
+
   Future<void> login({required LoginModel loginModel}) async {
     showCircleIndicator();
     final failureOrLogin = await loginProvider.call(loginModel);
@@ -46,10 +58,10 @@ class AuthController extends GetxController {
       userData = getUserData;
       isLogin = true;
       Future.wait([
-        tokenBox.write('token', userData.token),
-        authBox.write('isLogin', isLogin),
-        nameBox.write('name', userData.name),
-        nameBox.write('email', userData.email),
+        storageBox.write('token', userData.token),
+        storageBox.write('isLogin', isLogin),
+        storageBox.write('name', userData.name),
+        storageBox.write('email', userData.email),
       ]);
       hideCircleIndicator();
       Get.offAllNamed(Routes.mainPage);
@@ -70,10 +82,10 @@ class AuthController extends GetxController {
       userData = getUserData;
       isLogin = true;
       Future.wait([
-        tokenBox.write('token', userData.token),
-        authBox.write('isLogin', isLogin),
-        nameBox.write('name', userData.name),
-        nameBox.write('email', userData.email),
+        storageBox.write('token', userData.token),
+        storageBox.write('isLogin', isLogin),
+        storageBox.write('name', userData.name),
+        storageBox.write('email', userData.email),
       ]);
       hideCircleIndicator();
       Get.offAllNamed(Routes.mainPage);
@@ -84,7 +96,8 @@ class AuthController extends GetxController {
   //////////////////
   Future<void> logOut() async {
     isLogin = false;
-    Future.wait([tokenBox.remove('token'), authBox.write('isLogin', isLogin)]);
+    Future.wait(
+        [storageBox.remove('token'), storageBox.write('isLogin', isLogin)]);
     Get.offAllNamed(Routes.welcomePage);
   }
 }

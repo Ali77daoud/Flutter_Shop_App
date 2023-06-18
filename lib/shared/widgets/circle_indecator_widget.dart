@@ -1,5 +1,6 @@
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CircleIndicatorWidget extends StatelessWidget {
   final bool isBgWhite;
@@ -12,10 +13,14 @@ class CircleIndicatorWidget extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-          color: isBgWhite ? Colors.white : Colors.black.withOpacity(0.3),
+          color: isBgWhite
+              ? Get.isDarkMode
+                  ? AppColors.blackLight
+                  : AppColors.white
+              : Colors.black.withOpacity(0.3),
         ),
-        const CircularProgressIndicator(
-          color: AppColors.primaryDark,
+        CircularProgressIndicator(
+          color: Get.isDarkMode ? AppColors.lightGray : AppColors.primaryDark,
         )
       ],
     );

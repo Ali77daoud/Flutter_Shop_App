@@ -54,9 +54,6 @@ class ProductDetailsController extends GetxController {
   void onClose() async {
     super.onClose();
     debugPrint('Product Details Controller closed');
-    // await clientController.closeClient().then((value) async {
-    //   await clientController.reOpenClient();
-    // });
   }
 
   //////////////////////

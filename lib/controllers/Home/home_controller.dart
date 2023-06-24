@@ -108,6 +108,7 @@ class HomeController extends GetxController {
   Future<void> getHomeData(
       {required String lang, required String token}) async {
     showHomeCircleIndicator();
+    debugPrint('get home data');
     final failureOrGetHomeData =
         await getHomeDataProvider.call(token: token, lang: lang);
     failureOrGetHomeData.fold((failure) {

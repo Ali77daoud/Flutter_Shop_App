@@ -30,7 +30,11 @@ class ProductDetails extends StatelessWidget {
           WillPopScope(
             onWillPop: () async {
               print('back');
-              await homeController.getHomeData(lang: 'en', token: token!);
+              await homeController
+                  .getHomeData(lang: 'en', token: token!)
+                  .then((value) async {
+                await homeController.getCategoryData(lang: 'en', token: token!);
+              });
               return true;
             },
             child: Scaffold(
@@ -64,8 +68,12 @@ class ProductDetails extends StatelessWidget {
                             onPressed: () async {
                               print('back');
                               Get.close(1);
-                              await homeController.getHomeData(
-                                  lang: 'en', token: token!);
+                              await homeController
+                                  .getHomeData(lang: 'en', token: token!)
+                                  .then((value) async {
+                                await homeController.getCategoryData(
+                                    lang: 'en', token: token!);
+                              });
                             },
                             icon: const Icon(
                               IconlyBold.arrow_left_3,

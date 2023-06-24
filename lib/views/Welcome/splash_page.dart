@@ -14,11 +14,19 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  bool selected = false;
   @override
   void initState() {
     super.initState();
     token = GetStorage().read('token') ?? '';
-    Timer(const Duration(seconds: 2), () => goToHomeScreen());
+    Timer(const Duration(milliseconds: 500), () {
+      setState(() {
+        selected = true;
+      });
+      Timer(const Duration(seconds: 3, milliseconds: 500), () {
+        goToHomeScreen();
+      });
+    });
   }
 
   goToHomeScreen() {
@@ -29,13 +37,34 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Splash Page'),
-      ),
-      body: const Center(
-        child: Text('Splash Page'),
-      ),
+    return SafeArea(
+      child: Scaffold(
+          body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        'assets/pictures/splash_backgrounf.png',
+                      ),
+                      fit: BoxFit.cover))),
+          AnimatedContainer(
+            width: selected ? 130 : 60,
+            height: selected ? 130 : 60,
+            alignment:
+                selected ? Alignment.center : AlignmentDirectional.topCenter,
+            duration: const Duration(seconds: 3),
+            curve: Curves.fastOutSlowIn,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                      'assets/pictures/shopping-bag.png',
+                    ),
+                    fit: BoxFit.contain)),
+          ),
+        ],
+      )),
     );
   }
 }

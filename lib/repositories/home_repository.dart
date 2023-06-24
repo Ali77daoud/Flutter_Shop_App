@@ -1,4 +1,5 @@
 import 'package:agora_shop/models/HomeData/category_data_model.dart';
+import 'package:agora_shop/models/HomeData/category_product_model.dart';
 import 'package:agora_shop/models/HomeData/product_details_model.dart';
 import 'package:agora_shop/services/networking/home_api_service.dart';
 import 'package:dartz/dartz.dart';
@@ -66,6 +67,21 @@ class HomeRepository {
         final searchProductResponse =
             await homeApiService.searchProductApi(token, lang, text);
         return Right(searchProductResponse);
+      } on ServerException {
+        return left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  Future<Either<Failure, CategoryProductModel>> getCategoryProduct(
+      String token, String lang, int categoryId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final getProductCategoryResponse = await homeApiService
+            .getCategoryProductDataApi(token, lang, categoryId);
+        return Right(getProductCategoryResponse);
       } on ServerException {
         return left(ServerFailure());
       }

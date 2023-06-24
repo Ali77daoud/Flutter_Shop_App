@@ -41,7 +41,6 @@ class HomePopularList extends StatelessWidget {
                           homeController.homeData.data.products[i].inFavorites,
                       inCart: homeController.homeData.data.products[i].inCart,
                       onTap: () {
-                        print(homeController.homeData.data.products[i].id);
                         Get.toNamed(Routes.productDetailsPage, arguments: {
                           'ProductId':
                               homeController.homeData.data.products[i].id,

@@ -1,5 +1,4 @@
 import 'package:agora_shop/controllers/Client/client_controller.dart';
-import 'package:agora_shop/controllers/Home/home_controller.dart';
 import 'package:agora_shop/models/HomeData/product_details_model.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_product_details.dart';
 import 'package:flutter/material.dart';

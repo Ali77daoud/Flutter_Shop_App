@@ -1,4 +1,5 @@
 import 'package:agora_shop/controllers/Home/home_controller.dart';
+import 'package:agora_shop/routes/routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,44 +22,53 @@ class HomeCategoryList extends StatelessWidget {
           itemBuilder: (ctx, i) {
             return Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 60,
-                    width: 70,
-                    decoration: BoxDecoration(
-                      color: AppColors.lightGray,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Center(
-                        child: CircularProgressIndicator(
-                            value: downloadProgress.progress, strokeWidth: 3),
+              child: InkWell(
+                onTap: () {
+                  print(homeController.categoryData.data.data[i].id);
+                  Get.toNamed(Routes.categoryProductPage, arguments: {
+                    'CategoryId': homeController.categoryData.data.data[i].id,
+                  });
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 60,
+                      width: 70,
+                      decoration: BoxDecoration(
+                        color: AppColors.lightGray,
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                      imageUrl: homeController.categoryData.data.data[i].image,
-                      fit: BoxFit.contain,
+                      alignment: Alignment.center,
+                      child: CachedNetworkImage(
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Center(
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress, strokeWidth: 3),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                        imageUrl:
+                            homeController.categoryData.data.data[i].image,
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 5),
-                  SizedBox(
-                    width: 70,
-                    child: TextWidget(
-                        text: homeController.categoryData.data.data[i].name,
-                        color: Get.isDarkMode
-                            ? AppColors.lightGray
-                            : AppColors.primaryDark,
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        maxline: 2),
-                  ),
-                ],
+                    const SizedBox(height: 5),
+                    SizedBox(
+                      width: 70,
+                      child: TextWidget(
+                          text: homeController.categoryData.data.data[i].name,
+                          color: Get.isDarkMode
+                              ? AppColors.lightGray
+                              : AppColors.primaryDark,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          maxline: 2),
+                    ),
+                  ],
+                ),
               ),
             );
           },

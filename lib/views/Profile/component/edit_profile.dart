@@ -1,4 +1,3 @@
-import 'package:agora_shop/controllers/Main/main_controller.dart';
 import 'package:agora_shop/controllers/Profile/profile_controller.dart';
 import 'package:agora_shop/models/Auth/update_profile_model.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';

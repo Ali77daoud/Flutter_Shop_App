@@ -1,8 +1,10 @@
 import 'package:agora_shop/controllers/Auth/auth_binding.dart';
+import 'package:agora_shop/controllers/CategoryProduct/category_product_bindings.dart';
 import 'package:agora_shop/controllers/Main/main_binding.dart';
 import 'package:agora_shop/controllers/ProductDetails/product_details_binding.dart';
 import 'package:agora_shop/controllers/Profile/profile_bindings.dart';
 import 'package:agora_shop/views/Auth/signup_page.dart';
+import 'package:agora_shop/views/Products/category_product_page.dart';
 import 'package:agora_shop/views/Profile/edit_profile_page.dart';
 import 'package:agora_shop/views/Welcome/welcome_screen.dart';
 import 'package:get/get.dart';
@@ -19,6 +21,7 @@ class Routes {
   static const mainPage = '/mainPage';
   static const productDetailsPage = '/productDetailsPage';
   static const editProfilePage = '/editProfilePage';
+  static const categoryProductPage = '/categoryProductPage';
 }
 
 class AppRoutes {
@@ -70,6 +73,15 @@ class AppRoutes {
       name: Routes.editProfilePage,
       page: () => EditProfilePage(),
       binding: ProfileBinding(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 200),
+    ),
+
+    /// ///////////////////////
+    GetPage(
+      name: Routes.categoryProductPage,
+      page: () => CategoryProductPage(),
+      binding: CategoryProductBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),
     ),

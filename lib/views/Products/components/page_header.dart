@@ -3,8 +3,8 @@ import 'package:agora_shop/shared/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FirstSection extends StatelessWidget {
-  const FirstSection({super.key});
+class PageHeader extends StatelessWidget {
+  const PageHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

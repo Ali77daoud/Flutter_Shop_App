@@ -1,4 +1,5 @@
 import 'package:agora_shop/models/Auth/register_model.dart';
+import 'package:agora_shop/views/Auth/components/auth_page_footer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
@@ -9,7 +10,6 @@ import '../../shared/constants/validation_const.dart';
 import '../../shared/helpers/screen_size_utils.dart';
 import '../../shared/widgets/app_buttons.dart';
 import '../../shared/widgets/circle_indecator_widget.dart';
-import '../../shared/widgets/text_widget.dart';
 import 'components/auth_text_field.dart';
 import 'components/gradient_headre.dart';
 
@@ -157,29 +157,10 @@ class SignUpPage extends StatelessWidget {
               height: getHeightInPercent(context, 5),
             ),
             // ////////////
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextWidget(
-                    text: 'Already have an account?',
-                    color: AppColors.primaryDark,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    textAlign: TextAlign.start,
-                    maxline: 1),
-                TextButton(
-                  onPressed: () {
-                    Get.offNamed(Routes.loginPage);
-                  },
-                  child: TextWidget(
-                      text: 'LOGIN',
-                      color: AppColors.primaryLight,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      textAlign: TextAlign.start,
-                      maxline: 1),
-                ),
-              ],
+            const AuthPageFooter(
+              text1: 'Already have an account?',
+              text2: 'LOGIN',
+              route: Routes.loginPage,
             ),
           ],
         ),

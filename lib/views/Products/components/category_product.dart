@@ -1,10 +1,11 @@
 import 'package:agora_shop/controllers/CategoryProduct/category_product_controller.dart';
+import 'package:agora_shop/controllers/Home/home_controller.dart';
 import 'package:agora_shop/controllers/Main/main_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
 import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/product_widget.dart';
-import 'package:agora_shop/views/Products/components/first_section.dart';
+import 'package:agora_shop/views/Products/components/page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,12 +13,13 @@ class CategoryProduct extends StatelessWidget {
   final CategoryProductController categoryProductController =
       Get.find<CategoryProductController>();
   final MainController mainController = Get.find<MainController>();
+  final HomeController homeController = Get.find<HomeController>();
   CategoryProduct({super.key});
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CategoryProductController>(builder: (_) {
-      return CustomScrollView(slivers: [
-        const FirstSection(),
+      return CustomScrollView(physics: const BouncingScrollPhysics(), slivers: [
+        const PageHeader(),
         ////
         SliverToBoxAdapter(
           child: SizedBox(
@@ -49,10 +51,13 @@ class CategoryProduct extends StatelessWidget {
                   inCart: categoryProductController
                       .categoryProductData.data.data[i].inCart,
                   onTap: () {
-                    Get.toNamed(Routes.productDetailsPage, arguments: {
-                      'ProductId': categoryProductController
-                          .categoryProductData.data.data[i].id,
-                    });
+                    Get.toNamed(
+                      Routes.productDetailsPage,
+                      arguments: {
+                        'ProductId': categoryProductController
+                            .categoryProductData.data.data[i].id,
+                      },
+                    );
                   },
                   onTapCart: () async {
                     int categoryId = Get.arguments['CategoryId'];

@@ -31,7 +31,7 @@ class CategoryProductPage extends StatelessWidget {
             child: Scaffold(body: GetBuilder<MainController>(builder: (_) {
               return Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Stack(
                     children: [
                       CategoryProduct(),

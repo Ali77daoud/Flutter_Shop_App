@@ -25,6 +25,7 @@ class HomeCategoryList extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   print(homeController.categoryData.data.data[i].id);
+
                   Get.toNamed(Routes.categoryProductPage, arguments: {
                     'CategoryId': homeController.categoryData.data.data[i].id,
                   });

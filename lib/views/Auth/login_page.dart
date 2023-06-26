@@ -1,6 +1,7 @@
 import 'package:agora_shop/controllers/Auth/auth_controller.dart';
 import 'package:agora_shop/models/Auth/login_model.dart';
 import 'package:agora_shop/shared/widgets/app_buttons.dart';
+import 'package:agora_shop/views/Auth/components/auth_page_footer.dart';
 import 'package:agora_shop/views/Auth/components/auth_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,6 @@ import '../../shared/constants/color_constants.dart';
 import '../../shared/constants/validation_const.dart';
 import '../../shared/helpers/screen_size_utils.dart';
 import '../../shared/widgets/circle_indecator_widget.dart';
-import '../../shared/widgets/text_widget.dart';
 import 'components/gradient_headre.dart';
 
 class LoginPage extends StatelessWidget {
@@ -122,29 +122,10 @@ class LoginPage extends StatelessWidget {
               height: getHeightInPercent(context, 10),
             ),
             // ////////////
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextWidget(
-                    text: 'Dont have an account?',
-                    color: AppColors.primaryDark,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    textAlign: TextAlign.start,
-                    maxline: 1),
-                TextButton(
-                  onPressed: () {
-                    Get.offNamed(Routes.signUpPage);
-                  },
-                  child: TextWidget(
-                      text: 'SIGN UP',
-                      color: AppColors.primaryLight,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      textAlign: TextAlign.start,
-                      maxline: 1),
-                ),
-              ],
+            const AuthPageFooter(
+              text1: 'Dont have an account?',
+              text2: 'SIGN UP',
+              route: Routes.signUpPage,
             ),
           ],
         ),

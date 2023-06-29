@@ -3,6 +3,7 @@ import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/Home/home_controller.dart';
+import '../../shared/shared_variables.dart';
 import 'components/category_list.dart';
 import 'components/category_title.dart';
 import 'components/feed_news.dart';
@@ -21,8 +22,13 @@ class HomePage extends StatelessWidget {
           return HandlingErrors.pageErrorHandling(
               isCircleShown: homeController.isHomeCircleShown,
               isNoInternetConnection: homeController.isHomeNoInternetConnection,
-              onTapTry: () {
-                print('try');
+              onTapTry: () async {
+                await homeController
+                    .getHomeData(lang: lanLocal, token: token)
+                    .then((value) async {
+                  await homeController.getCategoryData(
+                      lang: lanLocal, token: token);
+                });
               },
               page: CustomScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -40,7 +46,7 @@ class HomePage extends StatelessWidget {
                       height: getHeightInPercent(context, 2),
                     ),
                   ),
-                  const CategoryTitle(title: 'Category', trailingTitle: ''),
+                  CategoryTitle(title: 'Category'.tr, trailingTitle: ''),
                   SliverToBoxAdapter(
                     child: SizedBox(height: getHeightInPercent(context, 2)),
                   ),
@@ -48,7 +54,7 @@ class HomePage extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: SizedBox(height: getHeightInPercent(context, 2)),
                   ),
-                  const CategoryTitle(title: 'Popular', trailingTitle: ''),
+                  CategoryTitle(title: 'Popular'.tr, trailingTitle: ''),
                   SliverToBoxAdapter(
                     child: SizedBox(height: getHeightInPercent(context, 2)),
                   ),

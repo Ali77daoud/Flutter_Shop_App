@@ -23,7 +23,7 @@ class DetailPage extends StatelessWidget {
             productDetailsController.showProductCircleIndicator();
             final int productId = Get.arguments['ProductId'];
             await productDetailsController.getProductDetails(
-                lang: 'en', token: token!, id: productId);
+                lang: lanLocal, token: token, id: productId);
           },
           page: ProductDetails());
     }));

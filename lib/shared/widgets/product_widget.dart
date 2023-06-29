@@ -58,7 +58,7 @@ class ProductWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
+              padding: const EdgeInsets.fromLTRB(8, 8, 5, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

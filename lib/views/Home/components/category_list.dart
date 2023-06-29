@@ -4,6 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../shared/constants/color_constants.dart';
+import '../../../shared/constants/lang_constants.dart';
+import '../../../shared/shared_variables.dart';
 import '../../../shared/widgets/text_widget.dart';
 
 class HomeCategoryList extends StatelessWidget {
@@ -21,11 +23,11 @@ class HomeCategoryList extends StatelessWidget {
           // categoryList.length,
           itemBuilder: (ctx, i) {
             return Padding(
-              padding: const EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10),
               child: InkWell(
                 onTap: () {
-                  print(homeController.categoryData.data.data[i].id);
-
+                  debugPrint(
+                      homeController.categoryData.data.data[i].id.toString());
                   Get.toNamed(Routes.categoryProductPage, arguments: {
                     'CategoryId': homeController.categoryData.data.data[i].id,
                   });

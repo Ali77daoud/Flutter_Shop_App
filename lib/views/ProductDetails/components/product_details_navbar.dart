@@ -1,6 +1,9 @@
 import 'package:agora_shop/shared/constants/color_constants.dart';
+import 'package:agora_shop/shared/constants/lang_constants.dart';
+import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/app_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 class ProductDetailsNavBar extends StatelessWidget {
@@ -24,22 +27,25 @@ class ProductDetailsNavBar extends StatelessWidget {
           BoxShadow(color: AppColors.lightGray, blurRadius: 20),
         ],
       ),
-      child: Row(
-        children: [
-          const SizedBox(width: 25),
-          const Icon(
-            IconlyBold.buy,
-            size: 30,
-            color: AppColors.primaryDark,
-          ),
-          const SizedBox(width: 35),
-          Expanded(
-            child: AppButton.normalButton(
-                title: 'Add To Cart',
-                height: 40,
-                backgroundColor: AppColors.secondary),
-          ),
-        ],
+      child: Directionality(
+        textDirection: lanLocal == ara ? TextDirection.ltr : TextDirection.rtl,
+        child: Row(
+          children: [
+            const SizedBox(width: 25),
+            const Icon(
+              IconlyBold.buy,
+              size: 30,
+              color: AppColors.primaryDark,
+            ),
+            const SizedBox(width: 35),
+            Expanded(
+              child: AppButton.normalButton(
+                  title: 'Add To Cart'.tr,
+                  height: 40,
+                  backgroundColor: AppColors.secondary),
+            ),
+          ],
+        ),
       ),
     );
   }

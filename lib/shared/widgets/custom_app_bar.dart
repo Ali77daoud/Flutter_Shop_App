@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 AppBar appBar() {
   return AppBar(
     elevation: 0,
     centerTitle: true,
-    leading: const Padding(
-      padding: EdgeInsets.all(12.0),
-      child: Icon(
-        Icons.menu_sharp,
-      ),
-    ),
-    title: const Text(
-      'AgOrA Shop',
-      style: TextStyle(
+    leading: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Image.asset(
+          'assets/pictures/shopping-bag.png',
+          fit: BoxFit.contain,
+        )),
+    title: Text(
+      'Shop'.tr,
+      style: const TextStyle(
         fontSize: 16,
         // color: Get.isDarkMode ? AppColors.grey : AppColors.primaryDark,
         fontWeight: FontWeight.bold,

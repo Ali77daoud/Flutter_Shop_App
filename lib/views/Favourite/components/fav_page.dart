@@ -26,17 +26,18 @@ class FavPage extends StatelessWidget {
                 onTapCart: () async {
                   await mainController.addOrRemoveCart(
                       id: favController.favData.data.data[index].product.id,
-                      lang: 'en',
-                      token: token!);
+                      lang: lanLocal,
+                      token: token);
                 },
                 onTapFav: () async {
                   await mainController
                       .addOrDeleteFav(
                           id: favController.favData.data.data[index].product.id,
-                          lang: 'en',
-                          token: token!)
+                          lang: lanLocal,
+                          token: token)
                       .then((value) async {
-                    await favController.getFavData(lang: 'en', token: token!);
+                    await favController.getFavData(
+                        lang: lanLocal, token: token);
                   });
                 },
               );

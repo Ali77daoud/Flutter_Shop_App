@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../../shared/constants/lang_constants.dart';
+
 class ProductImageWidget extends StatelessWidget {
   const ProductImageWidget({
     Key? key,
@@ -31,7 +33,8 @@ class ProductImageWidget extends StatelessWidget {
   Widget backButton() {
     return Positioned(
       top: 5,
-      left: 15,
+      left: lanLocal == ene ? 15 : null,
+      right: lanLocal == ara ? 15 : null,
       child: CircleAvatar(
         backgroundColor: AppColors.secondary,
         child: IconButton(
@@ -42,22 +45,25 @@ class ProductImageWidget extends StatelessWidget {
               final HomeController homeController = Get.find<HomeController>();
 
               await homeController
-                  .getHomeData(lang: 'en', token: token!)
+                  .getHomeData(lang: lanLocal, token: token)
                   .then((value) async {
-                await homeController.getCategoryData(lang: 'en', token: token!);
+                await homeController.getCategoryData(
+                    lang: lanLocal, token: token);
               });
             } else if (Get.currentRoute == Routes.categoryProductPage) {
               final CategoryProductController categoryProductController =
                   Get.find<CategoryProductController>();
 
               await categoryProductController.getCategoryProduct(
-                  lang: 'en',
-                  token: token!,
+                  lang: lanLocal,
+                  token: token,
                   categoryId: Get.arguments['CategoryId']);
             }
           },
-          icon: const Icon(
-            IconlyBold.arrow_left_3,
+          icon: Icon(
+            lanLocal == ara
+                ? IconlyBold.arrow_right_3
+                : IconlyBold.arrow_left_3,
             color: AppColors.white,
           ),
         ),

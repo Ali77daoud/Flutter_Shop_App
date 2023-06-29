@@ -78,7 +78,7 @@ class ProfileController extends GetxController {
   void onInit() async {
     super.onInit();
     debugPrint('Profile Controller Init');
-    await getUserData(lang: 'en', token: token!);
+    await getUserData(lang: lanLocal, token: token);
   }
 
   @override

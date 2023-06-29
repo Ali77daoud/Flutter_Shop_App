@@ -32,6 +32,7 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -62,6 +63,7 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -92,6 +94,7 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -123,6 +126,7 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -154,6 +158,7 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');

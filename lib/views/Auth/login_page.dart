@@ -30,9 +30,9 @@ class LoginPage extends StatelessWidget {
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    const GradientHeader(
-                      text1: 'LOGIN',
-                      text2: 'To your account',
+                    GradientHeader(
+                      text1: 'LOGIN'.tr,
+                      text2: 'To your account'.tr,
                     ),
                     /////////////////////////////////////////////
                     SizedBox(
@@ -69,13 +69,13 @@ class LoginPage extends StatelessWidget {
                 textInputType: TextInputType.text,
                 isPrefix: true,
                 controller: emailKey,
-                hintText: 'Enter  Email',
-                labelText: 'Email',
+                hintText: 'Enter  Email'.tr,
+                labelText: 'Email'.tr,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Email should not be empty';
+                    return 'Email should not be empty'.tr;
                   } else if (!RegExp(validationEmail).hasMatch(value)) {
-                    return 'Enter valid email';
+                    return 'Enter valid email'.tr;
                   }
                 },
                 prefixIcon: const Icon(IconlyBold.message)),
@@ -88,13 +88,13 @@ class LoginPage extends StatelessWidget {
               textInputType: TextInputType.visiblePassword,
               isPrefix: true,
               controller: passKey,
-              hintText: 'Enter  Password',
-              labelText: 'Password',
+              hintText: 'Enter  Password'.tr,
+              labelText: 'Password'.tr,
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Password should not be empty';
+                  return 'Password should not be empty'.tr;
                 } else if (value!.length < 8) {
-                  return 'Password should not be less than 8 characters';
+                  return 'Password should not be less than 8 characters'.tr;
                 }
               },
               prefixIcon: const Icon(IconlyBold.lock),
@@ -108,7 +108,7 @@ class LoginPage extends StatelessWidget {
             ////////////
             AppButton.normalButton(
               backgroundColor: AppColors.secondary,
-              title: 'LOGIN',
+              title: 'LOGIN'.tr,
               onPress: () async {
                 if (formKey.currentState!.validate()) {
                   final loginData =
@@ -122,11 +122,16 @@ class LoginPage extends StatelessWidget {
               height: getHeightInPercent(context, 10),
             ),
             // ////////////
-            const AuthPageFooter(
-              text1: 'Dont have an account?',
-              text2: 'SIGN UP',
+            AuthPageFooter(
+              text1: 'Dont have an account?'.tr,
+              text2: 'SIGN UP'.tr,
               route: Routes.signUpPage,
             ),
+            ///////
+            SizedBox(
+              height: getHeightInPercent(context, 3),
+            ),
+            // ////////////
           ],
         ),
       ),

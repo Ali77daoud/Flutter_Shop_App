@@ -64,13 +64,13 @@ class EditProfile extends StatelessWidget {
             Get.close(1);
           },
           child: Icon(
-            Icons.arrow_back_ios_new,
+            Icons.arrow_back_ios,
             color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,
           ),
         ),
         Expanded(
           child: TextWidget(
-              text: 'Profile',
+              text: 'Profile'.tr,
               color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -112,7 +112,7 @@ class EditProfile extends StatelessWidget {
                 isLableText: false,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Name should not be empty';
+                    return 'Name should not be empty'.tr;
                   }
                 },
                 prefixIcon: const Icon(IconlyBold.profile)),
@@ -129,9 +129,9 @@ class EditProfile extends StatelessWidget {
                 isLableText: false,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Email should not be empty';
+                    return 'Email should not be empty'.tr;
                   } else if (!RegExp(validationEmail).hasMatch(value)) {
-                    return 'Enter valid email';
+                    return 'Enter valid email'.tr;
                   }
                 },
                 prefixIcon: const Icon(IconlyBold.message)),
@@ -148,9 +148,9 @@ class EditProfile extends StatelessWidget {
                 isLableText: false,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Phone should not be empty';
+                    return 'Phone should not be empty'.tr;
                   } else if (value!.length < 9 || value!.length > 12) {
-                    return 'Phone Number should be between 9 and 12 numbers';
+                    return 'Phone Number should be between 9 and 12 numbers'.tr;
                   }
                 },
                 prefixIcon: const Icon(IconlyBold.call)),
@@ -165,7 +165,7 @@ class EditProfile extends StatelessWidget {
             ///
             AppButton.normalButton(
               backgroundColor: AppColors.secondary,
-              title: 'Update Profile',
+              title: 'Update Profile'.tr,
               shadow: false,
               onPress: () async {
                 if (formKey.currentState!.validate()) {
@@ -178,11 +178,11 @@ class EditProfile extends StatelessWidget {
                   await profileController
                       .updateProfile(
                           updateProfileModel: updateProfileModel,
-                          token: token!,
-                          lang: 'en')
+                          token: token,
+                          lang: lanLocal)
                       .then((value) async {
                     await profileController.getUserData(
-                        lang: 'en', token: token!);
+                        lang: lanLocal, token: token);
                   });
                 }
               },

@@ -40,13 +40,13 @@ class ProductNameAndPriceWidget extends StatelessWidget {
             await mainController
                 .addOrDeleteFav(
                     id: productDetailsController.productDetailsData.data.id,
-                    lang: 'en',
-                    token: token!)
+                    lang: lanLocal,
+                    token: token)
                 .then((value) async {
               await productDetailsController.getProductDetails(
                   id: productDetailsController.productDetailsData.data.id,
-                  lang: 'en',
-                  token: token!);
+                  lang: lanLocal,
+                  token: token);
             });
           },
           icon: productDetailsController.productDetailsData.data.inFavorites

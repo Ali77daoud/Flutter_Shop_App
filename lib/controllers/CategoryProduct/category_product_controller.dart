@@ -45,7 +45,8 @@ class CategoryProductController extends GetxController {
     super.onInit();
     debugPrint('Category Product Controller Init');
     final int categoryId = Get.arguments['CategoryId'];
-    await getCategoryProduct(lang: 'en', token: token!, categoryId: categoryId);
+    await getCategoryProduct(
+        lang: lanLocal, token: token, categoryId: categoryId);
   }
 
   @override

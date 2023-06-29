@@ -21,17 +21,22 @@ class AuthPageFooter extends StatelessWidget {
             text: text1,
             color: AppColors.primaryDark,
             fontSize: 13,
+            minFontSize: 10,
             fontWeight: FontWeight.w400,
-            textAlign: TextAlign.start,
+            textAlign: TextAlign.center,
             maxline: 1),
-        TextButton(
-          onPressed: () {
+        const SizedBox(
+          width: 2,
+        ),
+        InkWell(
+          onTap: () {
             Get.offNamed(route);
           },
           child: TextWidget(
               text: text2,
               color: AppColors.primaryLight,
               fontSize: 13,
+              minFontSize: 10,
               fontWeight: FontWeight.w700,
               textAlign: TextAlign.start,
               maxline: 1),

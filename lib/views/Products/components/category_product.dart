@@ -66,11 +66,11 @@ class CategoryProduct extends StatelessWidget {
                         .addOrRemoveCart(
                             id: categoryProductController
                                 .categoryProductData.data.data[i].id,
-                            lang: 'en',
-                            token: token!)
+                            lang: lanLocal,
+                            token: token)
                         .then((value) async {
                       await categoryProductController.getCategoryProduct(
-                          lang: 'en', token: token!, categoryId: categoryId);
+                          lang: lanLocal, token: token, categoryId: categoryId);
                     });
                   },
                   onTapFav: () async {
@@ -80,11 +80,11 @@ class CategoryProduct extends StatelessWidget {
                         .addOrDeleteFav(
                             id: categoryProductController
                                 .categoryProductData.data.data[i].id,
-                            lang: 'en',
-                            token: token!)
+                            lang: lanLocal,
+                            token: token)
                         .then((value) async {
                       await categoryProductController.getCategoryProduct(
-                          lang: 'en', token: token!, categoryId: categoryId);
+                          lang: lanLocal, token: token, categoryId: categoryId);
                     });
                   },
                 );

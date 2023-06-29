@@ -28,6 +28,7 @@ class ProfileApiServiceImpWithHttp implements ProfileApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -56,6 +57,7 @@ class ProfileApiServiceImpWithHttp implements ProfileApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');

@@ -91,8 +91,8 @@ class HomeController extends GetxController {
     debugPrint('Home Controller Init');
     debugPrint(token);
     carouselController = CarouselController();
-    await getHomeData(lang: 'en', token: token!).then((value) async {
-      await getCategoryData(lang: 'en', token: token!);
+    await getHomeData(lang: lanLocal, token: token).then((value) async {
+      await getCategoryData(lang: lanLocal, token: token);
     });
   }
 

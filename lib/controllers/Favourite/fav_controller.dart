@@ -45,7 +45,7 @@ class FavController extends GetxController {
   void onInit() async {
     super.onInit();
     debugPrint('Fav Controller Init');
-    await getFavData(lang: 'en', token: token!);
+    await getFavData(lang: lanLocal, token: token);
   }
 
   @override

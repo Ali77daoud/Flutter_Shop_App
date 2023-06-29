@@ -43,7 +43,7 @@ class CartController extends GetxController {
   void onInit() async {
     super.onInit();
     debugPrint('Cart Controller Init');
-    await getCartData(lang: 'en', token: token!);
+    await getCartData(lang: lanLocal, token: token);
   }
 
   @override

@@ -1,1 +1,2 @@
-String? token;
+late String token;
+late String lanLocal;

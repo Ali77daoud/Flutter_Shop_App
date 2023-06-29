@@ -18,7 +18,7 @@ class CheckOutWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 135,
+        height: 145,
         width: double.infinity,
         margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
         padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
@@ -40,14 +40,14 @@ class CheckOutWidget extends StatelessWidget {
             Card(
               elevation: 5,
               child: Padding(
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextWidget(
-                            text: 'Subtotal',
+                            text: 'Subtotal'.tr,
                             color: Get.isDarkMode
                                 ? AppColors.grey
                                 : AppColors.primaryDark,
@@ -74,7 +74,7 @@ class CheckOutWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextWidget(
-                            text: 'Total',
+                            text: 'Total'.tr,
                             color: Get.isDarkMode
                                 ? AppColors.grey
                                 : AppColors.primaryDark,
@@ -103,7 +103,7 @@ class CheckOutWidget extends StatelessWidget {
                   const EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 5),
               child: AppButton.normalButton(
                   onPress: onTapCheck,
-                  title: 'Checkout',
+                  title: 'Checkout'.tr,
                   shadow: false,
                   height: 40,
                   backgroundColor: AppColors.secondary),

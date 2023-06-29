@@ -41,12 +41,12 @@ class CartBody extends StatelessWidget {
                         .updateCart(
                             id: cartController
                                 .cartData.data.cartItems[index].id,
-                            lang: 'en',
-                            token: token!,
+                            lang: lanLocal,
+                            token: token,
                             quantity: q + 1)
                         .then((value) async {
                       await cartController.getCartData(
-                          lang: 'en', token: token!);
+                          lang: lanLocal, token: token);
                     });
                   },
                   removeOne: () async {
@@ -57,12 +57,12 @@ class CartBody extends StatelessWidget {
                           .updateCart(
                               id: cartController
                                   .cartData.data.cartItems[index].id,
-                              lang: 'en',
-                              token: token!,
+                              lang: lanLocal,
+                              token: token,
                               quantity: q - 1)
                           .then((value) async {
                         await cartController.getCartData(
-                            lang: 'en', token: token!);
+                            lang: lanLocal, token: token);
                       });
                     }
                   },
@@ -71,11 +71,11 @@ class CartBody extends StatelessWidget {
                         .deleteCart(
                             id: cartController
                                 .cartData.data.cartItems[index].id,
-                            lang: 'en',
-                            token: token!)
+                            lang: lanLocal,
+                            token: token)
                         .then((value) async {
                       await cartController.getCartData(
-                          lang: 'en', token: token!);
+                          lang: lanLocal, token: token);
                     });
                   },
                 );

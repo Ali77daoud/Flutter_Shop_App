@@ -31,24 +31,23 @@ class ProductDetails extends StatelessWidget {
             onWillPop: () async {
               debugPrint('back');
               Get.close(1);
-
               if (Get.currentRoute == Routes.mainPage) {
                 final HomeController homeController =
                     Get.find<HomeController>();
 
                 await homeController
-                    .getHomeData(lang: 'en', token: token!)
+                    .getHomeData(lang: lanLocal, token: token)
                     .then((value) async {
                   await homeController.getCategoryData(
-                      lang: 'en', token: token!);
+                      lang: lanLocal, token: token);
                 });
               } else if (Get.currentRoute == Routes.categoryProductPage) {
                 final CategoryProductController categoryProductController =
                     Get.find<CategoryProductController>();
 
                 await categoryProductController.getCategoryProduct(
-                    lang: 'en',
-                    token: token!,
+                    lang: lanLocal,
+                    token: token,
                     categoryId: Get.arguments['CategoryId']);
               }
               return false;
@@ -64,7 +63,7 @@ class ProductDetails extends StatelessWidget {
                   const SizedBox(height: 12),
                   grayLine(),
                   const SizedBox(height: 12),
-                  sectionTitle(txt: 'Select Size'),
+                  sectionTitle(txt: 'Select Size'.tr),
                   const SizedBox(height: 15),
                   const DetailScreenSelectSize(),
                   const SizedBox(height: 12),
@@ -74,7 +73,7 @@ class ProductDetails extends StatelessWidget {
                     color: AppColors.lightGray,
                   ),
                   const SizedBox(height: 12),
-                  sectionTitle(txt: 'Description'),
+                  sectionTitle(txt: 'Description'.tr),
                   const SizedBox(height: 10),
                   productDescription(),
                   const SizedBox(height: 25),

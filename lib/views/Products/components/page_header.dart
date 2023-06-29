@@ -16,13 +16,13 @@ class PageHeader extends StatelessWidget {
               Get.close(1);
             },
             child: Icon(
-              Icons.arrow_back_ios_new,
+              Icons.arrow_back_ios,
               color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,
             ),
           ),
           Expanded(
             child: TextWidget(
-                text: 'Products',
+                text: 'Products'.tr,
                 color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

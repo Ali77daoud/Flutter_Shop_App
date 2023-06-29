@@ -21,7 +21,7 @@ dependencies:
   cached_network_image: 
   carousel_slider: 
   dartz:
-  http:
+  http: ^0.13.4
   internet_connection_checker: 
   auto_size_text:
   flutter_svg:

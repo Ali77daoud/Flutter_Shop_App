@@ -50,22 +50,22 @@ class HomePopularList extends StatelessWidget {
                         await mainController
                             .addOrRemoveCart(
                                 id: homeController.homeData.data.products[i].id,
-                                lang: 'en',
-                                token: token!)
+                                lang: lanLocal,
+                                token: token)
                             .then((value) async {
                           await homeController.getHomeData(
-                              lang: 'en', token: token!);
+                              lang: lanLocal, token: token);
                         });
                       },
                       onTapFav: () async {
                         await mainController
                             .addOrDeleteFav(
                                 id: homeController.homeData.data.products[i].id,
-                                lang: 'en',
-                                token: token!)
+                                lang: lanLocal,
+                                token: token)
                             .then((value) async {
                           await homeController.getHomeData(
-                              lang: 'en', token: token!);
+                              lang: lanLocal, token: token);
                         });
                       },
                     );

@@ -46,7 +46,7 @@ class ProductDetailsController extends GetxController {
     super.onInit();
     debugPrint('Product Details Controller Init');
     final int productId = Get.arguments['ProductId'];
-    await getProductDetails(lang: 'en', token: token!, id: productId);
+    await getProductDetails(lang: lanLocal, token: token, id: productId);
   }
 
   @override

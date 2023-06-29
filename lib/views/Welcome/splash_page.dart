@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../routes/routes.dart';
+import '../../shared/constants/lang_constants.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     token = GetStorage().read('token') ?? '';
+    lanLocal = GetStorage().read('lang') ?? ene;
     Timer(const Duration(milliseconds: 500), () {
       setState(() {
         selected = true;

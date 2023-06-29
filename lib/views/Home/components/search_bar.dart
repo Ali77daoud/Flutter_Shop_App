@@ -20,13 +20,13 @@ class SearchBar extends StatelessWidget {
             onFieldSubmitted: (value) async {
               if (value != '') {
                 await homeController.searchProduct(
-                    lang: 'en', token: token!, text: value);
+                    lang: lanLocal, token: token, text: value);
               }
             },
             onChanged: (value) async {
               if (value == '') {
                 await homeController.searchProduct(
-                    lang: 'en', token: token!, text: value);
+                    lang: lanLocal, token: token, text: value);
               }
             },
             style: TextStyle(
@@ -39,7 +39,7 @@ class SearchBar extends StatelessWidget {
               // fillColor: AppColors.darkWhite,
               filled: true,
               contentPadding: const EdgeInsets.all(10),
-              hintText: 'Search',
+              hintText: 'Search'.tr,
               hintStyle: TextStyle(
                 color: Get.isDarkMode ? AppColors.darkGrey : AppColors.grey,
               ),

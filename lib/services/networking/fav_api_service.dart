@@ -22,6 +22,7 @@ class FavApiServiceImpWithHttp implements FavApiService {
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
+      'Connection': 'keep-alive',
       'Authorization': token,
       'lang': lang,
     });
@@ -52,6 +53,7 @@ class FavApiServiceImpWithHttp implements FavApiService {
         .post(uri, body: json.encode({'product_id': id}), headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
+      'Connection': 'keep-alive',
       'Authorization': token,
       'lang': lang,
     });

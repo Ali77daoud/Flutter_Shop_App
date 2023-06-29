@@ -25,6 +25,7 @@ class CartApiServiceImpWithHttp implements CartApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -55,6 +56,7 @@ class CartApiServiceImpWithHttp implements CartApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -85,6 +87,7 @@ class CartApiServiceImpWithHttp implements CartApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -113,6 +116,7 @@ class CartApiServiceImpWithHttp implements CartApiService {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');

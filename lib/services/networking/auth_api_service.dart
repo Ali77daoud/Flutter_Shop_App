@@ -25,6 +25,7 @@ class AuthApiServiceImpWithHttp implements AuthApiService {
         .post(uri, body: json.encode(body), headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
+      'Connection': 'keep-alive',
     });
     debugPrint('1');
     debugPrint(response.statusCode.toString());
@@ -54,6 +55,7 @@ class AuthApiServiceImpWithHttp implements AuthApiService {
         .post(uri, body: json.encode(body), headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
+      'Connection': 'keep-alive',
     });
     debugPrint('1');
     debugPrint(response.statusCode.toString());

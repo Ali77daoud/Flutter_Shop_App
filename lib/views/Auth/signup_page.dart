@@ -31,7 +31,7 @@ class SignUpPage extends StatelessWidget {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  const GradientHeader(text1: 'SIGN UP', text2: 'New account'),
+                  GradientHeader(text1: 'SIGN UP'.tr, text2: 'New account'.tr),
                   /////////////////////////////////////////////
                   SizedBox(
                     height: getHeightInPercent(context, 5),
@@ -64,11 +64,11 @@ class SignUpPage extends StatelessWidget {
                 textInputType: TextInputType.text,
                 isPrefix: true,
                 controller: nameKey,
-                hintText: 'Enter  Name',
-                labelText: 'Name',
+                hintText: 'Enter  Name'.tr,
+                labelText: 'Name'.tr,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Name should not be empty';
+                    return 'Name should not be empty'.tr;
                   }
                 },
                 prefixIcon: const Icon(IconlyBold.profile)),
@@ -81,13 +81,13 @@ class SignUpPage extends StatelessWidget {
                 textInputType: TextInputType.text,
                 isPrefix: true,
                 controller: emailKey,
-                hintText: 'Enter  Email',
-                labelText: 'Email',
+                hintText: 'Enter  Email'.tr,
+                labelText: 'Email'.tr,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Email should not be empty';
+                    return 'Email should not be empty'.tr;
                   } else if (!RegExp(validationEmail).hasMatch(value)) {
-                    return 'Enter valid email';
+                    return 'Enter valid email'.tr;
                   }
                 },
                 prefixIcon: const Icon(IconlyBold.message)),
@@ -100,13 +100,13 @@ class SignUpPage extends StatelessWidget {
               textInputType: TextInputType.visiblePassword,
               isPrefix: true,
               controller: passKey,
-              hintText: 'Enter  Password',
-              labelText: 'Password',
+              hintText: 'Enter  Password'.tr,
+              labelText: 'Password'.tr,
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Password should not be empty';
+                  return 'Password should not be empty'.tr;
                 } else if (value!.length < 8) {
-                  return 'Password should not be less than 8 characters';
+                  return 'Password should not be less than 8 characters'.tr;
                 }
               },
               prefixIcon: const Icon(IconlyBold.lock),
@@ -120,13 +120,13 @@ class SignUpPage extends StatelessWidget {
                 textInputType: TextInputType.phone,
                 isPrefix: true,
                 controller: phoneKey,
-                hintText: 'Enter  Phone',
-                labelText: 'Phone',
+                hintText: 'Enter  Phone'.tr,
+                labelText: 'Phone'.tr,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Phone should not be empty';
+                    return 'Phone should not be empty'.tr;
                   } else if (value!.length < 9 || value!.length > 12) {
-                    return 'Phone Number should be between 9 and 12 numbers';
+                    return 'Phone Number should be between 9 and 12 numbers'.tr;
                   }
                 },
                 prefixIcon: const Icon(IconlyBold.call)),
@@ -140,7 +140,7 @@ class SignUpPage extends StatelessWidget {
             ////////////
             AppButton.normalButton(
               backgroundColor: AppColors.secondary,
-              title: 'SIGN UP',
+              title: 'SIGN UP'.tr,
               onPress: () async {
                 if (formKey.currentState!.validate()) {
                   final registerData = RegisterModel(
@@ -157,11 +157,16 @@ class SignUpPage extends StatelessWidget {
               height: getHeightInPercent(context, 5),
             ),
             // ////////////
-            const AuthPageFooter(
-              text1: 'Already have an account?',
-              text2: 'LOGIN',
+            AuthPageFooter(
+              text1: 'Already have an account?'.tr,
+              text2: 'LOGIN'.tr,
               route: Routes.loginPage,
             ),
+            ///////
+            SizedBox(
+              height: getHeightInPercent(context, 3),
+            ),
+            // ////////////
           ],
         ),
       ),

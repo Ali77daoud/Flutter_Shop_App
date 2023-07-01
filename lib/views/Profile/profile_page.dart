@@ -43,7 +43,7 @@ class ProfilePage extends StatelessWidget {
         ///////////
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -94,14 +94,19 @@ class ProfilePage extends StatelessWidget {
                     _buildListTile('Notifications'.tr,
                         Icons.notifications_outlined, '', Colors.blue, theme,
                         onTab: () {}),
+                    const SizedBox(height: 8),
                     _buildListTile('Edit Profile'.tr, Icons.person_outline, '',
                         Colors.lime, theme, onTab: () {
                       Get.toNamed(Routes.editProfilePage);
                     }),
                     const SizedBox(height: 8),
-                    _buildListTile(
-                        'Help'.tr, Icons.help, '', Colors.green, theme,
+                    _buildListTile('Your Orders'.tr, Icons.archive_outlined, '',
+                        Colors.blueGrey, theme,
                         onTab: () {}),
+                    // const SizedBox(height: 8),
+                    // _buildListTile(
+                    //     'Help'.tr, Icons.help, '', Colors.green, theme,
+                    //     onTab: () {}),
                     const SizedBox(height: 8),
                     _buildListTile(
                         'Logout'.tr, Icons.exit_to_app, '', Colors.red, theme,
@@ -329,4 +334,8 @@ class ProfilePage extends StatelessWidget {
       ),
     ));
   }
+  //////
+  // Widget _showLogoutDialog(){
+  //   return Get.sho
+  // }
 }

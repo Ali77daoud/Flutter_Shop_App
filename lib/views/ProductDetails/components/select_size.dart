@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../shared/constants/color_constants.dart';
 
@@ -50,7 +51,9 @@ class _DetailScreenSelectSizeState extends State<DetailScreenSelectSize> {
                     : AppColors.darkWhite,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.lightGray.withOpacity(.7),
+                    color: Get.isDarkMode
+                        ? AppColors.blackLight
+                        : AppColors.lightGray.withOpacity(.7),
                     blurRadius: 5,
                   ),
                 ],

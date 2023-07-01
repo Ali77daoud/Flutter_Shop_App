@@ -1,5 +1,6 @@
 import 'package:agora_shop/controllers/Cart/cart_controller.dart';
 import 'package:agora_shop/controllers/Main/main_controller.dart';
+import 'package:agora_shop/routes/routes.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/views/Cart/components/check_out_widget.dart';
 import 'package:agora_shop/views/Cart/components/shopping_cart_item.dart';
@@ -20,7 +21,7 @@ class CartBody extends StatelessWidget {
       alignment: Alignment.topCenter,
       children: [
         Padding(
-            padding: const EdgeInsets.fromLTRB(0, 140, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return ShoppingCartItem(
@@ -85,7 +86,9 @@ class CartBody extends StatelessWidget {
         CheckOutWidget(
           subTotal: cartController.cartData.data.subTotal.toString(),
           total: cartController.cartData.data.total.toString(),
-          onTapCheck: () {},
+          onTapCheck: () {
+            Get.toNamed(Routes.checkOutPage);
+          },
         ),
       ],
     );

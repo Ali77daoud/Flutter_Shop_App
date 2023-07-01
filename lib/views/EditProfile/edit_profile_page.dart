@@ -1,5 +1,5 @@
 import 'package:agora_shop/controllers/Profile/profile_controller.dart';
-import 'package:agora_shop/views/Profile/component/edit_profile.dart';
+import 'package:agora_shop/views/EditProfile/components/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../shared/handling_errors.dart/handling_errors.dart';

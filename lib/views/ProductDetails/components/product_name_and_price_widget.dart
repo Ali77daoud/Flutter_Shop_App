@@ -5,6 +5,7 @@ import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 class ProductNameAndPriceWidget extends StatelessWidget {
@@ -71,7 +72,7 @@ class ProductNameAndPriceWidget extends StatelessWidget {
         children: [
           TextWidget(
               text: productDetailsController.productDetailsData.data.name,
-              color: AppColors.primaryDark,
+              color: Get.isDarkMode ? AppColors.grey : AppColors.primaryDark,
               fontSize: 19,
               fontWeight: FontWeight.bold,
               textAlign: TextAlign.start,
@@ -85,7 +86,9 @@ class ProductNameAndPriceWidget extends StatelessWidget {
               TextWidget(
                   text:
                       '\$${productDetailsController.productDetailsData.data.price}',
-                  color: AppColors.primaryLight,
+                  color: Get.isDarkMode
+                      ? AppColors.lightGray
+                      : AppColors.primaryLight,
                   fontSize: 20,
                   fontWeight: FontWeight.normal,
                   textAlign: TextAlign.start,
@@ -97,7 +100,9 @@ class ProductNameAndPriceWidget extends StatelessWidget {
               TextWidget(
                   text:
                       '\$${productDetailsController.productDetailsData.data.oldPrice}',
-                  color: const Color.fromARGB(255, 109, 3, 3),
+                  color: Get.isDarkMode
+                      ? const Color.fromARGB(255, 141, 5, 5)
+                      : const Color.fromARGB(255, 109, 3, 3),
                   fontSize: 20,
                   fontWeight: FontWeight.normal,
                   textAlign: TextAlign.start,

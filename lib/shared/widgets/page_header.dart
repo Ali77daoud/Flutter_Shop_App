@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PageHeader extends StatelessWidget {
-  const PageHeader({super.key});
+  final String pageTitle;
+  const PageHeader({super.key, required this.pageTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class PageHeader extends StatelessWidget {
           ),
           Expanded(
             child: TextWidget(
-                text: 'Products'.tr,
+                text: pageTitle.tr,
                 color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

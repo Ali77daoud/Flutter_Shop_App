@@ -5,7 +5,7 @@ import 'package:agora_shop/routes/routes.dart';
 import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/product_widget.dart';
-import 'package:agora_shop/views/Products/components/page_header.dart';
+import 'package:agora_shop/shared/widgets/page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +19,7 @@ class CategoryProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CategoryProductController>(builder: (_) {
       return CustomScrollView(physics: const BouncingScrollPhysics(), slivers: [
-        const PageHeader(),
+        const PageHeader(pageTitle: 'Products'),
         ////
         SliverToBoxAdapter(
           child: SizedBox(

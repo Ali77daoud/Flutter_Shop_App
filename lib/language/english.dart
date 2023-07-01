@@ -36,6 +36,15 @@ const Map<String, String> en = {
   'Select Size': 'Select Size',
   'Description': 'Description',
   'Add To Cart': 'Add To Cart',
+  'Shipping Address': 'Shipping Address',
+  'Add Order': 'Add Order',
+  'Add Address': 'Add Address',
+  'Address Details': 'Address Details',
+  '  Place Name': '  Place Name',
+  '  City': '  City',
+  '  Region': '  Region',
+  '  Street': '  Street',
+  '  Notes': '  Notes',
   'Name should not be empty': 'Name should not be empty',
   'Email should not be empty': 'Email should not be empty',
   'Enter valid email': 'Enter valid email',
@@ -44,5 +53,10 @@ const Map<String, String> en = {
       'Phone Number should be between 9 and 12 numbers',
   'Password should not be empty': 'Password should not be empty',
   'Password should not be less than 8 characters':
-      'Password should not be less than 8 characters'
+      'Password should not be less than 8 characters',
+  'Place Name should not be empty': 'Place Name should not be empty',
+  'City Name should not be empty': 'City Name should not be empty',
+  'Region Name should not be empty': 'Region Name should not be empty',
+  'Street Name should not be empty': 'Street Name should not be empty',
+  'Notes should not be empty': 'Notes should not be empty',
 };

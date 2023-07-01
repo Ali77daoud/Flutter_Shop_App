@@ -111,7 +111,8 @@ class ProductDetails extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextWidget(
           text: txt,
-          color: AppColors.primaryDark,
+          color:
+              Get.isDarkMode ? AppColors.primaryLight : AppColors.primaryDark,
           fontSize: 15,
           fontWeight: FontWeight.bold,
           textAlign: TextAlign.start,

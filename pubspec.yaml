@@ -26,6 +26,8 @@ dependencies:
   auto_size_text:
   flutter_svg:
   dot_navigation_bar:
+  location:
+  google_maps_flutter:
 
   cupertino_icons: ^1.0.2
 

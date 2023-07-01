@@ -20,22 +20,19 @@ class AccountWidget extends StatelessWidget {
         height: 80,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Get.isDarkMode ? AppColors.grey : AppColors.lightGray),
+            borderRadius: BorderRadius.circular(8), color: AppColors.lightGray),
         child: Row(
           children: [
             Container(
               width: 52,
               height: 52,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color:
-                      Get.isDarkMode ? AppColors.grey : Colors.grey.shade300),
-              child: Center(
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: AppColors.grey),
+              child: const Center(
                 child: Icon(
                   IconlyBold.profile,
                   size: 32,
-                  color: Get.isDarkMode ? AppColors.lightGray : AppColors.grey,
+                  color: AppColors.lightGray,
                 ),
               ),
             ),
@@ -46,9 +43,7 @@ class AccountWidget extends StatelessWidget {
               children: [
                 TextWidget(
                     text: name!,
-                    color: Get.isDarkMode
-                        ? AppColors.blackLight
-                        : AppColors.primaryDark,
+                    color: AppColors.blackLight,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     textAlign: TextAlign.start,
@@ -56,9 +51,7 @@ class AccountWidget extends StatelessWidget {
                 /////////////////
                 TextWidget(
                     text: email!,
-                    color: Get.isDarkMode
-                        ? AppColors.blackLight
-                        : AppColors.primaryDark,
+                    color: AppColors.primaryDark,
                     fontSize: 13,
                     fontWeight: FontWeight.normal,
                     textAlign: TextAlign.start,

@@ -66,19 +66,20 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AuthTextField(
-                textInputType: TextInputType.text,
-                isPrefix: true,
-                controller: emailKey,
-                hintText: 'Enter  Email'.tr,
-                labelText: 'Email'.tr,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Email should not be empty'.tr;
-                  } else if (!RegExp(validationEmail).hasMatch(value)) {
-                    return 'Enter valid email'.tr;
-                  }
-                },
-                prefixIcon: const Icon(IconlyBold.message)),
+              textInputType: TextInputType.text,
+              controller: emailKey,
+              hintText: 'Enter  Email'.tr,
+              labelText: 'Email'.tr,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Email should not be empty'.tr;
+                } else if (!RegExp(validationEmail).hasMatch(value)) {
+                  return 'Enter valid email'.tr;
+                }
+              },
+              prefixIcon: const Icon(IconlyBold.message),
+              suffixIcon: null,
+            ),
             ///////
             SizedBox(
               height: getHeightInPercent(context, 3),
@@ -86,7 +87,6 @@ class LoginPage extends StatelessWidget {
             ////////////
             AuthTextField(
               textInputType: TextInputType.visiblePassword,
-              isPrefix: true,
               controller: passKey,
               hintText: 'Enter  Password'.tr,
               labelText: 'Password'.tr,
@@ -98,6 +98,7 @@ class LoginPage extends StatelessWidget {
                 }
               },
               prefixIcon: const Icon(IconlyBold.lock),
+              suffixIcon: null,
             ),
             //////////////
             ///

@@ -3,9 +3,12 @@ import 'package:agora_shop/controllers/CategoryProduct/category_product_bindings
 import 'package:agora_shop/controllers/Main/main_binding.dart';
 import 'package:agora_shop/controllers/ProductDetails/product_details_binding.dart';
 import 'package:agora_shop/controllers/Profile/profile_bindings.dart';
+import 'package:agora_shop/views/Addresses/addresses_page.dart';
 import 'package:agora_shop/views/Auth/signup_page.dart';
+import 'package:agora_shop/views/CheckOut/check_out_page.dart';
+import 'package:agora_shop/views/AddAddress/add_address_page.dart';
 import 'package:agora_shop/views/Products/category_product_page.dart';
-import 'package:agora_shop/views/Profile/edit_profile_page.dart';
+import 'package:agora_shop/views/EditProfile/edit_profile_page.dart';
 import 'package:agora_shop/views/Welcome/welcome_screen.dart';
 import 'package:get/get.dart';
 import '../views/Auth/login_page.dart';
@@ -22,6 +25,9 @@ class Routes {
   static const productDetailsPage = '/productDetailsPage';
   static const editProfilePage = '/editProfilePage';
   static const categoryProductPage = '/categoryProductPage';
+  static const checkOutPage = '/checkOutPage';
+  static const addressesPage = '/addressesPage';
+  static const addAddressPage = '/addAddressPage';
 }
 
 class AppRoutes {
@@ -82,6 +88,33 @@ class AppRoutes {
       name: Routes.categoryProductPage,
       page: () => CategoryProductPage(),
       binding: CategoryProductBinding(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 200),
+    ),
+
+    /// ///////////////////////
+    GetPage(
+      name: Routes.checkOutPage,
+      page: () => CheckOutPage(),
+      // binding: CategoryProductBinding(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 200),
+    ),
+
+    /// ///////////////////////
+    GetPage(
+      name: Routes.addressesPage,
+      page: () => AddressesPage(),
+      // binding: CategoryProductBinding(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 200),
+    ),
+
+    /// ///////////////////////
+    GetPage(
+      name: Routes.addAddressPage,
+      page: () => AddAddressPage(),
+      // binding: CategoryProductBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),
     ),

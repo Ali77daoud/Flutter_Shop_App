@@ -3,6 +3,7 @@ import 'package:agora_shop/views/Cart/components/cart_body.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/Cart/cart_controller.dart';
+import '../../shared/shared_variables.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -14,7 +15,9 @@ class CartPage extends StatelessWidget {
         return HandlingErrors.pageErrorHandling(
           isCircleShown: cartController.isCartCircleShown,
           isNoInternetConnection: cartController.isCartNoInternetConnection,
-          onTapTry: () {},
+          onTapTry: () async {
+            await cartController.getCartData(lang: lanLocal, token: token);
+          },
           page: CartBody(),
         );
       },

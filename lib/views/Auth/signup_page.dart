@@ -61,36 +61,38 @@ class SignUpPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AuthTextField(
-                textInputType: TextInputType.text,
-                isPrefix: true,
-                controller: nameKey,
-                hintText: 'Enter  Name'.tr,
-                labelText: 'Name'.tr,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Name should not be empty'.tr;
-                  }
-                },
-                prefixIcon: const Icon(IconlyBold.profile)),
+              textInputType: TextInputType.text,
+              controller: nameKey,
+              hintText: 'Enter  Name'.tr,
+              labelText: 'Name'.tr,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Name should not be empty'.tr;
+                }
+              },
+              prefixIcon: const Icon(IconlyBold.profile),
+              suffixIcon: null,
+            ),
             ///////
             SizedBox(
               height: getHeightInPercent(context, 2),
             ),
             ////////////
             AuthTextField(
-                textInputType: TextInputType.text,
-                isPrefix: true,
-                controller: emailKey,
-                hintText: 'Enter  Email'.tr,
-                labelText: 'Email'.tr,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Email should not be empty'.tr;
-                  } else if (!RegExp(validationEmail).hasMatch(value)) {
-                    return 'Enter valid email'.tr;
-                  }
-                },
-                prefixIcon: const Icon(IconlyBold.message)),
+              textInputType: TextInputType.text,
+              controller: emailKey,
+              hintText: 'Enter  Email'.tr,
+              labelText: 'Email'.tr,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Email should not be empty'.tr;
+                } else if (!RegExp(validationEmail).hasMatch(value)) {
+                  return 'Enter valid email'.tr;
+                }
+              },
+              prefixIcon: const Icon(IconlyBold.message),
+              suffixIcon: null,
+            ),
             ///////
             SizedBox(
               height: getHeightInPercent(context, 2),
@@ -98,7 +100,6 @@ class SignUpPage extends StatelessWidget {
             ////////////
             AuthTextField(
               textInputType: TextInputType.visiblePassword,
-              isPrefix: true,
               controller: passKey,
               hintText: 'Enter  Password'.tr,
               labelText: 'Password'.tr,
@@ -110,6 +111,7 @@ class SignUpPage extends StatelessWidget {
                 }
               },
               prefixIcon: const Icon(IconlyBold.lock),
+              suffixIcon: null,
             ),
             ///////
             SizedBox(
@@ -117,19 +119,20 @@ class SignUpPage extends StatelessWidget {
             ),
             ////////////
             AuthTextField(
-                textInputType: TextInputType.phone,
-                isPrefix: true,
-                controller: phoneKey,
-                hintText: 'Enter  Phone'.tr,
-                labelText: 'Phone'.tr,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Phone should not be empty'.tr;
-                  } else if (value!.length < 9 || value!.length > 12) {
-                    return 'Phone Number should be between 9 and 12 numbers'.tr;
-                  }
-                },
-                prefixIcon: const Icon(IconlyBold.call)),
+              textInputType: TextInputType.phone,
+              controller: phoneKey,
+              hintText: 'Enter  Phone'.tr,
+              labelText: 'Phone'.tr,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Phone should not be empty'.tr;
+                } else if (value!.length < 9 || value!.length > 12) {
+                  return 'Phone Number should be between 9 and 12 numbers'.tr;
+                }
+              },
+              prefixIcon: const Icon(IconlyBold.call),
+              suffixIcon: null,
+            ),
 
             //////////////
 

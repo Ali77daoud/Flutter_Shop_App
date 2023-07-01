@@ -27,22 +27,20 @@ class CategoryProductPage extends StatelessWidget {
             await categoryProductController.getCategoryProduct(
                 lang: lanLocal, token: token, categoryId: categoryId);
           },
-          page: SafeArea(
-            child: Scaffold(body: GetBuilder<MainController>(builder: (_) {
-              return Stack(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
-                    child: CategoryProduct(),
-                  ),
-                  mainController.isMainCircleShown
-                      ? const CircleIndicatorWidget()
-                      : Container()
-                ],
-              );
-            })),
-          ));
+          page: Scaffold(body: GetBuilder<MainController>(builder: (_) {
+            return Stack(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+                  child: CategoryProduct(),
+                ),
+                mainController.isMainCircleShown
+                    ? const CircleIndicatorWidget()
+                    : Container()
+              ],
+            );
+          })));
     }));
   }
 }

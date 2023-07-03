@@ -1,6 +1,6 @@
-import 'package:agora_shop/controllers/Favourite/fav_controller.dart';
+import 'package:agora_shop/controllers/Favorite/fav_controller.dart';
 import 'package:agora_shop/controllers/Main/main_controller.dart';
-import 'package:agora_shop/views/Favourite/components/favourite_item.dart';
+import 'package:agora_shop/views/Favorite/components/favourite_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

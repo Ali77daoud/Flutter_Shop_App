@@ -40,14 +40,15 @@ class ProductNameAndPriceWidget extends StatelessWidget {
           onPressed: () async {
             await mainController
                 .addOrDeleteFav(
-                    id: productDetailsController.productDetailsData.data.id,
-                    lang: lanLocal,
-                    token: token)
+              id: productDetailsController.productDetailsData.data.id,
+              lang: lanLocal,
+              token: token,
+              inFav: !(productDetailsController
+                  .productDetailsData.data.inFavorites),
+            )
                 .then((value) async {
-              await productDetailsController.getProductDetails(
-                  id: productDetailsController.productDetailsData.data.id,
-                  lang: lanLocal,
-                  token: token);
+              productDetailsController
+                  .showOrHideProductDetIsFav(mainController.isInFav);
             });
           },
           icon: productDetailsController.productDetailsData.data.inFavorites

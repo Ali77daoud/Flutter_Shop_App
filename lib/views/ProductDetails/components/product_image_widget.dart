@@ -38,26 +38,32 @@ class ProductImageWidget extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: AppColors.secondary,
         child: IconButton(
-          onPressed: () async {
+          onPressed: () {
             debugPrint('back');
+            bool inFav =
+                productDetailsController.productDetailsData.data.inFavorites;
+            bool inCart =
+                productDetailsController.productDetailsData.data.inCart;
             Get.close(1);
             if (Get.currentRoute == Routes.mainPage) {
               final HomeController homeController = Get.find<HomeController>();
+              homeController.showOrHideHomeIsFav(
+                  productDetailsController.productDetailsData.data.id, inFav);
 
-              await homeController
-                  .getHomeData(lang: lanLocal, token: token)
-                  .then((value) async {
-                await homeController.getCategoryData(
-                    lang: lanLocal, token: token);
-              });
+              homeController.showOrHideHomeIsCart(
+                  productDetailsController.productDetailsData.data.id, inCart);
+              //////////////
             } else if (Get.currentRoute == Routes.categoryProductPage) {
               final CategoryProductController categoryProductController =
                   Get.find<CategoryProductController>();
-
-              await categoryProductController.getCategoryProduct(
-                  lang: lanLocal,
-                  token: token,
-                  categoryId: Get.arguments['CategoryId']);
+              categoryProductController.showOrHideCatProductIsFav(
+                productDetailsController.productDetailsData.data.id,
+                inFav,
+              );
+              categoryProductController.showOrHideCatProductIsCart(
+                productDetailsController.productDetailsData.data.id,
+                inCart,
+              );
             }
           },
           icon: Icon(

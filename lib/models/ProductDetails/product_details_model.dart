@@ -19,8 +19,8 @@ class Data {
   final String image;
   final String name;
   final String description;
-  final bool inFavorites;
-  final bool inCart;
+  bool inFavorites;
+  bool inCart;
   final List<String> images;
 
   Data({

@@ -10,6 +10,6 @@ class GetCartDataProvider {
 
   Future<Either<Failure, CartDataModel>> call(
       {required String token, required String lang}) async {
-    return cartRepository.getCartData(token, lang);
+    return await cartRepository.getCartData(token, lang);
   }
 }

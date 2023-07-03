@@ -1,5 +1,6 @@
 import 'package:agora_shop/shared/widgets/page_header.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../shared/helpers/screen_size_utils.dart';
 import 'components/add_address_widget.dart';
 import 'components/addresses_widget.dart';
@@ -17,7 +18,12 @@ class AddressesPage extends StatelessWidget {
           child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                const PageHeader(pageTitle: 'Addresses'),
+                PageHeader(
+                  pageTitle: 'Addresses',
+                  onTap: () {
+                    Get.close(1);
+                  },
+                ),
                 //////////////////
                 SliverToBoxAdapter(
                   child: SizedBox(

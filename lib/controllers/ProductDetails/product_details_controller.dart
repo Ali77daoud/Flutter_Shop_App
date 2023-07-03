@@ -1,5 +1,5 @@
 import 'package:agora_shop/controllers/Client/client_controller.dart';
-import 'package:agora_shop/models/HomeData/product_details_model.dart';
+import 'package:agora_shop/models/ProductDetails/product_details_model.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,6 +38,18 @@ class ProductDetailsController extends GetxController {
 
   void hideProductNoInternetPage() {
     isProductNoInternetConnection = false;
+    update();
+  }
+
+  //////////////////////////////
+  void showOrHideProductDetIsFav(bool y) {
+    productDetailsData.data.inFavorites = y;
+    update();
+  }
+
+//////////////////////////////
+  void showOrHideProductDetIsCart(bool y) {
+    productDetailsData.data.inCart = y;
     update();
   }
 

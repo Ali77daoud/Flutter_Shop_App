@@ -12,6 +12,6 @@ class UpdateCartProvider {
       required String lang,
       required int id,
       required int quantity}) async {
-    return cartRepository.updateCart(token, lang, id, quantity);
+    return await cartRepository.updateCart(token, lang, id, quantity);
   }
 }

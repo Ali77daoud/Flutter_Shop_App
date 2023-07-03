@@ -11,6 +11,6 @@ class GetHomeDataProvider {
 
   Future<Either<Failure, HomeDataModel>> call(
       {required String token, required String lang}) async {
-    return homeRepository.getHomeData(token, lang);
+    return await homeRepository.getHomeData(token, lang);
   }
 }

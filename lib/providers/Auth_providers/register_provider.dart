@@ -11,6 +11,6 @@ class RegisterProvider {
 
   Future<Either<Failure, UserDataModel>> call(
       RegisterModel registerModel) async {
-    return authRepository.postRegister(registerModel);
+    return await authRepository.postRegister(registerModel);
   }
 }

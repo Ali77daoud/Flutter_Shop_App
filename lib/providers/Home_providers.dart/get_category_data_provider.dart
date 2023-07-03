@@ -10,6 +10,6 @@ class GetCategoryDataProvider {
 
   Future<Either<Failure, CategoryDataModel>> call(
       {required String token, required String lang}) async {
-    return homeRepository.getCategoryData(token, lang);
+    return await homeRepository.getCategoryData(token, lang);
   }
 }

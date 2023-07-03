@@ -9,6 +9,6 @@ class AddOrDeleteFavProvider {
 
   Future<Either<Failure, String>> call(
       {required String token, required String lang, required int id}) async {
-    return favRepository.addOrDeleteFav(token, lang, id);
+    return await favRepository.addOrDeleteFav(token, lang, id);
   }
 }

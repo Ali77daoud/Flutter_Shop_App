@@ -78,6 +78,21 @@ class HomeController extends GetxController {
     update();
   }
 
+//////////////////////////////
+  void showOrHideHomeIsFav(int id, bool isFav) {
+    homeData.data.products
+        .firstWhere((element) => element.id == id)
+        .inFavorites = isFav;
+    update();
+  }
+
+//////////////////////////////
+  void showOrHideHomeIsCart(int id, bool isCart) {
+    homeData.data.products.firstWhere((element) => element.id == id).inCart =
+        isCart;
+    update();
+  }
+
   //////////////////////
 
   void changeBanner(int index) {

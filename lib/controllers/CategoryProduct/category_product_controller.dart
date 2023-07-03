@@ -1,5 +1,5 @@
 import 'package:agora_shop/controllers/Client/client_controller.dart';
-import 'package:agora_shop/models/HomeData/category_product_model.dart';
+import 'package:agora_shop/models/CategoryProduct/category_product_model.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_category_product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,6 +37,22 @@ class CategoryProductController extends GetxController {
 
   void hideCategoryProductNoInternetPage() {
     isCategoryProductNoInternetConnection = false;
+    update();
+  }
+
+  //////////////////////////////
+  void showOrHideCatProductIsFav(int id, bool isFav) {
+    categoryProductData.data.data
+        .firstWhere((element) => element.id == id)
+        .inFavorites = isFav;
+    update();
+  }
+
+//////////////////////////////
+  void showOrHideCatProductIsCart(int id, bool isCart) {
+    categoryProductData.data.data
+        .firstWhere((element) => element.id == id)
+        .inCart = isCart;
     update();
   }
 

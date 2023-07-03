@@ -23,7 +23,12 @@ class CheckOutPage extends StatelessWidget {
           child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                PageHeader(pageTitle: 'CheckOut'.tr),
+                PageHeader(
+                  pageTitle: 'CheckOut'.tr,
+                  onTap: () {
+                    Get.close(1);
+                  },
+                ),
                 //////////////////
                 SliverToBoxAdapter(
                   child: SizedBox(

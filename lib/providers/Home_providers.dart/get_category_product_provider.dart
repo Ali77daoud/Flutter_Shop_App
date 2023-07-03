@@ -1,4 +1,4 @@
-import 'package:agora_shop/models/HomeData/category_product_model.dart';
+import 'package:agora_shop/models/CategoryProduct/category_product_model.dart';
 import 'package:agora_shop/repositories/home_repository.dart';
 import 'package:dartz/dartz.dart';
 import '../../shared/errors/failures.dart';
@@ -12,6 +12,6 @@ class GetCategoryProductProvider {
       {required String token,
       required String lang,
       required int categoryId}) async {
-    return homeRepository.getCategoryProduct(token, lang, categoryId);
+    return await homeRepository.getCategoryProduct(token, lang, categoryId);
   }
 }

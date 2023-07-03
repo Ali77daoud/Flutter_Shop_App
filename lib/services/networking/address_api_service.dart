@@ -1,29 +1,32 @@
 import 'dart:convert';
 import 'package:agora_shop/controllers/Client/client_controller.dart';
-import 'package:agora_shop/models/Favorite/fav_data_model.dart';
+import 'package:agora_shop/models/Address/addresses_data_model.dart';
 import 'package:agora_shop/services/networking/api_constants.dart';
-import 'package:agora_shop/shared/errors/exceptions.dart';
 import 'package:flutter/material.dart';
+import '../../models/Address/add_address_model.dart';
+import '../../shared/errors/exceptions.dart';
 
-abstract class FavApiService {
-  Future<FavDataModel> getFavDataApi(String token, String lang);
-  Future<String> addOrDeleteFavApi(String token, String lang, int id);
+abstract class AddressApiService {
+  Future<AddressesDataModel> getAddressDataApi(String token, String lang);
+  Future<AddAddressModel> addAddressApi(
+      AddressData addressData, String token, String lang);
 }
 
-class FavApiServiceImpWithHttp implements FavApiService {
+class AddressApiServiceImpWithHttp implements AddressApiService {
   final HttpClientController clientController;
 
-  FavApiServiceImpWithHttp({required this.clientController});
+  AddressApiServiceImpWithHttp({required this.clientController});
 
   @override
-  Future<FavDataModel> getFavDataApi(String token, String lang) async {
-    final uri = Uri.parse('${ApiConstants.baseUrl}/favorites');
+  Future<AddressesDataModel> getAddressDataApi(
+      String token, String lang) async {
+    final uri = Uri.parse('${ApiConstants.baseUrl}/addresses');
 
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
-      'Connection': 'keep-alive',
       'Authorization': token,
+      'Connection': 'keep-alive',
       'lang': lang,
     });
     debugPrint('1');
@@ -32,11 +35,11 @@ class FavApiServiceImpWithHttp implements FavApiService {
       debugPrint('2');
       final data = jsonDecode(response.body);
       if (data['status'] == true) {
-        debugPrint('get fav data success');
-        final resposeData = FavDataModel.fromJson(data);
+        debugPrint('get address data success');
+        final resposeData = AddressesDataModel.fromJson(data);
         return resposeData;
       } else {
-        debugPrint('get fav data field');
+        debugPrint('get address data field');
         throw ServerException();
       }
     } else {
@@ -46,11 +49,12 @@ class FavApiServiceImpWithHttp implements FavApiService {
   }
 
   @override
-  Future<String> addOrDeleteFavApi(String token, String lang, int id) async {
-    final uri = Uri.parse('${ApiConstants.baseUrl}/favorites');
+  Future<AddAddressModel> addAddressApi(
+      AddressData addressData, String token, String lang) async {
+    final uri = Uri.parse('${ApiConstants.baseUrl}/addresses');
 
     final response = await clientController.client
-        .post(uri, body: json.encode({'product_id': id}), headers: {
+        .post(uri, body: addressData.toJson(), headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Connection': 'keep-alive',
@@ -63,10 +67,10 @@ class FavApiServiceImpWithHttp implements FavApiService {
       debugPrint('2');
       final data = jsonDecode(response.body);
       if (data['status'] == true) {
-        debugPrint('addOrDeleteFav data success');
-        return data['message'];
+        debugPrint('addAddress data success');
+        return AddAddressModel.fromJson(data);
       } else {
-        debugPrint('addOrDeleteFav data field');
+        debugPrint('addAddress data field');
         throw ServerException();
       }
     } else {

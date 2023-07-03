@@ -10,6 +10,6 @@ class LoginProvider {
   LoginProvider(this.authRepository);
 
   Future<Either<Failure, UserDataModel>> call(LoginModel loginModel) async {
-    return authRepository.postLogin(loginModel);
+    return await authRepository.postLogin(loginModel);
   }
 }

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/HomeData/category_data_model.dart';
-import 'package:agora_shop/models/HomeData/category_product_model.dart';
+import 'package:agora_shop/models/CategoryProduct/category_product_model.dart';
 import 'package:agora_shop/models/HomeData/home_data_model.dart';
-import 'package:agora_shop/models/HomeData/product_details_model.dart';
+import 'package:agora_shop/models/ProductDetails/product_details_model.dart';
 import 'package:agora_shop/models/HomeData/search_product_data_model.dart';
 import 'package:agora_shop/shared/errors/exceptions.dart';
 import 'package:flutter/material.dart';

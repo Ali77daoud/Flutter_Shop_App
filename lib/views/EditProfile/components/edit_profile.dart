@@ -30,7 +30,12 @@ class EditProfile extends StatelessWidget {
             child: CustomScrollView(
                 physics: const BouncingScrollPhysics(),
                 slivers: [
-                  const PageHeader(pageTitle: 'Profile'),
+                  PageHeader(
+                    pageTitle: 'Profile',
+                    onTap: () {
+                      Get.close(1);
+                    },
+                  ),
                   //////////////////
                   SliverToBoxAdapter(
                     child: SizedBox(

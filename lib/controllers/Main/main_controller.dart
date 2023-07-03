@@ -3,7 +3,7 @@ import 'package:agora_shop/providers/Fav_providers/add_or_delete_fav_provider.da
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/widgets/snackbar_widgets.dart';
 import 'package:agora_shop/views/Cart/cart_page.dart';
-import 'package:agora_shop/views/Favourite/favourite_page.dart';
+import 'package:agora_shop/views/Favorite/favorite_page.dart';
 import 'package:agora_shop/views/Home/home_page.dart';
 import 'package:agora_shop/views/Profile/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +17,8 @@ class MainController extends GetxController {
   int i = 0;
   String token = '';
   bool isMainCircleShown = false;
+  bool isInFav = false;
+  bool isInCart = false;
 
   AddOrDeleteFavProvider addOrDeleteFavProvider =
       Get.find<AddOrDeleteFavProvider>();
@@ -33,7 +35,7 @@ class MainController extends GetxController {
   List<Widget> screens = [
     const HomePage(),
     const CartPage(),
-    const FavouritePage(),
+    const FavoritePage(),
     ProfilePage()
   ];
 
@@ -49,7 +51,10 @@ class MainController extends GetxController {
   }
 
   Future<void> addOrDeleteFav(
-      {required int id, required String lang, required String token}) async {
+      {required int id,
+      required String lang,
+      required String token,
+      bool inFav = false}) async {
     showMainCircleIndicator();
     final failureOraddOrDeleteFav =
         await addOrDeleteFavProvider.call(token: token, lang: lang, id: id);
@@ -60,12 +65,16 @@ class MainController extends GetxController {
           showNoInternetPage: () {});
     }, (message) {
       hideMainCircleIndicator();
+      isInFav = inFav;
       SnackBarWidgets.showSuccessSnackBar(message, '');
     });
   }
 
   Future<void> addOrRemoveCart(
-      {required int id, required String lang, required String token}) async {
+      {required int id,
+      required String lang,
+      required String token,
+      bool inCart = false}) async {
     showMainCircleIndicator();
     final failureOraddOrRemoveCart =
         await addOrRemoveCartProvider.call(token: token, lang: lang, id: id);
@@ -76,6 +85,7 @@ class MainController extends GetxController {
           showNoInternetPage: () {});
     }, (message) {
       hideMainCircleIndicator();
+      isInCart = inCart;
       SnackBarWidgets.showSuccessSnackBar(message, '');
     });
   }

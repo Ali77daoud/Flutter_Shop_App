@@ -19,7 +19,12 @@ class CategoryProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CategoryProductController>(builder: (_) {
       return CustomScrollView(physics: const BouncingScrollPhysics(), slivers: [
-        const PageHeader(pageTitle: 'Products'),
+        PageHeader(
+          pageTitle: 'Products',
+          onTap: () {
+            Get.close(1);
+          },
+        ),
         ////
         SliverToBoxAdapter(
           child: SizedBox(
@@ -60,31 +65,46 @@ class CategoryProduct extends StatelessWidget {
                     );
                   },
                   onTapCart: () async {
-                    int categoryId = Get.arguments['CategoryId'];
                     ////////////////////////
                     await mainController
                         .addOrRemoveCart(
                             id: categoryProductController
                                 .categoryProductData.data.data[i].id,
                             lang: lanLocal,
-                            token: token)
-                        .then((value) async {
-                      await categoryProductController.getCategoryProduct(
-                          lang: lanLocal, token: token, categoryId: categoryId);
+                            token: token,
+                            inCart: !(categoryProductController
+                                .categoryProductData.data.data[i].inCart))
+                        .then((value) {
+                      categoryProductController.showOrHideCatProductIsCart(
+                          categoryProductController
+                              .categoryProductData.data.data[i].id,
+                          mainController.isInCart);
+                      /////////
+                      homeController.showOrHideHomeIsCart(
+                          categoryProductController
+                              .categoryProductData.data.data[i].id,
+                          mainController.isInCart);
                     });
                   },
                   onTapFav: () async {
-                    int categoryId = Get.arguments['CategoryId'];
-                    ////////////////////////
                     await mainController
                         .addOrDeleteFav(
                             id: categoryProductController
                                 .categoryProductData.data.data[i].id,
                             lang: lanLocal,
-                            token: token)
-                        .then((value) async {
-                      await categoryProductController.getCategoryProduct(
-                          lang: lanLocal, token: token, categoryId: categoryId);
+                            token: token,
+                            inFav: !(categoryProductController
+                                .categoryProductData.data.data[i].inFavorites))
+                        .then((value) {
+                      categoryProductController.showOrHideCatProductIsFav(
+                          categoryProductController
+                              .categoryProductData.data.data[i].id,
+                          mainController.isInFav);
+                      /////////
+                      homeController.showOrHideHomeIsFav(
+                          categoryProductController
+                              .categoryProductData.data.data[i].id,
+                          mainController.isInFav);
                     });
                   },
                 );

@@ -4,6 +4,7 @@ import 'package:agora_shop/shared/widgets/app_buttons.dart';
 import 'package:agora_shop/shared/widgets/page_header.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
 import '../Auth/components/auth_text_field.dart';
 
@@ -25,7 +26,12 @@ class AddAddressPage extends StatelessWidget {
           child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                PageHeader(pageTitle: 'Add Address'.tr),
+                PageHeader(
+                  pageTitle: 'Add Address'.tr,
+                  onTap: () {
+                    Get.close(1);
+                  },
+                ),
                 //////////////////
                 SliverToBoxAdapter(
                   child: SizedBox(

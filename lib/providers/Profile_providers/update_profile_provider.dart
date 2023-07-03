@@ -13,6 +13,7 @@ class UpdateProfileProvider {
       {required UpdateProfileModel updateProfileModel,
       required String token,
       required String lang}) async {
-    return profileRepository.updateProfile(updateProfileModel, token, lang);
+    return await profileRepository.updateProfile(
+        updateProfileModel, token, lang);
   }
 }

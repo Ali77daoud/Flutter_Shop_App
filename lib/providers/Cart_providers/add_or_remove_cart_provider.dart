@@ -9,6 +9,6 @@ class AddOrRemoveCartProvider {
 
   Future<Either<Failure, String>> call(
       {required String token, required String lang, required int id}) async {
-    return cartRepository.addOrRemoveCart(token, lang, id);
+    return await cartRepository.addOrRemoveCart(token, lang, id);
   }
 }

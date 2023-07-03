@@ -1,3 +1,4 @@
+import 'package:agora_shop/controllers/Cart/cart_controller.dart';
 import 'package:agora_shop/controllers/Home/home_controller.dart';
 import 'package:agora_shop/controllers/Main/main_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
@@ -51,10 +52,13 @@ class HomePopularList extends StatelessWidget {
                             .addOrRemoveCart(
                                 id: homeController.homeData.data.products[i].id,
                                 lang: lanLocal,
-                                token: token)
-                            .then((value) async {
-                          await homeController.getHomeData(
-                              lang: lanLocal, token: token);
+                                token: token,
+                                inCart: !(homeController
+                                    .homeData.data.products[i].inCart))
+                            .then((value) {
+                          homeController.showOrHideHomeIsCart(
+                              homeController.homeData.data.products[i].id,
+                              mainController.isInCart);
                         });
                       },
                       onTapFav: () async {
@@ -62,10 +66,13 @@ class HomePopularList extends StatelessWidget {
                             .addOrDeleteFav(
                                 id: homeController.homeData.data.products[i].id,
                                 lang: lanLocal,
-                                token: token)
-                            .then((value) async {
-                          await homeController.getHomeData(
-                              lang: lanLocal, token: token);
+                                token: token,
+                                inFav: !(homeController
+                                    .homeData.data.products[i].inFavorites))
+                            .then((value) {
+                          homeController.showOrHideHomeIsFav(
+                              homeController.homeData.data.products[i].id,
+                              mainController.isInFav);
                         });
                       },
                     );

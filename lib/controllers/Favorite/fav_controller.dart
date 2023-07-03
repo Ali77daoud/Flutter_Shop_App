@@ -1,5 +1,5 @@
 import 'package:agora_shop/controllers/Client/client_controller.dart';
-import 'package:agora_shop/models/Favourite/fav_data_model.dart';
+import 'package:agora_shop/models/Favorite/fav_data_model.dart';
 import 'package:agora_shop/providers/Fav_providers/get_fav_data_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';

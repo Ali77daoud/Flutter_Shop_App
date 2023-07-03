@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 
 class PageHeader extends StatelessWidget {
   final String pageTitle;
-  const PageHeader({super.key, required this.pageTitle});
+  final Function()? onTap;
+  const PageHeader({super.key, required this.pageTitle, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,7 @@ class PageHeader extends StatelessWidget {
       child: Row(
         children: [
           InkWell(
-            onTap: () {
-              Get.close(1);
-            },
+            onTap: onTap,
             child: Icon(
               Icons.arrow_back_ios,
               color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,

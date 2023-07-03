@@ -28,6 +28,7 @@ dependencies:
   dot_navigation_bar:
   location:
   google_maps_flutter:
+  geocoding:
 
   cupertino_icons: ^1.0.2
 

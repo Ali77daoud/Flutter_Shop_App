@@ -12,6 +12,6 @@ class DeleteCartProvider {
     required String lang,
     required int id,
   }) async {
-    return cartRepository.deleteCart(token, lang, id);
+    return await cartRepository.deleteCart(token, lang, id);
   }
 }

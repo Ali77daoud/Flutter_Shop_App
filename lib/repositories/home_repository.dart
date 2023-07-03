@@ -1,6 +1,6 @@
 import 'package:agora_shop/models/HomeData/category_data_model.dart';
-import 'package:agora_shop/models/HomeData/category_product_model.dart';
-import 'package:agora_shop/models/HomeData/product_details_model.dart';
+import 'package:agora_shop/models/CategoryProduct/category_product_model.dart';
+import 'package:agora_shop/models/ProductDetails/product_details_model.dart';
 import 'package:agora_shop/services/networking/home_api_service.dart';
 import 'package:dartz/dartz.dart';
 import '../models/HomeData/home_data_model.dart';

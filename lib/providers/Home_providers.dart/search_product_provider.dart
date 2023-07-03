@@ -12,6 +12,6 @@ class SearchProductProvider {
       {required String token,
       required String lang,
       required String text}) async {
-    return homeRepository.searchProduct(token, lang, text);
+    return await homeRepository.searchProduct(token, lang, text);
   }
 }

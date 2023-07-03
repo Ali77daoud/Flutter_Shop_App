@@ -10,6 +10,6 @@ class GetUserDataProvider {
 
   Future<Either<Failure, UserDataModel>> call(
       {required String token, required String lang}) async {
-    return profileRepository.getUserData(token, lang);
+    return await profileRepository.getUserData(token, lang);
   }
 }

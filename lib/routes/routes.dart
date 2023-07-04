@@ -1,3 +1,4 @@
+import 'package:agora_shop/controllers/Address/address_bindings.dart';
 import 'package:agora_shop/controllers/Auth/auth_binding.dart';
 import 'package:agora_shop/controllers/CategoryProduct/category_product_bindings.dart';
 import 'package:agora_shop/controllers/Main/main_binding.dart';
@@ -96,7 +97,7 @@ class AppRoutes {
     GetPage(
       name: Routes.checkOutPage,
       page: () => CheckOutPage(),
-      // binding: CategoryProductBinding(),
+      binding: AddressBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),
     ),
@@ -105,7 +106,6 @@ class AppRoutes {
     GetPage(
       name: Routes.addressesPage,
       page: () => AddressesPage(),
-      // binding: CategoryProductBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),
     ),

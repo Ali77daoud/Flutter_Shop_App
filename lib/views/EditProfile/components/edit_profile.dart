@@ -6,7 +6,7 @@ import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/app_buttons.dart';
 import 'package:agora_shop/shared/widgets/circle_indecator_widget.dart';
-import 'package:agora_shop/shared/widgets/page_header.dart';
+import 'package:agora_shop/shared/widgets/custom_app_bar.dart';
 import 'package:agora_shop/views/Auth/components/auth_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,45 +22,53 @@ class EditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProfileController>(builder: (_) {
-      return Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: CustomScrollView(
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  PageHeader(
-                    pageTitle: 'Profile',
-                    onTap: () {
-                      Get.close(1);
-                    },
-                  ),
-                  //////////////////
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: getHeightInPercent(context, 8),
-                    ),
-                  ),
-                  /////////////////////
-                  _secondSection(),
-                  //////////////////////
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: getHeightInPercent(context, 10),
-                    ),
-                  ),
-                  /////////////////////
-                  _thirdSection(context)
-                ]),
+    return Scaffold(
+      appBar: customAppBar(
+          title: 'Profile',
+          leading: InkWell(
+            onTap: () {
+              Get.close(1);
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,
+            ),
           ),
-          ///////////
-          profileController.isUpdateProfileCircleShown
-              ? const CircleIndicatorWidget()
-              : Container()
-        ],
-      );
-    });
+          isContainActions: false),
+      body: GetBuilder<ProfileController>(builder: (_) {
+        return Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  slivers: [
+                    //////////////////
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: getHeightInPercent(context, 8),
+                      ),
+                    ),
+                    /////////////////////
+                    _secondSection(),
+                    //////////////////////
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: getHeightInPercent(context, 10),
+                      ),
+                    ),
+                    /////////////////////
+                    _thirdSection(context)
+                  ]),
+            ),
+            ///////////
+            profileController.isUpdateProfileCircleShown
+                ? const CircleIndicatorWidget()
+                : Container()
+          ],
+        );
+      }),
+    );
   }
 
   Widget _secondSection() {

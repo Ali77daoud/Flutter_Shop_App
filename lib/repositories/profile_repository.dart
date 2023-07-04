@@ -1,10 +1,8 @@
-import 'package:agora_shop/models/Auth/register_model.dart';
 import 'package:agora_shop/models/Auth/update_profile_model.dart';
 import 'package:agora_shop/models/Auth/user_data_model.dart';
 import 'package:agora_shop/services/networking/profile_api_service.dart';
 import 'package:agora_shop/shared/errors/failures.dart';
 import 'package:dartz/dartz.dart';
-import '../models/Auth/login_model.dart';
 import '../shared/errors/exceptions.dart';
 import '../shared/network_info/network_info.dart';
 

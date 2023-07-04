@@ -1,4 +1,3 @@
-import 'package:agora_shop/controllers/Cart/cart_controller.dart';
 import 'package:agora_shop/controllers/Home/home_controller.dart';
 import 'package:agora_shop/controllers/Main/main_controller.dart';
 import 'package:agora_shop/routes/routes.dart';

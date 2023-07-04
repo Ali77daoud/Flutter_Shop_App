@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import '../../../shared/constants/color_constants.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBarWidget extends StatelessWidget {
   final HomeController homeController = Get.find<HomeController>();
-  SearchBar({Key? key}) : super(key: key);
+  SearchBarWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(

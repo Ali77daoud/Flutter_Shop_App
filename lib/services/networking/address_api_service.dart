@@ -21,7 +21,6 @@ class AddressApiServiceImpWithHttp implements AddressApiService {
   Future<AddressesDataModel> getAddressDataApi(
       String token, String lang) async {
     final uri = Uri.parse('${ApiConstants.baseUrl}/addresses');
-
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',

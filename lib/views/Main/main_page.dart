@@ -21,7 +21,16 @@ class MainPage extends StatelessWidget {
             child: Stack(
           children: [
             Scaffold(
-              appBar: appBar(),
+              appBar: customAppBar(
+                title: 'Shop'.tr,
+                leading: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Image.asset(
+                      'assets/pictures/shopping-bag.png',
+                      fit: BoxFit.contain,
+                    )),
+                isContainActions: true,
+              ),
               extendBody: true,
               bottomNavigationBar: buildNavBar(),
               body: mainController.screens[mainController.i],

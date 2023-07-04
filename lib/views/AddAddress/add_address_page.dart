@@ -1,12 +1,12 @@
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:agora_shop/shared/widgets/app_buttons.dart';
-import 'package:agora_shop/shared/widgets/page_header.dart';
+import 'package:agora_shop/shared/widgets/custom_app_bar.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/get_utils.dart';
 import '../Auth/components/auth_text_field.dart';
+import 'components/google_map_widget.dart';
 
 class AddAddressPage extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -21,48 +21,46 @@ class AddAddressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      appBar: customAppBar(
+          title: 'Add Address'.tr,
+          leading: InkWell(
+            onTap: () {
+              Get.close(1);
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,
+            ),
+          ),
+          isContainActions: false),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                PageHeader(
-                  pageTitle: 'Add Address'.tr,
-                  onTap: () {
-                    Get.close(1);
-                  },
-                ),
-                //////////////////
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: getHeightInPercent(context, 3),
-                  ),
-                ),
-                /////////////////////
-                SliverToBoxAdapter(
-                  child: Container(
-                    width: double.infinity,
-                    height: getHeightInPercent(context, 30),
-                    color: AppColors.primaryDark,
-                  ),
-                ),
-                //////////////////
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: getHeightInPercent(context, 3),
-                  ),
-                ),
-                /////////////////////
-                sectionTitle(txt: 'Address Details'.tr),
-                //////////////////
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: getHeightInPercent(context, 3),
-                  ),
-                ),
-                /////////////////////
-                _addressFormSection(context),
-              ])),
+          child: Column(
+            children: [
+              const GoogleMapWidget(),
+              Expanded(
+                child: CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: getHeightInPercent(context, 3),
+                        ),
+                      ),
+                      /////////////////////
+                      sectionTitle(txt: 'Address Details'.tr),
+                      //////////////////
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: getHeightInPercent(context, 3),
+                        ),
+                      ),
+                      /////////////////////
+                      _addressFormSection(context),
+                    ]),
+              ),
+            ],
+          )),
     ));
   }
 

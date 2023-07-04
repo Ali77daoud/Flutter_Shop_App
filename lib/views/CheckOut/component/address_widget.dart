@@ -6,8 +6,11 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 class AddressWidget extends StatelessWidget {
+  final String title, subTitle;
   const AddressWidget({
     Key? key,
+    required this.title,
+    required this.subTitle,
   }) : super(key: key);
 
   @override
@@ -40,7 +43,7 @@ class AddressWidget extends StatelessWidget {
           ],
         ),
         title: TextWidget(
-            text: 'Latakia',
+            text: title,
             color: AppColors.primaryDark,
             fontSize: 15,
             fontWeight: FontWeight.bold,
@@ -48,7 +51,7 @@ class AddressWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             maxline: 1),
         subtitle: TextWidget(
-            text: '8 Athar str',
+            text: subTitle,
             color: AppColors.grey,
             fontSize: 11,
             fontWeight: FontWeight.normal,

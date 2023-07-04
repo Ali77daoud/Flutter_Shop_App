@@ -1,48 +1,60 @@
-import 'package:agora_shop/shared/widgets/page_header.dart';
+import 'package:agora_shop/controllers/Address/address_controller.dart';
+import 'package:agora_shop/shared/constants/color_constants.dart';
+import 'package:agora_shop/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../shared/helpers/screen_size_utils.dart';
 import 'components/add_address_widget.dart';
 import 'components/addresses_widget.dart';
 
 class AddressesPage extends StatelessWidget {
-  const AddressesPage({super.key});
+  final AddressController addressController = Get.find<AddressController>();
+  AddressesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      appBar: customAppBar(
+          title: 'Addresses',
+          leading: InkWell(
+            onTap: () {
+              Get.close(1);
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Get.isDarkMode ? AppColors.white : AppColors.primaryDark,
+            ),
+          ),
+          isContainActions: false),
       bottomNavigationBar: const AddAddressWidget(),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                PageHeader(
-                  pageTitle: 'Addresses',
-                  onTap: () {
-                    Get.close(1);
-                  },
-                ),
-                //////////////////
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: getHeightInPercent(context, 3),
-                  ),
-                ),
-                /////////////////////
                 SliverToBoxAdapter(
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: 10,
+                        itemCount:
+                            addressController.addressData.data.data.length,
                         itemBuilder: (context, index) {
-                          return AddressesWidget(
-                            onTap: () {},
-                            icon: index == 1
-                                ? Icons.circle
-                                : Icons.circle_outlined,
-                          );
+                          return GetBuilder<AddressController>(builder: (_) {
+                            return AddressesWidget(
+                              onTap: () {
+                                addressController.chooseAddress(index);
+                              },
+                              icon: index == addressController.currentIndex
+                                  ? Icons.circle
+                                  : Icons.circle_outlined,
+                              title: addressController
+                                  .addressData.data.data[index].name,
+                              subTitle: addressController
+                                  .addressData.data.data[index].details,
+                              region: addressController
+                                  .addressData.data.data[index].region,
+                            );
+                          });
                         })),
               ])),
     ));

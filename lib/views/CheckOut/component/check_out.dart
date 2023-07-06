@@ -27,10 +27,14 @@ class CheckOut extends StatelessWidget {
         ),
         /////////////////////
         AddressWidget(
-          title: addressController
-              .addressData.data.data[addressController.currentIndex].name,
-          subTitle: addressController
-              .addressData.data.data[addressController.currentIndex].details,
+          title: addressController.addressData.data.data
+              .firstWhere(
+                  (element) => element.id == addressController.currentId)
+              .name,
+          subTitle: addressController.addressData.data.data
+              .firstWhere(
+                  (element) => element.id == addressController.currentId)
+              .details,
         ),
         ////////////////////
         SliverToBoxAdapter(

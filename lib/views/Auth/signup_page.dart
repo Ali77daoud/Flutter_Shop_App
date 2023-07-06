@@ -60,7 +60,7 @@ class SignUpPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AuthTextField(
+            CustomTextField(
               textInputType: TextInputType.text,
               controller: nameKey,
               hintText: 'Enter  Name'.tr,
@@ -78,7 +78,7 @@ class SignUpPage extends StatelessWidget {
               height: getHeightInPercent(context, 2),
             ),
             ////////////
-            AuthTextField(
+            CustomTextField(
               textInputType: TextInputType.text,
               controller: emailKey,
               hintText: 'Enter  Email'.tr,
@@ -98,7 +98,7 @@ class SignUpPage extends StatelessWidget {
               height: getHeightInPercent(context, 2),
             ),
             ////////////
-            AuthTextField(
+            CustomTextField(
               textInputType: TextInputType.visiblePassword,
               controller: passKey,
               hintText: 'Enter  Password'.tr,
@@ -118,7 +118,7 @@ class SignUpPage extends StatelessWidget {
               height: getHeightInPercent(context, 2),
             ),
             ////////////
-            AuthTextField(
+            CustomTextField(
               textInputType: TextInputType.phone,
               controller: phoneKey,
               hintText: 'Enter  Phone'.tr,

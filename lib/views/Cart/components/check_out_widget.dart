@@ -18,7 +18,7 @@ class CheckOutWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 145,
+        height: 155,
         width: double.infinity,
         margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
         padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
@@ -105,7 +105,7 @@ class CheckOutWidget extends StatelessWidget {
                   onPress: onTapCheck,
                   title: 'Checkout'.tr,
                   shadow: false,
-                  height: 40,
+                  height: 50,
                   backgroundColor: AppColors.secondary),
             ),
           ],

@@ -25,7 +25,6 @@ class AddressData {
   final String notes;
   final String latitude;
   final String longitude;
-  final int id;
 
   AddressData({
     required this.name,
@@ -35,7 +34,6 @@ class AddressData {
     required this.notes,
     required this.latitude,
     required this.longitude,
-    required this.id,
   });
 
   factory AddressData.fromJson(Map<String, dynamic> json) => AddressData(
@@ -46,7 +44,6 @@ class AddressData {
         notes: json["notes"],
         latitude: json["latitude"],
         longitude: json["longitude"],
-        id: json["id"],
       );
 
   Map<String, dynamic> toJson() => {

@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AuthTextField(
+            CustomTextField(
               textInputType: TextInputType.text,
               controller: emailKey,
               hintText: 'Enter  Email'.tr,
@@ -85,7 +85,7 @@ class LoginPage extends StatelessWidget {
               height: getHeightInPercent(context, 3),
             ),
             ////////////
-            AuthTextField(
+            CustomTextField(
               textInputType: TextInputType.visiblePassword,
               controller: passKey,
               hintText: 'Enter  Password'.tr,

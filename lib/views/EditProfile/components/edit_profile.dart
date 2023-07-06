@@ -96,7 +96,7 @@ class EditProfile extends StatelessWidget {
           key: formKey,
           child: Column(
             children: [
-              AuthTextField(
+              CustomTextField(
                   textInputType: TextInputType.text,
                   controller: nameKey,
                   hintText: profileController.userData.name,
@@ -114,7 +114,7 @@ class EditProfile extends StatelessWidget {
                 height: getHeightInPercent(context, 3),
               ),
               //////////////
-              AuthTextField(
+              CustomTextField(
                   textInputType: TextInputType.text,
                   controller: emailKey,
                   hintText: profileController.userData.email,
@@ -133,7 +133,7 @@ class EditProfile extends StatelessWidget {
                 height: getHeightInPercent(context, 3),
               ),
               ////////////
-              AuthTextField(
+              CustomTextField(
                   textInputType: TextInputType.phone,
                   controller: phoneKey,
                   hintText: profileController.userData.phone,

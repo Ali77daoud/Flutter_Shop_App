@@ -64,6 +64,7 @@ class AddressWidget extends StatelessWidget {
           },
           child: const Icon(
             IconlyBold.edit,
+            size: 30,
           ),
         ),
       ),

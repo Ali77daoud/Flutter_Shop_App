@@ -51,9 +51,9 @@ class AddressApiServiceImpWithHttp implements AddressApiService {
   Future<AddAddressModel> addAddressApi(
       AddressData addressData, String token, String lang) async {
     final uri = Uri.parse('${ApiConstants.baseUrl}/addresses');
-
+    final body = addressData.toJson();
     final response = await clientController.client
-        .post(uri, body: addressData.toJson(), headers: {
+        .post(uri, body: json.encode(body), headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Connection': 'keep-alive',

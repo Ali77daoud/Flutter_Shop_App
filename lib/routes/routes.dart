@@ -2,6 +2,7 @@ import 'package:agora_shop/controllers/Address/address_bindings.dart';
 import 'package:agora_shop/controllers/Auth/auth_binding.dart';
 import 'package:agora_shop/controllers/CategoryProduct/category_product_bindings.dart';
 import 'package:agora_shop/controllers/Main/main_binding.dart';
+import 'package:agora_shop/controllers/Map/map_bindings.dart';
 import 'package:agora_shop/controllers/ProductDetails/product_details_binding.dart';
 import 'package:agora_shop/controllers/Profile/profile_bindings.dart';
 import 'package:agora_shop/views/Addresses/addresses_page.dart';
@@ -114,7 +115,7 @@ class AppRoutes {
     GetPage(
       name: Routes.addAddressPage,
       page: () => AddAddressPage(),
-      // binding: CategoryProductBinding(),
+      binding: MapBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),
     ),

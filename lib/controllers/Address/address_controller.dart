@@ -1,17 +1,24 @@
 import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/Address/addresses_data_model.dart';
+import 'package:agora_shop/providers/Address_providers/add_address_provider.dart';
 import 'package:agora_shop/providers/Address_providers/get_address_data_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../../models/Address/add_address_model.dart';
+import '../../shared/widgets/snackbar_widgets.dart';
 
 class AddressController extends GetxController {
   bool isGetAddressNoInternetConnection = false;
   bool isGetAddressCircleShown = false;
-  bool isUpdateAddressNoInternetConnection = false;
-  bool isUpdateAddressCircleShown = false;
-  int currentIndex = 0;
+  bool isAddAddressCircleShown = false;
+  bool newAddressAdded = false;
+  late int currentId;
+
+  GetStorage addressIdBox = GetStorage();
 
   final HttpClientController clientController =
       Get.find<HttpClientController>();
@@ -20,6 +27,7 @@ class AddressController extends GetxController {
 
   GetAddressDataProvider getAddressDataProvider =
       Get.find<GetAddressDataProvider>();
+  AddAddressProvider addAddressProvider = Get.find<AddAddressProvider>();
 
   // ///////////////////////////
   void showGetAddressCircleIndicator() {
@@ -43,9 +51,21 @@ class AddressController extends GetxController {
     update();
   }
 
+  // ///////////////////////////
+  void showAddAddressCircleIndicator() {
+    isAddAddressCircleShown = true;
+    update();
+  }
+
+  void hideAddAddressCircleIndicator() {
+    isAddAddressCircleShown = false;
+    update();
+  }
+
 /////////////////////////////
-  void chooseAddress(int index) {
-    currentIndex = index;
+  void chooseAddress(int id) async {
+    currentId = id;
+    await addressIdBox.write('addressId', id);
     update();
   }
 
@@ -54,6 +74,8 @@ class AddressController extends GetxController {
     super.onInit();
     debugPrint('address Controller Init');
     await getAddressData(lang: lanLocal, token: token);
+    currentId =
+        addressIdBox.read<int>('addressId') ?? addressData.data.data[0].id;
   }
 
   @override
@@ -85,21 +107,22 @@ class AddressController extends GetxController {
 
   // ///////////
 
-  // Future<void> updateProfile(
-  //     {required UpdateProfileModel updateProfileModel,
-  //     required String token,
-  //     required String lang}) async {
-  //   showUpdateProfileCircleIndicator();
-  //   final failureOrUpdateProfile = await updateProfileProvider.call(
-  //       updateProfileModel: updateProfileModel, token: token, lang: lang);
-  //   failureOrUpdateProfile.fold((failure) {
-  //     HandlingErrors.networkErrorrHandling(
-  //         failure: failure,
-  //         hideCircleIndicator: hideUpdateProfileCircleIndicator,
-  //         showNoInternetPage: () {});
-  //   }, (profileData) {
-  //     hideUpdateProfileCircleIndicator();
-  //     SnackBarWidgets.showSuccessSnackBar(profileData.message, '');
-  //   });
-  // }
+  Future<void> addAddress(
+      {required AddressData addressData,
+      required String token,
+      required String lang}) async {
+    showAddAddressCircleIndicator();
+    final failureOrAddAddress = await addAddressProvider.call(
+        addressData: addressData, token: token, lang: lang);
+    failureOrAddAddress.fold((failure) {
+      HandlingErrors.networkErrorrHandling(
+          failure: failure,
+          hideCircleIndicator: hideAddAddressCircleIndicator,
+          showNoInternetPage: () {});
+    }, (addAddress) {
+      hideAddAddressCircleIndicator();
+      newAddressAdded = true;
+      SnackBarWidgets.showSuccessSnackBar(addAddress.message, '');
+    });
+  }
 }

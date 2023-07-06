@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../shared/constants/color_constants.dart';
 
-class AuthTextField extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final Widget? prefixIcon;
@@ -18,7 +18,7 @@ class AuthTextField extends StatelessWidget {
   final validator;
   // ignore: prefer_typing_uninitialized_variables
   final onChange;
-  const AuthTextField(
+  const CustomTextField(
       {Key? key,
       required this.controller,
       required this.hintText,

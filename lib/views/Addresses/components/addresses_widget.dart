@@ -21,7 +21,7 @@ class AddressesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 70,
+      height: 90,
       child: Card(
         elevation: 5,
         child: Center(

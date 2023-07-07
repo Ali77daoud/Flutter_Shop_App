@@ -1,6 +1,7 @@
 import 'package:agora_shop/controllers/Address/address_controller.dart';
 import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/providers/Address_providers/add_address_provider.dart';
+import 'package:agora_shop/providers/Address_providers/delete_address_provider.dart';
 import 'package:agora_shop/providers/Address_providers/get_address_data_provider.dart';
 import 'package:agora_shop/repositories/address_repository.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,10 @@ class AddressBinding implements Bindings {
 
     Get.lazyPut<AddAddressProvider>(
       () => AddAddressProvider(Get.find()),
+    );
+
+    Get.lazyPut<DeleteAddressProvider>(
+      () => DeleteAddressProvider(Get.find()),
     );
   }
 }

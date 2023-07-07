@@ -228,7 +228,7 @@ class AddAddressPage extends StatelessWidget {
                 shadow: false,
                 onPress: () async {
                   if (formKey.currentState!.validate()) {
-                    final addressData = AddressData(
+                    final addAddress = AddAddress(
                       name: mapController.nameKey.text,
                       city: mapController.cityKey.text,
                       region: mapController.regionKey.text,
@@ -238,7 +238,7 @@ class AddAddressPage extends StatelessWidget {
                       longitude: mapController.markerLat.longitude.toString(),
                     );
                     await addressController.addAddress(
-                        addressData: addressData, token: token, lang: lanLocal);
+                        addAddress: addAddress, token: token, lang: lanLocal);
                   }
                 },
               ),

@@ -27,14 +27,18 @@ class CheckOut extends StatelessWidget {
         ),
         /////////////////////
         AddressWidget(
-          title: addressController.addressData.data.data
-              .firstWhere(
-                  (element) => element.id == addressController.currentId)
-              .name,
-          subTitle: addressController.addressData.data.data
-              .firstWhere(
-                  (element) => element.id == addressController.currentId)
-              .details,
+          title: addressController.addressData.data.data.isNotEmpty
+              ? addressController.addressData.data.data
+                  .firstWhere(
+                      (element) => element.id == addressController.currentId)
+                  .name
+              : 'Empty',
+          subTitle: addressController.addressData.data.data.isNotEmpty
+              ? addressController.addressData.data.data
+                  .firstWhere(
+                      (element) => element.id == addressController.currentId)
+                  .details
+              : 'Empty',
         ),
         ////////////////////
         SliverToBoxAdapter(
@@ -42,7 +46,7 @@ class CheckOut extends StatelessWidget {
             margin: const EdgeInsets.only(top: 10),
             width: double.infinity,
             height: 2,
-            color: AppColors.lightGray,
+            color: Get.isDarkMode ? AppColors.grey : AppColors.lightGray,
           ),
         ),
         //////////////////

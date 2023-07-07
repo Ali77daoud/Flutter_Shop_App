@@ -30,12 +30,27 @@ class AddressRepository {
   }
 
   Future<Either<Failure, AddAddressModel>> addAddress(
-      AddressData addressData, String token, String lang) async {
+      AddAddress addAddress, String token, String lang) async {
     if (await networkInfo.isConnected) {
       try {
         final addAddressResponse =
-            await addressApiService.addAddressApi(addressData, token, lang);
+            await addressApiService.addAddressApi(addAddress, token, lang);
         return Right(addAddressResponse);
+      } on ServerException {
+        return left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  Future<Either<Failure, String>> deleteAddress(
+      int id, String token, String lang) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final deleteAddressResponse =
+            await addressApiService.deleteAddressApi(id, token, lang);
+        return Right(deleteAddressResponse);
       } on ServerException {
         return left(ServerFailure());
       }

@@ -103,7 +103,7 @@ class CheckOutWidget extends StatelessWidget {
                   const EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 5),
               child: AppButton.normalButton(
                   onPress: onTapCheck,
-                  title: 'Checkout'.tr,
+                  title: 'CheckOut'.tr,
                   shadow: false,
                   height: 50,
                   backgroundColor: AppColors.secondary),

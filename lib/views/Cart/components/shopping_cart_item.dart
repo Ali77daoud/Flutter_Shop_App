@@ -114,7 +114,6 @@ class ShoppingCartItem extends StatelessWidget {
                           icon: const Icon(
                             IconlyBold.close_square,
                             size: 25,
-                            // color: AppColors.primaryDark,
                           ),
                           onPressed: onTapDelete,
                         ),

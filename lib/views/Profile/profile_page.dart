@@ -101,8 +101,9 @@ class ProfilePage extends StatelessWidget {
                     }),
                     const SizedBox(height: 8),
                     _buildListTile('Your Orders'.tr, Icons.archive_outlined, '',
-                        Colors.blueGrey, theme,
-                        onTab: () {}),
+                        Colors.blueGrey, theme, onTab: () {
+                      Get.toNamed(Routes.orderssPage);
+                    }),
                     // const SizedBox(height: 8),
                     // _buildListTile(
                     //     'Help'.tr, Icons.help, '', Colors.green, theme,

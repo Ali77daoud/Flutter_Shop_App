@@ -1,6 +1,7 @@
 import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/Address/addresses_data_model.dart';
 import 'package:agora_shop/providers/Address_providers/add_address_provider.dart';
+import 'package:agora_shop/providers/Address_providers/delete_address_provider.dart';
 import 'package:agora_shop/providers/Address_providers/get_address_data_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
@@ -15,6 +16,7 @@ class AddressController extends GetxController {
   bool isGetAddressNoInternetConnection = false;
   bool isGetAddressCircleShown = false;
   bool isAddAddressCircleShown = false;
+  bool isDeleteAddressCircleShown = false;
   bool newAddressAdded = false;
   late int currentId;
 
@@ -28,6 +30,8 @@ class AddressController extends GetxController {
   GetAddressDataProvider getAddressDataProvider =
       Get.find<GetAddressDataProvider>();
   AddAddressProvider addAddressProvider = Get.find<AddAddressProvider>();
+  DeleteAddressProvider deleteAddressProvider =
+      Get.find<DeleteAddressProvider>();
 
   // ///////////////////////////
   void showGetAddressCircleIndicator() {
@@ -59,6 +63,18 @@ class AddressController extends GetxController {
 
   void hideAddAddressCircleIndicator() {
     isAddAddressCircleShown = false;
+    update();
+  }
+
+/////////////////////////////
+// ///////////////////////////
+  void showDeleteAddressCircleIndicator() {
+    isDeleteAddressCircleShown = true;
+    update();
+  }
+
+  void hideDeleteAddressCircleIndicator() {
+    isDeleteAddressCircleShown = false;
     update();
   }
 
@@ -108,12 +124,12 @@ class AddressController extends GetxController {
   // ///////////
 
   Future<void> addAddress(
-      {required AddressData addressData,
+      {required AddAddress addAddress,
       required String token,
       required String lang}) async {
     showAddAddressCircleIndicator();
     final failureOrAddAddress = await addAddressProvider.call(
-        addressData: addressData, token: token, lang: lang);
+        addAddress: addAddress, token: token, lang: lang);
     failureOrAddAddress.fold((failure) {
       HandlingErrors.networkErrorrHandling(
           failure: failure,
@@ -122,7 +138,26 @@ class AddressController extends GetxController {
     }, (addAddress) {
       hideAddAddressCircleIndicator();
       newAddressAdded = true;
+      chooseAddress(addAddress.data.id);
       SnackBarWidgets.showSuccessSnackBar(addAddress.message, '');
+    });
+  }
+
+  Future<void> deleteAddress(
+      {required int id, required String token, required String lang}) async {
+    showDeleteAddressCircleIndicator();
+    final failureOrDeleteAddress =
+        await deleteAddressProvider.call(id: id, token: token, lang: lang);
+    failureOrDeleteAddress.fold((failure) {
+      HandlingErrors.networkErrorrHandling(
+          failure: failure,
+          hideCircleIndicator: hideDeleteAddressCircleIndicator,
+          showNoInternetPage: () {});
+    }, (message) {
+      hideDeleteAddressCircleIndicator();
+      addressData.data.data.removeWhere((element) => element.id == id);
+      SnackBarWidgets.showSuccessSnackBar(message, '');
+      update();
     });
   }
 }

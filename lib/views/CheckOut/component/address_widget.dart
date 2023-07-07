@@ -44,7 +44,7 @@ class AddressWidget extends StatelessWidget {
         ),
         title: TextWidget(
             text: title,
-            color: AppColors.primaryDark,
+            color: Get.isDarkMode ? AppColors.grey : AppColors.primaryDark,
             fontSize: 15,
             fontWeight: FontWeight.bold,
             textAlign: TextAlign.start,
@@ -65,6 +65,7 @@ class AddressWidget extends StatelessWidget {
           child: const Icon(
             IconlyBold.edit,
             size: 30,
+            color: AppColors.grey,
           ),
         ),
       ),

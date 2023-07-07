@@ -9,12 +9,6 @@ AppBar customAppBar(
     elevation: 0,
     centerTitle: true,
     leading: leading,
-    //  Padding(
-    //     padding: const EdgeInsets.all(12.0),
-    //     child: Image.asset(
-    //       'assets/pictures/shopping-bag.png',
-    //       fit: BoxFit.contain,
-    //     )),
     title: Text(
       title,
       // 'Shop'.tr,
@@ -34,14 +28,14 @@ AppBar customAppBar(
                   IconlyBold.notification,
                   size: 22,
                 ),
-                Positioned(
-                  bottom: 32,
-                  right: -1,
-                  child: CircleAvatar(
-                    radius: 4,
-                    backgroundColor: Colors.red,
-                  ),
-                ),
+                // Positioned(
+                //   bottom: 32,
+                //   right: -1,
+                //   child: CircleAvatar(
+                //     radius: 4,
+                //     backgroundColor: Colors.red,
+                //   ),
+                // ),
               ],
             ),
             SizedBox(width: 15),

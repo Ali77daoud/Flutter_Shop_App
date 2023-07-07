@@ -9,9 +9,9 @@ class AddAddressProvider {
   AddAddressProvider(this.addressRepository);
 
   Future<Either<Failure, AddAddressModel>> call(
-      {required AddressData addressData,
+      {required AddAddress addAddress,
       required String token,
       required String lang}) async {
-    return await addressRepository.addAddress(addressData, token, lang);
+    return await addressRepository.addAddress(addAddress, token, lang);
   }
 }

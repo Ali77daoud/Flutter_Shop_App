@@ -9,7 +9,8 @@ import '../../shared/errors/exceptions.dart';
 abstract class AddressApiService {
   Future<AddressesDataModel> getAddressDataApi(String token, String lang);
   Future<AddAddressModel> addAddressApi(
-      AddressData addressData, String token, String lang);
+      AddAddress addAddress, String token, String lang);
+  Future<String> deleteAddressApi(int id, String token, String lang);
 }
 
 class AddressApiServiceImpWithHttp implements AddressApiService {
@@ -49,9 +50,9 @@ class AddressApiServiceImpWithHttp implements AddressApiService {
 
   @override
   Future<AddAddressModel> addAddressApi(
-      AddressData addressData, String token, String lang) async {
+      AddAddress addAddress, String token, String lang) async {
     final uri = Uri.parse('${ApiConstants.baseUrl}/addresses');
-    final body = addressData.toJson();
+    final body = addAddress.toJson();
     final response = await clientController.client
         .post(uri, body: json.encode(body), headers: {
       'Content-type': 'application/json',
@@ -70,6 +71,37 @@ class AddressApiServiceImpWithHttp implements AddressApiService {
         return AddAddressModel.fromJson(data);
       } else {
         debugPrint('addAddress data field');
+        throw ServerException();
+      }
+    } else {
+      debugPrint('3');
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<String> deleteAddressApi(int id, String token, String lang) async {
+    final uri = Uri.parse('${ApiConstants.baseUrl}/addresses/$id');
+    final response = await clientController.client.delete(
+      uri,
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'Connection': 'keep-alive',
+        'Authorization': token,
+        'lang': lang,
+      },
+    );
+    debugPrint('1');
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      debugPrint('2');
+      final data = jsonDecode(response.body);
+      if (data['status'] == true) {
+        debugPrint('deleteAddress success');
+        return data['message'];
+      } else {
+        debugPrint('deleteAddress field');
         throw ServerException();
       }
     } else {

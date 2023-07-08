@@ -87,7 +87,9 @@ class CartBody extends StatelessWidget {
           subTotal: cartController.cartData.data.subTotal.toString(),
           total: cartController.cartData.data.total.toString(),
           onTapCheck: () {
-            Get.toNamed(Routes.checkOutPage);
+            cartController.cartData.data.cartItems.isNotEmpty
+                ? Get.toNamed(Routes.checkOutPage)
+                : null;
           },
         ),
       ],

@@ -1,10 +1,10 @@
 import 'package:agora_shop/models/Address/add_address_model.dart';
-import 'package:agora_shop/repositories/address_repository.dart';
 import 'package:dartz/dartz.dart';
+import '../../repositories/checkout_repository.dart';
 import '../../shared/errors/failures.dart';
 
 class AddAddressProvider {
-  final AddressRepository addressRepository;
+  final CheckOutRepository addressRepository;
 
   AddAddressProvider(this.addressRepository);
 

@@ -6,17 +6,18 @@ import 'package:flutter/material.dart';
 import '../../models/Address/add_address_model.dart';
 import '../../shared/errors/exceptions.dart';
 
-abstract class AddressApiService {
+abstract class CheckOutApiService {
   Future<AddressesDataModel> getAddressDataApi(String token, String lang);
   Future<AddAddressModel> addAddressApi(
       AddAddress addAddress, String token, String lang);
   Future<String> deleteAddressApi(int id, String token, String lang);
+  Future<String> addOrderApi(String token, String lang, int addressId);
 }
 
-class AddressApiServiceImpWithHttp implements AddressApiService {
+class CheckOutApiServiceImpWithHttp implements CheckOutApiService {
   final HttpClientController clientController;
 
-  AddressApiServiceImpWithHttp({required this.clientController});
+  CheckOutApiServiceImpWithHttp({required this.clientController});
 
   @override
   Future<AddressesDataModel> getAddressDataApi(
@@ -102,6 +103,40 @@ class AddressApiServiceImpWithHttp implements AddressApiService {
         return data['message'];
       } else {
         debugPrint('deleteAddress field');
+        throw ServerException();
+      }
+    } else {
+      debugPrint('3');
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<String> addOrderApi(String token, String lang, int addressId) async {
+    final uri = Uri.parse('${ApiConstants.baseUrl}/orders');
+    final response = await clientController.client.post(uri,
+        body: json.encode({
+          'address_id': addressId,
+          'payment_method': 1,
+          'use_points': false
+        }),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+          'Connection': 'keep-alive',
+          'Authorization': token,
+          'lang': lang,
+        });
+    debugPrint('1');
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      debugPrint('2');
+      final data = jsonDecode(response.body);
+      if (data['status'] == true) {
+        debugPrint('addOrder success');
+        return data['message'];
+      } else {
+        debugPrint('addOrder field');
         throw ServerException();
       }
     } else {

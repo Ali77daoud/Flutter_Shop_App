@@ -1,4 +1,3 @@
-import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/Auth/update_profile_model.dart';
 import 'package:agora_shop/models/Auth/user_data_model.dart';
 import 'package:agora_shop/providers/Profile_providers/get_user_data_provider.dart';
@@ -17,9 +16,6 @@ class ProfileController extends GetxController {
   bool isUpdateProfileCircleShown = false;
 
   GetStorage storageBox = GetStorage();
-
-  final HttpClientController clientController =
-      Get.find<HttpClientController>();
 
   late UserDataModel userData;
   late UserModel profileData;
@@ -85,9 +81,6 @@ class ProfileController extends GetxController {
   void onClose() async {
     super.onClose();
     debugPrint('Profile Controller closed');
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
   }
 
   ///////////////////////////////////

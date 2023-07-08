@@ -25,4 +25,19 @@ class OrdersRepository {
       return Left(OfflineFailure());
     }
   }
+
+  Future<Either<Failure, String>> cancelOrder(
+      String token, String lang, int orderId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final cancelOrderResponse =
+            await ordersApiService.cancelOrderApi(token, lang, orderId);
+        return Right(cancelOrderResponse);
+      } on ServerException {
+        return left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
 }

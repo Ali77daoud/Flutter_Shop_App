@@ -60,8 +60,7 @@ class OrderWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget(
-                      text: total,
-                      // 'Total : 12765 \$',
+                      text: 'Total : $total\$',
                       color: AppColors.darkGrey,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -69,8 +68,7 @@ class OrderWidget extends StatelessWidget {
                       maxline: 2),
                   /////////////
                   TextWidget(
-                      text: status,
-                      // 'Status : Cancelled',
+                      text: 'Status : $status',
                       color: AppColors.darkGrey,
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
@@ -78,8 +76,7 @@ class OrderWidget extends StatelessWidget {
                       maxline: 2),
                   /////////////
                   TextWidget(
-                      text: date,
-                      // 'Date : 29 / 06 / 2023',
+                      text: 'Date : $date',
                       color: AppColors.darkGrey,
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
@@ -92,13 +89,15 @@ class OrderWidget extends StatelessWidget {
           ////////////////////
           Expanded(
             flex: 1,
-            child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  IconlyBold.close_square,
-                  // color: Colors.red,
-                  size: 25,
-                )),
+            child: status != 'Cancelled'
+                ? IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      IconlyBold.close_square,
+                      // color: Colors.red,
+                      size: 25,
+                    ))
+                : Container(),
           ),
           ////////////////////
           Expanded(

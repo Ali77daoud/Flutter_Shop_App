@@ -19,8 +19,10 @@ class CartApiServiceImpWithHttp implements CartApiService {
 
   @override
   Future<CartDataModel> getCartDataApi(String token, String lang) async {
+    await clientController.closeClient().then((value) async {
+      await clientController.reOpenClient();
+    });
     final uri = Uri.parse('${ApiConstants.baseUrl}/carts');
-
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',

@@ -1,4 +1,4 @@
-import 'package:agora_shop/controllers/Address/address_bindings.dart';
+import 'package:agora_shop/controllers/CheckOut/checkout_bindings.dart';
 import 'package:agora_shop/controllers/Auth/auth_binding.dart';
 import 'package:agora_shop/controllers/CategoryProduct/category_product_bindings.dart';
 import 'package:agora_shop/controllers/Main/main_binding.dart';

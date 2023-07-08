@@ -1,4 +1,4 @@
-import 'package:agora_shop/controllers/Address/address_controller.dart';
+import 'package:agora_shop/controllers/CheckOut/checkout_controller.dart';
 import 'package:agora_shop/controllers/Map/map_controller.dart';
 import 'package:agora_shop/models/Address/add_address_model.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
@@ -15,7 +15,7 @@ import 'components/google_map_widget.dart';
 
 class AddAddressPage extends StatelessWidget {
   final MapController mapController = Get.find<MapController>();
-  final AddressController addressController = Get.find<AddressController>();
+  final CheckOutController checkOutController = Get.find<CheckOutController>();
   final formKey = GlobalKey<FormState>();
 
   final TextEditingController noteKey = TextEditingController();
@@ -27,9 +27,9 @@ class AddAddressPage extends StatelessWidget {
         child: WillPopScope(
       onWillPop: () async {
         Get.close(1);
-        if (addressController.newAddressAdded) {
-          await addressController.getAddressData(lang: lanLocal, token: token);
-          addressController.newAddressAdded = false;
+        if (checkOutController.newAddressAdded) {
+          await checkOutController.getAddressData(lang: lanLocal, token: token);
+          checkOutController.newAddressAdded = false;
         }
         return false;
       },
@@ -39,10 +39,10 @@ class AddAddressPage extends StatelessWidget {
               leading: InkWell(
                 onTap: () async {
                   Get.close(1);
-                  if (addressController.newAddressAdded) {
-                    await addressController.getAddressData(
+                  if (checkOutController.newAddressAdded) {
+                    await checkOutController.getAddressData(
                         lang: lanLocal, token: token);
-                    addressController.newAddressAdded = false;
+                    checkOutController.newAddressAdded = false;
                   }
                 },
                 child: Icon(
@@ -52,7 +52,7 @@ class AddAddressPage extends StatelessWidget {
                 ),
               ),
               isContainActions: false),
-          body: GetBuilder<AddressController>(builder: (_) {
+          body: GetBuilder<CheckOutController>(builder: (_) {
             return Stack(
               alignment: Alignment.center,
               children: [
@@ -85,7 +85,7 @@ class AddAddressPage extends StatelessWidget {
                         ),
                       ],
                     )),
-                addressController.isAddAddressCircleShown
+                checkOutController.isAddAddressCircleShown
                     ? const CircleIndicatorWidget()
                     : Container()
               ],
@@ -237,7 +237,7 @@ class AddAddressPage extends StatelessWidget {
                       latitude: mapController.markerLat.latitude.toString(),
                       longitude: mapController.markerLat.longitude.toString(),
                     );
-                    await addressController.addAddress(
+                    await checkOutController.addAddress(
                         addAddress: addAddress, token: token, lang: lanLocal);
                   }
                 },

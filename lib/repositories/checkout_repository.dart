@@ -1,17 +1,16 @@
 import 'package:agora_shop/models/Address/addresses_data_model.dart';
-import 'package:agora_shop/services/networking/address_api_service.dart';
+import 'package:agora_shop/services/networking/checkout_api_service.dart';
 import 'package:agora_shop/shared/errors/exceptions.dart';
 import 'package:dartz/dartz.dart';
-
 import '../models/Address/add_address_model.dart';
 import '../shared/errors/failures.dart';
 import '../shared/network_info/network_info.dart';
 
-class AddressRepository {
-  final AddressApiService addressApiService;
+class CheckOutRepository {
+  final CheckOutApiService addressApiService;
   final NetworkInfo networkInfo;
 
-  AddressRepository(
+  CheckOutRepository(
       {required this.addressApiService, required this.networkInfo});
 
   Future<Either<Failure, AddressesDataModel>> getAddressData(
@@ -51,6 +50,21 @@ class AddressRepository {
         final deleteAddressResponse =
             await addressApiService.deleteAddressApi(id, token, lang);
         return Right(deleteAddressResponse);
+      } on ServerException {
+        return left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  Future<Either<Failure, String>> addOrder(
+      String token, String lang, int addressId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final addOrderResponse =
+            await addressApiService.addOrderApi(token, lang, addressId);
+        return Right(addOrderResponse);
       } on ServerException {
         return left(ServerFailure());
       }

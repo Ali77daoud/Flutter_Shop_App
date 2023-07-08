@@ -1,4 +1,3 @@
-import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/CategoryProduct/category_product_model.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_category_product_provider.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +8,6 @@ import '../../shared/shared_variables.dart';
 class CategoryProductController extends GetxController {
   bool isCategoryProductNoInternetConnection = false;
   bool isCategoryProductCircleShown = false;
-
-  final HttpClientController clientController =
-      Get.find<HttpClientController>();
 
   late CategoryProductModel categoryProductData;
 
@@ -69,9 +65,6 @@ class CategoryProductController extends GetxController {
   void onClose() async {
     super.onClose();
     debugPrint('Product Details Controller closed');
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
   }
 
   //////////////////////

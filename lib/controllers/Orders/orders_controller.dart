@@ -1,5 +1,5 @@
-import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/Orders/get_order_model.dart';
+import 'package:agora_shop/providers/Orders_providers.dart/cancel_order_provider.dart';
 import 'package:agora_shop/providers/Orders_providers.dart/get_address_data_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
@@ -10,13 +10,12 @@ class OrdersController extends GetxController {
   bool isGetOrdersNoInternetConnection = false;
   bool isGetOrdersCircleShown = false;
 
-  final HttpClientController clientController =
-      Get.find<HttpClientController>();
-
   late OrderModel ordersData;
 
   GetOrdersDataProvider getOrdersDataProvider =
       Get.find<GetOrdersDataProvider>();
+
+  CancelOrderProvider cancelOrderProvider = Get.find<CancelOrderProvider>();
 
   // ///////////////////////////
   void showGetOrdersCircleIndicator() {
@@ -51,9 +50,6 @@ class OrdersController extends GetxController {
   void onClose() async {
     super.onClose();
     debugPrint('Order Controller closed');
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
   }
 
   ///////////////////////////////////
@@ -73,4 +69,24 @@ class OrdersController extends GetxController {
       hideGetOrdersNoInternetPage();
     });
   }
+
+  // ///////////////////////////////////
+  // Future<void> addOrder(
+  //     {required String lang,
+  //     required String token,
+  //     required int addressId}) async {
+  //   showAddOrderCircleIndicator();
+  //   final failureOrAddOrder = await addOrderProvider.call(
+  //       token: token, lang: lang, addressId: addressId);
+  //   failureOrAddOrder.fold((failure) {
+  //     HandlingErrors.networkErrorrHandling(
+  //         failure: failure,
+  //         hideCircleIndicator: hideAddOrderCircleIndicator,
+  //         showNoInternetPage: () {});
+  //   }, (message) {
+  //     hideAddOrderCircleIndicator();
+  //     SnackBarWidgets.showSuccessSnackBar(message, '');
+  //     Get.offAllNamed(Routes.mainPage);
+  //   });
+  // }
 }

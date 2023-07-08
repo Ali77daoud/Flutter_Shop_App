@@ -1,4 +1,3 @@
-import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/Favorite/fav_data_model.dart';
 import 'package:agora_shop/providers/Fav_providers/get_fav_data_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
@@ -9,9 +8,6 @@ import 'package:get/get.dart';
 class FavController extends GetxController {
   bool isFavNoInternetConnection = false;
   bool isFavCircleShown = false;
-
-  final HttpClientController clientController =
-      Get.find<HttpClientController>();
 
   late FavDataModel favData;
 
@@ -52,9 +48,6 @@ class FavController extends GetxController {
   void onClose() async {
     super.onClose();
     debugPrint('Fav Controller closed');
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
   }
 
   Future<void> getFavData({required String lang, required String token}) async {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/Orders/get_order_model.dart';
 import 'package:agora_shop/services/networking/api_constants.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 
 abstract class OrdersApiService {
   Future<OrderModel> getOrdersDataApi(String token, String lang);
+  Future<String> cancelOrderApi(String token, String lang, int orderId);
 }
 
 class OrdersApiServiceImpWithHttp implements OrdersApiService {
@@ -36,6 +36,34 @@ class OrdersApiServiceImpWithHttp implements OrdersApiService {
         return resposeData;
       } else {
         debugPrint('get Orders data field');
+        throw ServerException();
+      }
+    } else {
+      debugPrint('3');
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<String> cancelOrderApi(String token, String lang, int orderId) async {
+    final uri = Uri.parse('${ApiConstants.baseUrl}/orders/$orderId/cancel');
+    final response = await clientController.client.get(uri, headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Connection': 'keep-alive',
+      'Authorization': token,
+      'lang': lang,
+    });
+    debugPrint('1');
+    debugPrint(response.statusCode.toString());
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      debugPrint('2');
+      final data = jsonDecode(response.body);
+      if (data['status'] == true) {
+        debugPrint('cancel Order success');
+        return data['message'];
+      } else {
+        debugPrint('cancel Order field');
         throw ServerException();
       }
     } else {

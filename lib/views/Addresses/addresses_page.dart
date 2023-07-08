@@ -1,4 +1,4 @@
-import 'package:agora_shop/controllers/Address/address_controller.dart';
+import 'package:agora_shop/controllers/CheckOut/checkout_controller.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
@@ -10,7 +10,7 @@ import 'components/add_address_widget.dart';
 import 'components/addresses_widget.dart';
 
 class AddressesPage extends StatelessWidget {
-  final AddressController addressController = Get.find<AddressController>();
+  final CheckOutController checkOutController = Get.find<CheckOutController>();
   AddressesPage({super.key});
 
   @override
@@ -32,13 +32,13 @@ class AddressesPage extends StatelessWidget {
                 ),
                 isContainActions: false),
             bottomNavigationBar: const AddAddressWidget(),
-            body: GetBuilder<AddressController>(builder: (_) {
+            body: GetBuilder<CheckOutController>(builder: (_) {
               return HandlingErrors.pageErrorHandling(
-                isCircleShown: addressController.isGetAddressCircleShown,
+                isCircleShown: checkOutController.isGetAddressCircleShown,
                 isNoInternetConnection:
-                    addressController.isGetAddressNoInternetConnection,
+                    checkOutController.isGetAddressNoInternetConnection,
                 onTapTry: () async {
-                  addressController.getAddressData(
+                  checkOutController.getAddressData(
                       lang: lanLocal, token: token);
                 },
                 page: Stack(
@@ -55,19 +55,19 @@ class AddressesPage extends StatelessWidget {
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
-                                      itemCount: addressController
+                                      itemCount: checkOutController
                                           .addressData.data.data.length,
                                       itemBuilder: (context, index) {
                                         return AddressesWidget(
                                           onTap: () {
-                                            addressController.chooseAddress(
-                                                addressController.addressData
+                                            checkOutController.chooseAddress(
+                                                checkOutController.addressData
                                                     .data.data[index].id);
                                           },
                                           onDelete: () async {
-                                            await addressController
+                                            await checkOutController
                                                 .deleteAddress(
-                                                    id: addressController
+                                                    id: checkOutController
                                                         .addressData
                                                         .data
                                                         .data[index]
@@ -75,36 +75,37 @@ class AddressesPage extends StatelessWidget {
                                                     token: token,
                                                     lang: lanLocal);
                                             ////////
-                                            if (addressController.addressData
+                                            if (checkOutController.addressData
                                                 .data.data.isNotEmpty) {
-                                              addressController.chooseAddress(
-                                                  addressController.addressData
+                                              checkOutController.chooseAddress(
+                                                  checkOutController.addressData
                                                       .data.data[0].id);
                                             } else {
                                               await GetStorage()
                                                   .remove('addressId');
                                             }
                                           },
-                                          icon: addressController.addressData
+                                          icon: checkOutController.addressData
                                                       .data.data[index].id ==
-                                                  addressController.currentId
+                                                  checkOutController
+                                                      .addressCurrentId
                                               ? Icons.circle
                                               : Icons.circle_outlined,
-                                          title: addressController.addressData
+                                          title: checkOutController.addressData
                                               .data.data[index].name,
-                                          subTitle: addressController
+                                          subTitle: checkOutController
                                               .addressData
                                               .data
                                               .data[index]
                                               .details,
-                                          region: addressController.addressData
+                                          region: checkOutController.addressData
                                               .data.data[index].region,
-                                          id: addressController
+                                          id: checkOutController
                                               .addressData.data.data[index].id,
                                         );
                                       })),
                             ])),
-                    addressController.isDeleteAddressCircleShown
+                    checkOutController.isDeleteAddressCircleShown
                         ? const CircularProgressIndicator()
                         : Container()
                   ],

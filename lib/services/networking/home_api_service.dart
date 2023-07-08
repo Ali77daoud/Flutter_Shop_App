@@ -26,8 +26,10 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
   HomeApiServiceImpWithHttp({required this.clientController});
   @override
   Future<HomeDataModel> getHomeDataApi(String token, String lang) async {
+    await clientController.closeClient().then((value) async {
+      await clientController.reOpenClient();
+    });
     final uri = Uri.parse('${ApiConstants.baseUrl}/home');
-
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',

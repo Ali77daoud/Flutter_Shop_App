@@ -1,4 +1,3 @@
-import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/HomeData/category_data_model.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_category_data_provider.dart';
 import 'package:agora_shop/providers/Home_providers.dart/search_product_provider.dart';
@@ -17,9 +16,6 @@ class HomeController extends GetxController {
   bool isSearchCircleShown = false;
 
   int currentBanner = 0;
-
-  final HttpClientController clientController =
-      Get.find<HttpClientController>();
 
   late CarouselController carouselController;
 
@@ -115,15 +111,11 @@ class HomeController extends GetxController {
   void onClose() async {
     super.onClose();
     debugPrint('Home Controller closed');
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
   }
 
   Future<void> getHomeData(
       {required String lang, required String token}) async {
     showHomeCircleIndicator();
-    debugPrint('get home data');
     final failureOrGetHomeData =
         await getHomeDataProvider.call(token: token, lang: lang);
     failureOrGetHomeData.fold((failure) {

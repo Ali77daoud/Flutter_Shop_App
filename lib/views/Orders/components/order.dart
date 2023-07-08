@@ -14,10 +14,15 @@ class Orders extends StatelessWidget {
         child:
             CustomScrollView(physics: const BouncingScrollPhysics(), slivers: [
           SliverToBoxAdapter(
-              child: ListView.builder(
+              child: ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: ordersController.ordersData.data.data.length,
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(
+                      height: 12,
+                    );
+                  },
                   itemBuilder: (context, index) {
                     return OrderWidget(
                       total: ordersController.ordersData.data.data[index].total

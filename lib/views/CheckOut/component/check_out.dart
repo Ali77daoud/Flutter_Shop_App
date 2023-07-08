@@ -1,4 +1,4 @@
-import 'package:agora_shop/controllers/Address/address_controller.dart';
+import 'package:agora_shop/controllers/CheckOut/checkout_controller.dart';
 import 'package:agora_shop/controllers/Cart/cart_controller.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
@@ -10,7 +10,7 @@ import 'address_widget.dart';
 
 class CheckOut extends StatelessWidget {
   final CartController cartController = Get.find<CartController>();
-  final AddressController addressController = Get.find<AddressController>();
+  final CheckOutController checkOutController = Get.find<CheckOutController>();
   CheckOut({super.key});
 
   @override
@@ -27,16 +27,16 @@ class CheckOut extends StatelessWidget {
         ),
         /////////////////////
         AddressWidget(
-          title: addressController.addressData.data.data.isNotEmpty
-              ? addressController.addressData.data.data
-                  .firstWhere(
-                      (element) => element.id == addressController.currentId)
+          title: checkOutController.addressData.data.data.isNotEmpty
+              ? checkOutController.addressData.data.data
+                  .firstWhere((element) =>
+                      element.id == checkOutController.addressCurrentId)
                   .name
               : 'Empty',
-          subTitle: addressController.addressData.data.data.isNotEmpty
-              ? addressController.addressData.data.data
-                  .firstWhere(
-                      (element) => element.id == addressController.currentId)
+          subTitle: checkOutController.addressData.data.data.isNotEmpty
+              ? checkOutController.addressData.data.data
+                  .firstWhere((element) =>
+                      element.id == checkOutController.addressCurrentId)
                   .details
               : 'Empty',
         ),

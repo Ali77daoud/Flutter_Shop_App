@@ -1,4 +1,3 @@
-import 'package:agora_shop/controllers/Client/client_controller.dart';
 import 'package:agora_shop/models/ProductDetails/product_details_model.dart';
 import 'package:agora_shop/providers/Home_providers.dart/get_product_details.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +8,6 @@ import '../../shared/shared_variables.dart';
 class ProductDetailsController extends GetxController {
   bool isProductNoInternetConnection = false;
   bool isProductCircleShown = false;
-
-  // final HomeController homeController = Get.find<HomeController>();
-  final HttpClientController clientController =
-      Get.find<HttpClientController>();
 
   late ProductDetailsModel productDetailsData;
 

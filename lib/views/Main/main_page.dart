@@ -72,7 +72,7 @@ class MainPage extends StatelessWidget {
         ),
         ////////////////////
         DotNavigationBarItem(
-          icon: const Icon(IconlyLight.profile),
+          icon: const Icon(IconlyLight.setting),
           selectedColor: themesController.isDark()
               ? AppColors.secondary
               : AppColors.primaryDark,

@@ -17,9 +17,8 @@ class FavApiServiceImpWithHttp implements FavApiService {
 
   @override
   Future<FavDataModel> getFavDataApi(String token, String lang) async {
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
+    clientController.closeClient();
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/favorites');
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
@@ -49,6 +48,7 @@ class FavApiServiceImpWithHttp implements FavApiService {
 
   @override
   Future<String> addOrDeleteFavApi(String token, String lang, int id) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/favorites');
     final response = await clientController.client
         .post(uri, body: json.encode({'product_id': id}), headers: {

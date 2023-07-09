@@ -13,30 +13,23 @@ class NoConnectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Expanded(
-          //     flex: 2,
-          //     child: Image.asset(
-          //       'assets/pictures/no-wifi.png',
-          //       fit: BoxFit.contain,
-          //       width: getWidthInPercent(context, 60),
-          //     )),
+          Image.asset(
+            'assets/pictures/no_connectoin.jpg',
+            fit: BoxFit.cover,
+            width: 250,
+          ),
+          //////////
           TextWidget(
-              text: 'No Connection',
+              text: 'No Connection\nTry again',
               color: AppColors.primaryLight,
-              fontSize: getSp(context, 18),
+              fontSize: 20,
               fontWeight: FontWeight.bold,
               textAlign: TextAlign.center,
               maxline: 2),
-          TextWidget(
-              text: 'Try again',
-              color: AppColors.primaryLight,
-              fontSize: getSp(context, 20),
-              fontWeight: FontWeight.bold,
-              textAlign: TextAlign.center,
-              maxline: 2),
+          /////////
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
             child: AppButton.normalButton(
@@ -47,7 +40,12 @@ class NoConnectionWidget extends StatelessWidget {
                 shadow: false,
                 titleColor: AppColors.white,
                 onPress: onTap),
-          )
+          ),
+          //////////
+          SizedBox(
+            height: getHeightInPercent(context, 8),
+          ),
+          ////////////
         ],
       ),
     );

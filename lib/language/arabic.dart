@@ -61,4 +61,7 @@ const Map<String, String> ar = {
   'Region Name should not be empty': ' اسم المنطقة لايجب أن يكون فارغ',
   'Street Name should not be empty': ' اسم الشارع لايجب أن يكون فارغ',
   'Notes should not be empty': '  الملاحظات لايجب أن يكون فارغ',
+  'Are you sure to logout ?': 'هل أنت متأكد من تسجيل الدخول ؟',
+  'Confirm': 'تأكيد',
+  'Back': 'رجوع',
 };

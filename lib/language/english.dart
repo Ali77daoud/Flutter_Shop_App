@@ -61,4 +61,7 @@ const Map<String, String> en = {
   'Region Name should not be empty': 'Region Name should not be empty',
   'Street Name should not be empty': 'Street Name should not be empty',
   'Notes should not be empty': 'Notes should not be empty',
+  'Are you sure to logout ?': 'Are you sure to logout ?',
+  'Confirm': 'Confirm',
+  'Back': 'Back',
 };

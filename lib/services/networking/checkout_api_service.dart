@@ -22,6 +22,7 @@ class CheckOutApiServiceImpWithHttp implements CheckOutApiService {
   @override
   Future<AddressesDataModel> getAddressDataApi(
       String token, String lang) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/addresses');
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
@@ -52,6 +53,7 @@ class CheckOutApiServiceImpWithHttp implements CheckOutApiService {
   @override
   Future<AddAddressModel> addAddressApi(
       AddAddress addAddress, String token, String lang) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/addresses');
     final body = addAddress.toJson();
     final response = await clientController.client
@@ -82,6 +84,7 @@ class CheckOutApiServiceImpWithHttp implements CheckOutApiService {
 
   @override
   Future<String> deleteAddressApi(int id, String token, String lang) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/addresses/$id');
     final response = await clientController.client.delete(
       uri,
@@ -113,6 +116,7 @@ class CheckOutApiServiceImpWithHttp implements CheckOutApiService {
 
   @override
   Future<String> addOrderApi(String token, String lang, int addressId) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/orders');
     final response = await clientController.client.post(uri,
         body: json.encode({

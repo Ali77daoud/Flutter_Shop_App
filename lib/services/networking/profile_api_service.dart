@@ -21,6 +21,7 @@ class ProfileApiServiceImpWithHttp implements ProfileApiService {
   @override
   Future<UserModel> updateProfileApi(
       UpdateProfileModel updateProfileModel, String token, String lang) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/update-profile');
     final body = updateProfileModel.toJson();
     final response = await clientController.client
@@ -52,6 +53,7 @@ class ProfileApiServiceImpWithHttp implements ProfileApiService {
 
   @override
   Future<UserDataModel> getUserDataApi(String token, String lang) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/profile');
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',

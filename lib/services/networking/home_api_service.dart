@@ -26,9 +26,8 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
   HomeApiServiceImpWithHttp({required this.clientController});
   @override
   Future<HomeDataModel> getHomeDataApi(String token, String lang) async {
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
+    clientController.closeClient();
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/home');
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
@@ -60,7 +59,6 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
   Future<CategoryDataModel> getCategoryDataApi(
       String token, String lang) async {
     final uri = Uri.parse('${ApiConstants.baseUrl}/categories');
-
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -90,6 +88,7 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
   @override
   Future<ProductDetailsModel> getProductDetailsApi(
       String token, String lang, int id) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/products/$id');
 
     final response = await clientController.client.get(uri, headers: {
@@ -121,6 +120,7 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
   @override
   Future<SearchProductDataModel> searchProductApi(
       String token, String lang, String text) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/products/search');
 
     final response = await clientController.client
@@ -153,8 +153,11 @@ class HomeApiServiceImpWithHttp implements HomeApiService {
   @override
   Future<CategoryProductModel> getCategoryProductDataApi(
       String token, String lang, int categoryId) async {
-    final uri =
-        Uri.parse('${ApiConstants.baseUrl}/products?category_id=$categoryId');
+    clientController.reOpenClient();
+    final uri = Uri.https(
+        ApiConstants.url, '/api/products', {'category_id': '$categoryId'});
+    // final uri =
+    //     Uri.parse('${ApiConstants.baseUrl}/products?category_id=$categoryId');
 
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',

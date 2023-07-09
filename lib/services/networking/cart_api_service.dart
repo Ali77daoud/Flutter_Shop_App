@@ -19,9 +19,8 @@ class CartApiServiceImpWithHttp implements CartApiService {
 
   @override
   Future<CartDataModel> getCartDataApi(String token, String lang) async {
-    await clientController.closeClient().then((value) async {
-      await clientController.reOpenClient();
-    });
+    clientController.closeClient();
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/carts');
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
@@ -51,8 +50,8 @@ class CartApiServiceImpWithHttp implements CartApiService {
 
   @override
   Future<String> addOrRemoveCartApi(String token, String lang, int id) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/carts');
-
     final response = await clientController.client
         .post(uri, body: json.encode({'product_id': id}), headers: {
       'Content-type': 'application/json',
@@ -82,8 +81,8 @@ class CartApiServiceImpWithHttp implements CartApiService {
   @override
   Future<String> updateCartApi(
       String token, String lang, int id, int quantity) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/carts/$id');
-
     final response = await clientController.client
         .put(uri, body: json.encode({'quantity': quantity}), headers: {
       'Content-type': 'application/json',
@@ -112,8 +111,8 @@ class CartApiServiceImpWithHttp implements CartApiService {
 
   @override
   Future<String> deleteCartApi(String token, String lang, int id) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/carts/$id');
-
     final response = await clientController.client.delete(uri, headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',

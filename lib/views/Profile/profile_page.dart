@@ -2,7 +2,9 @@ import 'package:agora_shop/controllers/Auth/auth_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/constants/lang_constants.dart';
+import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
+import 'package:agora_shop/shared/widgets/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
@@ -104,20 +106,26 @@ class ProfilePage extends StatelessWidget {
                         Colors.blueGrey, theme, onTab: () {
                       Get.toNamed(Routes.orderssPage);
                     }),
-                    // const SizedBox(height: 8),
-                    // _buildListTile(
-                    //     'Help'.tr, Icons.help, '', Colors.green, theme,
-                    //     onTab: () {}),
                     const SizedBox(height: 8),
                     _buildListTile(
                         'Logout'.tr, Icons.exit_to_app, '', Colors.red, theme,
-                        onTab: () async {
-                      await authController.logOut();
+                        onTab: () {
+                      DialogWidget.showDialogWidget(
+                          context: context,
+                          title: 'Are you sure to logout ?'.tr,
+                          onConfirm: () async {
+                            await authController.logOut();
+                          });
                     }),
                   ],
                 ),
+                /////////////////////////////
+                SizedBox(
+                  height: getHeightInPercent(context, 3),
+                ),
+                //////////////////////////////
                 Text("Version 1.0.0",
-                    style: theme.textTheme.bodyText2
+                    style: theme.textTheme.bodyMedium
                         ?.copyWith(color: Colors.grey.shade500)),
               ],
             ),
@@ -335,8 +343,4 @@ class ProfilePage extends StatelessWidget {
       ),
     ));
   }
-  //////
-  // Widget _showLogoutDialog(){
-  //   return Get.sho
-  // }
 }

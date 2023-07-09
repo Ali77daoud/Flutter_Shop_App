@@ -17,6 +17,7 @@ class OrdersApiServiceImpWithHttp implements OrdersApiService {
 
   @override
   Future<OrderModel> getOrdersDataApi(String token, String lang) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/orders');
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',
@@ -46,6 +47,7 @@ class OrdersApiServiceImpWithHttp implements OrdersApiService {
 
   @override
   Future<String> cancelOrderApi(String token, String lang, int orderId) async {
+    clientController.reOpenClient();
     final uri = Uri.parse('${ApiConstants.baseUrl}/orders/$orderId/cancel');
     final response = await clientController.client.get(uri, headers: {
       'Content-type': 'application/json',

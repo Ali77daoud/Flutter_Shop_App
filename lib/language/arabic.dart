@@ -64,4 +64,9 @@ const Map<String, String> ar = {
   'Are you sure to logout ?': 'هل أنت متأكد من تسجيل الدخول ؟',
   'Confirm': 'تأكيد',
   'Back': 'رجوع',
+  'Your Orders': 'طلباتك',
+  'Status': 'الحالة',
+  'Details': 'التفاصيل',
+  'Date': 'التاريخ',
+  'Cancelled': 'ملغي'
 };

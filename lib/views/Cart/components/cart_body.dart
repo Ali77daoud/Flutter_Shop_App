@@ -21,7 +21,7 @@ class CartBody extends StatelessWidget {
       alignment: Alignment.topCenter,
       children: [
         Padding(
-            padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 160, 0, 0),
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return ShoppingCartItem(

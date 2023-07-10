@@ -1,6 +1,6 @@
 import 'package:agora_shop/models/Orders/get_order_model.dart';
 import 'package:agora_shop/providers/Orders_providers.dart/cancel_order_provider.dart';
-import 'package:agora_shop/providers/Orders_providers.dart/get_address_data_provider.dart';
+import 'package:agora_shop/providers/Orders_providers.dart/get_order_data_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:flutter/material.dart';

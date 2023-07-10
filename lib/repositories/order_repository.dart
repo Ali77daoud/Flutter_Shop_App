@@ -1,3 +1,4 @@
+import 'package:agora_shop/models/Orders/order_details_model.dart';
 import 'package:agora_shop/services/networking/order_api_service.dart';
 import 'package:agora_shop/shared/errors/exceptions.dart';
 import 'package:agora_shop/shared/errors/failures.dart';
@@ -15,9 +16,24 @@ class OrdersRepository {
       String token, String lang) async {
     if (await networkInfo.isConnected) {
       try {
-        final addressDataResponse =
+        final orderDataResponse =
             await ordersApiService.getOrdersDataApi(token, lang);
-        return Right(addressDataResponse);
+        return Right(orderDataResponse);
+      } on ServerException {
+        return left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  Future<Either<Failure, GetOrderDetailsModel>> getOrderDetailsData(
+      String token, String lang, int orderId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final orderDetailsDataResponse =
+            await ordersApiService.getOrderDetailsDataApi(token, lang, orderId);
+        return Right(orderDetailsDataResponse);
       } on ServerException {
         return left(ServerFailure());
       }

@@ -64,4 +64,9 @@ const Map<String, String> en = {
   'Are you sure to logout ?': 'Are you sure to logout ?',
   'Confirm': 'Confirm',
   'Back': 'Back',
+  'Your Orders': 'Your Orders',
+  'Status': 'Status',
+  'Details': 'Details',
+  'Date': 'Date',
+  'Cancelled': 'Cancelled',
 };

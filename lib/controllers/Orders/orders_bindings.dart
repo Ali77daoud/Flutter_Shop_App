@@ -1,6 +1,6 @@
 import 'package:agora_shop/controllers/Orders/orders_controller.dart';
 import 'package:agora_shop/providers/Orders_providers.dart/cancel_order_provider.dart';
-import 'package:agora_shop/providers/Orders_providers.dart/get_address_data_provider.dart';
+import 'package:agora_shop/providers/Orders_providers.dart/get_order_data_provider.dart';
 import 'package:agora_shop/repositories/order_repository.dart';
 import 'package:agora_shop/services/networking/order_api_service.dart';
 import 'package:get/get.dart';

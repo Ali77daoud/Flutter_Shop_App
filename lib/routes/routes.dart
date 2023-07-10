@@ -3,6 +3,7 @@ import 'package:agora_shop/controllers/Auth/auth_binding.dart';
 import 'package:agora_shop/controllers/CategoryProduct/category_product_bindings.dart';
 import 'package:agora_shop/controllers/Main/main_binding.dart';
 import 'package:agora_shop/controllers/Map/map_bindings.dart';
+import 'package:agora_shop/controllers/OrderDetails.dart/order_details_bindings.dart';
 import 'package:agora_shop/controllers/Orders/orders_bindings.dart';
 import 'package:agora_shop/controllers/ProductDetails/product_details_binding.dart';
 import 'package:agora_shop/controllers/Profile/profile_bindings.dart';
@@ -10,6 +11,7 @@ import 'package:agora_shop/views/Addresses/addresses_page.dart';
 import 'package:agora_shop/views/Auth/signup_page.dart';
 import 'package:agora_shop/views/CheckOut/check_out_page.dart';
 import 'package:agora_shop/views/AddAddress/add_address_page.dart';
+import 'package:agora_shop/views/OrderDetails/orders_details_page.dart';
 import 'package:agora_shop/views/Orders/orders_page.dart';
 import 'package:agora_shop/views/Products/category_product_page.dart';
 import 'package:agora_shop/views/EditProfile/edit_profile_page.dart';
@@ -33,6 +35,7 @@ class Routes {
   static const addressesPage = '/addressesPage';
   static const addAddressPage = '/addAddressPage';
   static const orderssPage = '/orderssPage';
+  static const ordersDetailsPage = '/ordersDetailsPage';
 }
 
 class AppRoutes {
@@ -128,6 +131,15 @@ class AppRoutes {
       name: Routes.orderssPage,
       page: () => OrdersPage(),
       binding: OrderBinding(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 200),
+    ),
+
+    /// ///////////////////////
+    GetPage(
+      name: Routes.ordersDetailsPage,
+      page: () => OrdersDetailsPage(),
+      binding: OrderDetailsBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),
     ),

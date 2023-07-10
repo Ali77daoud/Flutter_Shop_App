@@ -2,8 +2,9 @@ import 'package:agora_shop/controllers/CheckOut/checkout_controller.dart';
 import 'package:agora_shop/controllers/Cart/cart_controller.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
+import 'package:agora_shop/shared/widgets/check_out_product_widget.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
-import 'package:agora_shop/views/CheckOut/component/check_out_product_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'address_widget.dart';

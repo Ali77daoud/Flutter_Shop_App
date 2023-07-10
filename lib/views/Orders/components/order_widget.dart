@@ -2,6 +2,7 @@ import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 class OrderWidget extends StatelessWidget {
@@ -24,12 +25,13 @@ class OrderWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 100,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.white,
         boxShadow: [
           BoxShadow(
-              color: AppColors.lightGray,
-              offset: Offset(0, 4),
+              color:
+                  Get.isDarkMode ? AppColors.blackLight : AppColors.lightGray,
+              offset: const Offset(0, 4),
               blurRadius: 2,
               spreadRadius: 1)
         ],
@@ -39,11 +41,11 @@ class OrderWidget extends StatelessWidget {
           Container(
             height: getHeightInPercent(context, 100),
             width: getWidthInPercent(context, 10),
-            color: AppColors.primaryDark,
+            color: Get.isDarkMode ? AppColors.grey : AppColors.primaryDark,
             child: Center(
               child: TextWidget(
                   text: '# ${index + 1}',
-                  color: AppColors.white,
+                  color: Get.isDarkMode ? AppColors.lightGray : AppColors.white,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   textAlign: TextAlign.center,
@@ -60,7 +62,7 @@ class OrderWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget(
-                      text: 'Total : $total\$',
+                      text: '${'Total'.tr} : $total\$',
                       color: AppColors.darkGrey,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -68,7 +70,7 @@ class OrderWidget extends StatelessWidget {
                       maxline: 2),
                   /////////////
                   TextWidget(
-                      text: 'Status : $status',
+                      text: '${'Status'.tr} : $status',
                       color: AppColors.darkGrey,
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
@@ -76,7 +78,7 @@ class OrderWidget extends StatelessWidget {
                       maxline: 2),
                   /////////////
                   TextWidget(
-                      text: 'Date : $date',
+                      text: '${'Date'.tr} : $date',
                       color: AppColors.darkGrey,
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
@@ -89,9 +91,9 @@ class OrderWidget extends StatelessWidget {
           ////////////////////
           Expanded(
             flex: 1,
-            child: status != 'Cancelled'
+            child: status != 'Cancelled'.tr
                 ? IconButton(
-                    onPressed: () {},
+                    onPressed: onTapCancel,
                     icon: const Icon(
                       IconlyBold.close_square,
                       // color: Colors.red,
@@ -103,12 +105,12 @@ class OrderWidget extends StatelessWidget {
           Expanded(
             flex: 2,
             child: InkWell(
-              onTap: () async {},
+              onTap: onTapDetails,
               child: Container(
-                color: AppColors.primaryDark,
+                color: Get.isDarkMode ? AppColors.grey : AppColors.primaryDark,
                 child: Center(
                   child: TextWidget(
-                      text: 'Details',
+                      text: 'Details'.tr,
                       color: AppColors.white,
                       fontSize: 13,
                       fontWeight: FontWeight.bold,

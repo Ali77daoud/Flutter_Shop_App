@@ -102,8 +102,11 @@ class CheckOutController extends GetxController {
     super.onInit();
     debugPrint('address Controller Init');
     await getAddressData(lang: lanLocal, token: token);
+
     addressCurrentId =
         addressIdBox.read<int>('addressId') ?? addressData.data.data[0].id;
+
+    print(addressCurrentId);
   }
 
   @override
@@ -162,9 +165,15 @@ class CheckOutController extends GetxController {
           failure: failure,
           hideCircleIndicator: hideDeleteAddressCircleIndicator,
           showNoInternetPage: () {});
-    }, (message) {
+    }, (message) async {
       hideDeleteAddressCircleIndicator();
       addressData.data.data.removeWhere((element) => element.id == id);
+      ////////
+      if (addressData.data.data.isNotEmpty) {
+        chooseAddress(addressData.data.data[0].id);
+      } else {
+        await GetStorage().remove('addressId');
+      }
       SnackBarWidgets.showSuccessSnackBar(message, '');
       update();
     });

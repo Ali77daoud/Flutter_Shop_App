@@ -1,6 +1,7 @@
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 class TitleSectionWidget extends StatelessWidget {
   final String title;
@@ -15,12 +16,13 @@ class TitleSectionWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 48,
-        color: AppColors.lightGray,
+        color: Get.isDarkMode ? AppColors.blackDark : AppColors.lightGray,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
           child: TextWidget(
               text: title,
-              color: AppColors.primaryDark,
+              color:
+                  Get.isDarkMode ? AppColors.secondary : AppColors.primaryDark,
               fontSize: 14,
               fontWeight: FontWeight.bold,
               textAlign: TextAlign.start,

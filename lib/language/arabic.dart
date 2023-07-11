@@ -68,5 +68,6 @@ const Map<String, String> ar = {
   'Status': 'الحالة',
   'Details': 'التفاصيل',
   'Date': 'التاريخ',
-  'Cancelled': 'ملغي'
+  'Cancelled': 'ملغي',
+  'Are you sure to add the order ?': 'هل أنت متأكد من إضافة الطلب؟'
 };

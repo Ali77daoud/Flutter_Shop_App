@@ -1,6 +1,7 @@
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OrderDetailsWidget extends StatelessWidget {
   final String title;
@@ -20,7 +21,7 @@ class OrderDetailsWidget extends StatelessWidget {
           child: Container(
             height: 37,
             decoration: BoxDecoration(
-                color: AppColors.white,
+                color: Get.isDarkMode ? AppColors.darkGrey : AppColors.white,
                 border: Border.all(color: AppColors.grey, width: 0)),
             child: Center(
               child: TextWidget(
@@ -37,12 +38,13 @@ class OrderDetailsWidget extends StatelessWidget {
           child: Container(
             height: 37,
             decoration: BoxDecoration(
-                color: AppColors.white,
+                color: Get.isDarkMode ? AppColors.darkGrey : AppColors.white,
                 border: Border.all(color: AppColors.grey, width: 0)),
             child: Center(
               child: TextWidget(
                   text: value,
-                  color: AppColors.primaryLight,
+                  color:
+                      Get.isDarkMode ? AppColors.grey : AppColors.primaryLight,
                   fontSize: 13,
                   fontWeight: FontWeight.normal,
                   textAlign: TextAlign.center,

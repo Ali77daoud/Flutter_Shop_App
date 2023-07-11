@@ -2,6 +2,7 @@ import 'package:agora_shop/controllers/CheckOut/checkout_controller.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/app_buttons.dart';
+import 'package:agora_shop/shared/widgets/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,11 +33,16 @@ class AddOrderWidget extends StatelessWidget {
         ],
       ),
       child: AppButton.normalButton(
-          onPress: () async {
-            await checkOutController.addOrder(
-                lang: lanLocal,
-                token: token,
-                addressId: checkOutController.addressCurrentId);
+          onPress: () {
+            DialogWidget.showDialogWidget(
+                context: context,
+                title: 'Are you sure to add the order ?'.tr,
+                onConfirm: () async {
+                  await checkOutController.addOrder(
+                      lang: lanLocal,
+                      token: token,
+                      addressId: checkOutController.addressCurrentId);
+                });
           },
           title: 'Add Order'.tr,
           shadow: false,

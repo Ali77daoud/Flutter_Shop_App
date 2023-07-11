@@ -17,7 +17,7 @@ class CheckOutProductsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+        padding: const EdgeInsets.only(top: 0, left: 8.0, right: 8.0),
         height: 140,
         child: Card(
           elevation: 3,

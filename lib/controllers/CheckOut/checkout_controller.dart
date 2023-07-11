@@ -34,6 +34,13 @@ class CheckOutController extends GetxController {
       Get.find<DeleteAddressProvider>();
   AddOrderProvider addOrderProvider = Get.find<AddOrderProvider>();
 
+  bool isStartAnimation = false;
+
+  void startAnimation() {
+    isStartAnimation = true;
+    update();
+  }
+
   // ///////////////////////////
   void showGetAddressCircleIndicator() {
     isGetAddressCircleShown = true;
@@ -100,7 +107,7 @@ class CheckOutController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    debugPrint('address Controller Init');
+    debugPrint('checkout Controller Init');
     await getAddressData(lang: lanLocal, token: token);
 
     addressCurrentId =
@@ -112,7 +119,7 @@ class CheckOutController extends GetxController {
   @override
   void onClose() async {
     super.onClose();
-    debugPrint('address Controller closed');
+    debugPrint('checkout Controller closed');
   }
 
   ///////////////////////////////////
@@ -130,6 +137,9 @@ class CheckOutController extends GetxController {
       addressData = getAddressesData;
       hideGetAddressCircleIndicator();
       hideGetAddressNoInternetPage();
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        startAnimation();
+      });
     });
   }
 

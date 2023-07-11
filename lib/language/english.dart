@@ -69,4 +69,5 @@ const Map<String, String> en = {
   'Details': 'Details',
   'Date': 'Date',
   'Cancelled': 'Cancelled',
+  'Are you sure to add the order ?': 'Are you sure to add the order ?',
 };

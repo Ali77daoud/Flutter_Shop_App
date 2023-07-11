@@ -15,58 +15,56 @@ class AddressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: ListTile(
-        leading: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 50,
-              height: 50,
-              decoration: const BoxDecoration(
-                  color: AppColors.lightGray, shape: BoxShape.circle),
-            ),
-            //////
-            Container(
-              width: 35,
-              height: 35,
-              decoration: const BoxDecoration(
-                  color: AppColors.primaryLight, shape: BoxShape.circle),
-              child: const Center(
-                  child: Icon(
-                IconlyBold.location,
-                size: 20,
-                color: AppColors.darkWhite,
-              )),
-            ),
-          ],
-        ),
-        title: TextWidget(
-            text: title,
-            color: Get.isDarkMode ? AppColors.grey : AppColors.primaryDark,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.start,
-            overflow: TextOverflow.ellipsis,
-            maxline: 1),
-        subtitle: TextWidget(
-            text: subTitle,
-            color: AppColors.grey,
-            fontSize: 11,
-            fontWeight: FontWeight.normal,
-            textAlign: TextAlign.start,
-            overflow: TextOverflow.ellipsis,
-            maxline: 2),
-        trailing: InkWell(
-          onTap: () {
-            Get.toNamed(Routes.addressesPage);
-          },
-          child: const Icon(
-            IconlyBold.edit,
-            size: 30,
-            color: AppColors.grey,
+    return ListTile(
+      leading: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: const BoxDecoration(
+                color: AppColors.lightGray, shape: BoxShape.circle),
           ),
+          //////
+          Container(
+            width: 35,
+            height: 35,
+            decoration: const BoxDecoration(
+                color: AppColors.primaryLight, shape: BoxShape.circle),
+            child: const Center(
+                child: Icon(
+              IconlyBold.location,
+              size: 20,
+              color: AppColors.darkWhite,
+            )),
+          ),
+        ],
+      ),
+      title: TextWidget(
+          text: title,
+          color: Get.isDarkMode ? AppColors.grey : AppColors.primaryDark,
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          textAlign: TextAlign.start,
+          overflow: TextOverflow.ellipsis,
+          maxline: 1),
+      subtitle: TextWidget(
+          text: subTitle,
+          color: AppColors.grey,
+          fontSize: 11,
+          fontWeight: FontWeight.normal,
+          textAlign: TextAlign.start,
+          overflow: TextOverflow.ellipsis,
+          maxline: 2),
+      trailing: InkWell(
+        onTap: () {
+          Get.toNamed(Routes.addressesPage);
+        },
+        child: const Icon(
+          IconlyBold.edit,
+          size: 30,
+          color: AppColors.grey,
         ),
       ),
     );

@@ -13,6 +13,13 @@ class CartController extends GetxController {
 
   GetCartDataProvider getCartDataProvider = Get.find<GetCartDataProvider>();
 
+  bool isStartAnimation = false;
+
+  void startAnimation() {
+    isStartAnimation = true;
+    update();
+  }
+
   // ///////////////////////////
   void showCartCircleIndicator() {
     isCartCircleShown = true;
@@ -62,6 +69,9 @@ class CartController extends GetxController {
       cartData = getCartData;
       hideCartCircleIndicator();
       hideCartNoInternetPage();
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        startAnimation();
+      });
     });
   }
 }

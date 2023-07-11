@@ -74,15 +74,20 @@ class EditProfile extends StatelessWidget {
   Widget _secondSection() {
     return SliverToBoxAdapter(
       child: Container(
-        width: 100,
-        height: 100,
+        width: 130,
+        height: 130,
         decoration: BoxDecoration(
+            border: Border.all(
+                color: Get.isDarkMode
+                    ? AppColors.darkGrey
+                    : AppColors.primaryLight,
+                width: 3),
             shape: BoxShape.circle,
             color: Get.isDarkMode ? AppColors.grey : Colors.grey.shade300),
         child: Center(
           child: Icon(
             IconlyBold.profile,
-            size: 50,
+            size: 60,
             color: Get.isDarkMode ? AppColors.lightGray : AppColors.grey,
           ),
         ),

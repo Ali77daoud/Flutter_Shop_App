@@ -3,6 +3,7 @@ import 'package:agora_shop/controllers/Home/home_controller.dart';
 import 'package:agora_shop/controllers/Main/main_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
+import 'package:agora_shop/shared/widgets/item_animation_widget.dart';
 import 'package:agora_shop/shared/widgets/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,70 +29,77 @@ class CategoryProduct extends StatelessWidget {
             ),
             delegate: SliverChildBuilderDelegate(
               (ctx, i) {
-                return ProductWidget(
-                  img: categoryProductController
-                      .categoryProductData.data.data[i].image,
-                  minPrice: categoryProductController
-                      .categoryProductData.data.data[i].price
-                      .toString(),
-                  productName: categoryProductController
-                      .categoryProductData.data.data[i].name,
-                  inFav: categoryProductController
-                      .categoryProductData.data.data[i].inFavorites,
-                  inCart: categoryProductController
-                      .categoryProductData.data.data[i].inCart,
-                  onTap: () {
-                    Get.toNamed(
-                      Routes.productDetailsPage,
-                      arguments: {
-                        'ProductId': categoryProductController
-                            .categoryProductData.data.data[i].id,
-                      },
-                    );
-                  },
-                  onTapCart: () async {
-                    ////////////////////////
-                    await mainController
-                        .addOrRemoveCart(
-                            id: categoryProductController
+                return ItemAnimationWidget(
+                  index: i,
+                  isStartAnimation: categoryProductController.isStartAnimation,
+                  child: ProductWidget(
+                    img: categoryProductController
+                        .categoryProductData.data.data[i].image,
+                    minPrice: categoryProductController
+                        .categoryProductData.data.data[i].price
+                        .toString(),
+                    productName: categoryProductController
+                        .categoryProductData.data.data[i].name,
+                    inFav: categoryProductController
+                        .categoryProductData.data.data[i].inFavorites,
+                    inCart: categoryProductController
+                        .categoryProductData.data.data[i].inCart,
+                    onTap: () {
+                      Get.toNamed(
+                        Routes.productDetailsPage,
+                        arguments: {
+                          'ProductId': categoryProductController
+                              .categoryProductData.data.data[i].id,
+                        },
+                      );
+                    },
+                    onTapCart: () async {
+                      ////////////////////////
+                      await mainController
+                          .addOrRemoveCart(
+                              id: categoryProductController
+                                  .categoryProductData.data.data[i].id,
+                              lang: lanLocal,
+                              token: token,
+                              inCart: !(categoryProductController
+                                  .categoryProductData.data.data[i].inCart))
+                          .then((value) {
+                        categoryProductController.showOrHideCatProductIsCart(
+                            categoryProductController
                                 .categoryProductData.data.data[i].id,
-                            lang: lanLocal,
-                            token: token,
-                            inCart: !(categoryProductController
-                                .categoryProductData.data.data[i].inCart))
-                        .then((value) {
-                      categoryProductController.showOrHideCatProductIsCart(
-                          categoryProductController
-                              .categoryProductData.data.data[i].id,
-                          mainController.isInCart);
-                      /////////
-                      homeController.showOrHideHomeIsCart(
-                          categoryProductController
-                              .categoryProductData.data.data[i].id,
-                          mainController.isInCart);
-                    });
-                  },
-                  onTapFav: () async {
-                    await mainController
-                        .addOrDeleteFav(
-                            id: categoryProductController
+                            mainController.isInCart);
+                        /////////
+                        homeController.showOrHideHomeIsCart(
+                            categoryProductController
                                 .categoryProductData.data.data[i].id,
-                            lang: lanLocal,
-                            token: token,
-                            inFav: !(categoryProductController
-                                .categoryProductData.data.data[i].inFavorites))
-                        .then((value) {
-                      categoryProductController.showOrHideCatProductIsFav(
-                          categoryProductController
-                              .categoryProductData.data.data[i].id,
-                          mainController.isInFav);
-                      /////////
-                      homeController.showOrHideHomeIsFav(
-                          categoryProductController
-                              .categoryProductData.data.data[i].id,
-                          mainController.isInFav);
-                    });
-                  },
+                            mainController.isInCart);
+                      });
+                    },
+                    onTapFav: () async {
+                      await mainController
+                          .addOrDeleteFav(
+                              id: categoryProductController
+                                  .categoryProductData.data.data[i].id,
+                              lang: lanLocal,
+                              token: token,
+                              inFav: !(categoryProductController
+                                  .categoryProductData
+                                  .data
+                                  .data[i]
+                                  .inFavorites))
+                          .then((value) {
+                        categoryProductController.showOrHideCatProductIsFav(
+                            categoryProductController
+                                .categoryProductData.data.data[i].id,
+                            mainController.isInFav);
+                        /////////
+                        homeController.showOrHideHomeIsFav(
+                            categoryProductController
+                                .categoryProductData.data.data[i].id,
+                            mainController.isInFav);
+                      });
+                    },
+                  ),
                 );
               },
               childCount: categoryProductController

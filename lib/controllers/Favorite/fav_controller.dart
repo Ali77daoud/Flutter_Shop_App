@@ -13,6 +13,13 @@ class FavController extends GetxController {
 
   GetFavDataProvider getFavDataProvider = Get.find<GetFavDataProvider>();
 
+  bool isStartAnimation = false;
+
+  void startAnimation() {
+    isStartAnimation = true;
+    update();
+  }
+
   // ///////////////////////////
   void showFavCircleIndicator() {
     isFavCircleShown = true;
@@ -63,6 +70,9 @@ class FavController extends GetxController {
       favData = getFavData;
       hideFavCircleIndicator();
       hideFavNoInternetPage();
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        startAnimation();
+      });
     });
   }
 }

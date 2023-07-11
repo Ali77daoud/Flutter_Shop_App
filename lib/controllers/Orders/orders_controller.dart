@@ -17,6 +17,13 @@ class OrdersController extends GetxController {
 
   CancelOrderProvider cancelOrderProvider = Get.find<CancelOrderProvider>();
 
+  bool isStartAnimation = false;
+
+  void startAnimation() {
+    isStartAnimation = true;
+    update();
+  }
+
   // ///////////////////////////
   void showGetOrdersCircleIndicator() {
     isGetOrdersCircleShown = true;
@@ -67,6 +74,9 @@ class OrdersController extends GetxController {
       ordersData = getOrdersData;
       hideGetOrdersCircleIndicator();
       hideGetOrdersNoInternetPage();
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        startAnimation();
+      });
     });
   }
 

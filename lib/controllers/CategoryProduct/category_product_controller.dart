@@ -14,6 +14,13 @@ class CategoryProductController extends GetxController {
   GetCategoryProductProvider getCategoryProductProvider =
       Get.find<GetCategoryProductProvider>();
 
+  bool isStartAnimation = false;
+
+  void startAnimation() {
+    isStartAnimation = true;
+    update();
+  }
+
   // ///////////////////////////
   void showCategoryProductCircleIndicator() {
     isCategoryProductCircleShown = true;
@@ -84,6 +91,9 @@ class CategoryProductController extends GetxController {
       categoryProductData = categoryProduct;
       hideCategoryProductCircleIndicator();
       hideCategoryProductNoInternetPage();
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        startAnimation();
+      });
     });
   }
 }

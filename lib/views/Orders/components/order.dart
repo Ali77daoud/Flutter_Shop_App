@@ -1,5 +1,6 @@
 import 'package:agora_shop/controllers/Orders/orders_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
+import 'package:agora_shop/shared/widgets/item_animation_widget.dart';
 import 'package:agora_shop/views/Orders/components/order_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,21 +26,26 @@ class Orders extends StatelessWidget {
                     );
                   },
                   itemBuilder: (context, index) {
-                    return OrderWidget(
-                      total: ordersController.ordersData.data.data[index].total
-                          .round()
-                          .toString(),
-                      status:
-                          ordersController.ordersData.data.data[index].status,
-                      date: ordersController.ordersData.data.data[index].date,
+                    return ItemAnimationWidget(
                       index: index,
-                      onTapDetails: () {
-                        Get.toNamed(Routes.ordersDetailsPage, arguments: {
-                          'orderId':
-                              ordersController.ordersData.data.data[index].id
-                        });
-                      },
-                      onTapCancel: () {},
+                      isStartAnimation: ordersController.isStartAnimation,
+                      child: OrderWidget(
+                        total: ordersController
+                            .ordersData.data.data[index].total
+                            .round()
+                            .toString(),
+                        status:
+                            ordersController.ordersData.data.data[index].status,
+                        date: ordersController.ordersData.data.data[index].date,
+                        index: index,
+                        onTapDetails: () {
+                          Get.toNamed(Routes.ordersDetailsPage, arguments: {
+                            'orderId':
+                                ordersController.ordersData.data.data[index].id
+                          });
+                        },
+                        onTapCancel: () {},
+                      ),
                     );
                   }))
         ]));

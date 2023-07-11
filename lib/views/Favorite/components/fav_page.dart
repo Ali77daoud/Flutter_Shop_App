@@ -1,5 +1,6 @@
 import 'package:agora_shop/controllers/Favorite/fav_controller.dart';
 import 'package:agora_shop/controllers/Main/main_controller.dart';
+import 'package:agora_shop/shared/widgets/item_animation_widget.dart';
 import 'package:agora_shop/views/Favorite/components/favourite_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,26 +21,31 @@ class FavPage extends StatelessWidget {
           )
         : ListView.builder(
             itemBuilder: (context, index) {
-              return FavouriteItem(
-                img: favController.favData.data.data[index].product.image,
-                title: favController.favData.data.data[index].product.name,
-                onTapCart: () async {
-                  await mainController.addOrRemoveCart(
-                      id: favController.favData.data.data[index].product.id,
-                      lang: lanLocal,
-                      token: token);
-                },
-                onTapFav: () async {
-                  await mainController
-                      .addOrDeleteFav(
-                          id: favController.favData.data.data[index].product.id,
-                          lang: lanLocal,
-                          token: token)
-                      .then((value) async {
-                    await favController.getFavData(
-                        lang: lanLocal, token: token);
-                  });
-                },
+              return ItemAnimationWidget(
+                index: index,
+                isStartAnimation: favController.isStartAnimation,
+                child: FavouriteItem(
+                  img: favController.favData.data.data[index].product.image,
+                  title: favController.favData.data.data[index].product.name,
+                  onTapCart: () async {
+                    await mainController.addOrRemoveCart(
+                        id: favController.favData.data.data[index].product.id,
+                        lang: lanLocal,
+                        token: token);
+                  },
+                  onTapFav: () async {
+                    await mainController
+                        .addOrDeleteFav(
+                            id: favController
+                                .favData.data.data[index].product.id,
+                            lang: lanLocal,
+                            token: token)
+                        .then((value) async {
+                      await favController.getFavData(
+                          lang: lanLocal, token: token);
+                    });
+                  },
+                ),
               );
             },
             itemCount: favController.favData.data.data.length,

@@ -8,7 +8,7 @@ import 'package:agora_shop/repositories/checkout_repository.dart';
 import 'package:agora_shop/services/networking/checkout_api_service.dart';
 import 'package:get/get.dart';
 
-class AddressBinding implements Bindings {
+class CheckOutBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CheckOutController>(() => CheckOutController());

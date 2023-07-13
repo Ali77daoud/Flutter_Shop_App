@@ -90,6 +90,7 @@ class LoginPage extends StatelessWidget {
               controller: passKey,
               hintText: 'Enter  Password'.tr,
               labelText: 'Password'.tr,
+              isObscure: authController.isObscure,
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Password should not be empty'.tr;
@@ -98,7 +99,14 @@ class LoginPage extends StatelessWidget {
                 }
               },
               prefixIcon: const Icon(IconlyBold.lock),
-              suffixIcon: null,
+              suffixIcon: IconButton(
+                icon: Icon(authController.isObscure
+                    ? Icons.visibility_off
+                    : Icons.visibility),
+                onPressed: () {
+                  authController.changeIsObscure();
+                },
+              ),
             ),
             //////////////
             ///

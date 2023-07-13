@@ -101,6 +101,7 @@ class SignUpPage extends StatelessWidget {
             CustomTextField(
               textInputType: TextInputType.visiblePassword,
               controller: passKey,
+              isObscure: authController.isObscure,
               hintText: 'Enter  Password'.tr,
               labelText: 'Password'.tr,
               validator: (value) {
@@ -111,7 +112,14 @@ class SignUpPage extends StatelessWidget {
                 }
               },
               prefixIcon: const Icon(IconlyBold.lock),
-              suffixIcon: null,
+              suffixIcon: IconButton(
+                icon: Icon(authController.isObscure
+                    ? Icons.visibility_off
+                    : Icons.visibility),
+                onPressed: () {
+                  authController.changeIsObscure();
+                },
+              ),
             ),
             ///////
             SizedBox(

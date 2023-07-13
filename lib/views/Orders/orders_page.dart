@@ -2,6 +2,7 @@ import 'package:agora_shop/controllers/Orders/orders_controller.dart';
 import 'package:agora_shop/shared/constants/color_constants.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
+import 'package:agora_shop/shared/widgets/circle_indecator_widget.dart';
 import 'package:agora_shop/shared/widgets/custom_app_bar.dart';
 import 'package:agora_shop/views/Orders/components/order.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,15 @@ class OrdersPage extends StatelessWidget {
                     ordersController.getOrdersData(
                         lang: lanLocal, token: token);
                   },
-                  page: Orders());
+                  page: Stack(
+                    children: [
+                      Orders(),
+                      ////////////
+                      ordersController.isCancelOrderCircleShown
+                          ? const CircleIndicatorWidget()
+                          : Container()
+                    ],
+                  ));
             })));
   }
 }

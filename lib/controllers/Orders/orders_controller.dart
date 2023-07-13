@@ -3,12 +3,15 @@ import 'package:agora_shop/providers/Orders_providers.dart/cancel_order_provider
 import 'package:agora_shop/providers/Orders_providers.dart/get_order_data_provider.dart';
 import 'package:agora_shop/shared/handling_errors.dart/handling_errors.dart';
 import 'package:agora_shop/shared/shared_variables.dart';
+import 'package:agora_shop/shared/widgets/snackbar_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrdersController extends GetxController {
   bool isGetOrdersNoInternetConnection = false;
   bool isGetOrdersCircleShown = false;
+
+  bool isCancelOrderCircleShown = false;
 
   late OrderModel ordersData;
 
@@ -43,6 +46,17 @@ class OrdersController extends GetxController {
 
   void hideGetOrdersNoInternetPage() {
     isGetOrdersNoInternetConnection = false;
+    update();
+  }
+
+  // ///////////////////////////
+  void showCancelOrderCircleIndicator() {
+    isCancelOrderCircleShown = true;
+    update();
+  }
+
+  void hideCancelOrderCircleIndicator() {
+    isCancelOrderCircleShown = false;
     update();
   }
 
@@ -81,22 +95,22 @@ class OrdersController extends GetxController {
   }
 
   // ///////////////////////////////////
-  // Future<void> addOrder(
-  //     {required String lang,
-  //     required String token,
-  //     required int addressId}) async {
-  //   showAddOrderCircleIndicator();
-  //   final failureOrAddOrder = await addOrderProvider.call(
-  //       token: token, lang: lang, addressId: addressId);
-  //   failureOrAddOrder.fold((failure) {
-  //     HandlingErrors.networkErrorrHandling(
-  //         failure: failure,
-  //         hideCircleIndicator: hideAddOrderCircleIndicator,
-  //         showNoInternetPage: () {});
-  //   }, (message) {
-  //     hideAddOrderCircleIndicator();
-  //     SnackBarWidgets.showSuccessSnackBar(message, '');
-  //     Get.offAllNamed(Routes.mainPage);
-  //   });
-  // }
+  Future<void> cancelOrder(
+      {required String lang,
+      required String token,
+      required int orderId}) async {
+    showCancelOrderCircleIndicator();
+    final failureOrCancelOrder = await cancelOrderProvider.call(
+        token: token, lang: lang, orderId: orderId);
+    failureOrCancelOrder.fold((failure) {
+      HandlingErrors.networkErrorrHandling(
+          failure: failure,
+          hideCircleIndicator: hideCancelOrderCircleIndicator,
+          showNoInternetPage: () {});
+    }, (message) async {
+      hideCancelOrderCircleIndicator();
+      SnackBarWidgets.showSuccessSnackBar(message, '');
+      await getOrdersData(lang: lang, token: token);
+    });
+  }
 }

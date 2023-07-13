@@ -9,7 +9,7 @@ import 'package:agora_shop/shared/widgets/text_widget.dart';
 import 'package:agora_shop/views/ProductDetails/components/product_details_navbar.dart';
 import 'package:agora_shop/views/ProductDetails/components/product_image_widget.dart';
 import 'package:agora_shop/views/ProductDetails/components/product_name_and_price_widget.dart';
-import 'package:agora_shop/views/ProductDetails/components/select_size.dart';
+import 'package:agora_shop/views/ProductDetails/components/select_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -69,9 +69,9 @@ class ProductDetails extends StatelessWidget {
                   const SizedBox(height: 12),
                   grayLine(),
                   const SizedBox(height: 12),
-                  sectionTitle(txt: 'Select Size'.tr),
+                  sectionTitle(txt: 'Select Color'.tr),
                   const SizedBox(height: 15),
-                  const DetailScreenSelectSize(),
+                  const DetailScreenSelectColor(),
                   const SizedBox(height: 12),
                   Container(
                     width: double.infinity,

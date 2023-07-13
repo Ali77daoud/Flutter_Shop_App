@@ -38,6 +38,7 @@ class AddOrderWidget extends StatelessWidget {
                 context: context,
                 title: 'Are you sure to add the order ?'.tr,
                 onConfirm: () async {
+                  Get.back();
                   await checkOutController.addOrder(
                       lang: lanLocal,
                       token: token,

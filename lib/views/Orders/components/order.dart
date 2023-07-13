@@ -1,5 +1,6 @@
 import 'package:agora_shop/controllers/Orders/orders_controller.dart';
 import 'package:agora_shop/routes/routes.dart';
+import 'package:agora_shop/shared/shared_variables.dart';
 import 'package:agora_shop/shared/widgets/item_animation_widget.dart';
 import 'package:agora_shop/views/Orders/components/order_widget.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,13 @@ class Orders extends StatelessWidget {
                                 ordersController.ordersData.data.data[index].id
                           });
                         },
-                        onTapCancel: () {},
+                        onTapCancel: () async {
+                          await ordersController.cancelOrder(
+                              lang: lanLocal,
+                              token: token,
+                              orderId: ordersController
+                                  .ordersData.data.data[index].id);
+                        },
                       ),
                     );
                   }))

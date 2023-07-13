@@ -33,7 +33,7 @@ const Map<String, String> en = {
   'Profile': 'Profile',
   'Products': 'Products',
   'Update Profile': 'Update Profile',
-  'Select Size': 'Select Size',
+  'Select Color': 'Select Color',
   'Description': 'Description',
   'Add To Cart': 'Add To Cart',
   'Shipping Address': 'Shipping Address',

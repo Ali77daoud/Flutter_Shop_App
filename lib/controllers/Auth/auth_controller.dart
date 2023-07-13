@@ -16,6 +16,7 @@ class AuthController extends GetxController {
   bool isCircleShown = false;
   bool isNoInternetConnection = false;
   bool isLogin = false;
+  bool isObscure = true;
 
   GetStorage storageBox = GetStorage();
 
@@ -23,6 +24,12 @@ class AuthController extends GetxController {
   late RegisterProvider registerProvider = Get.find();
 
   late UserDataModel userData;
+
+  ///////////////////
+  void changeIsObscure() {
+    isObscure = !isObscure;
+    update();
+  }
 
 /////////////////////////
   void showCircleIndicator() {

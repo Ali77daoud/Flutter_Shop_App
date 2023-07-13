@@ -33,7 +33,7 @@ const Map<String, String> ar = {
   'Profile': 'الملف الشخصي',
   'Products': 'المنتجات',
   'Update Profile': 'تعديل',
-  'Select Size': 'اختار الحجم',
+  'Select Color': 'اختار اللون',
   'Description': 'التفاصيل',
   'Add To Cart': 'أضف للسلة',
   'Add Order': 'إضافة طلب',

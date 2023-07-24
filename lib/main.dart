@@ -8,7 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'app_binding.dart';
 import 'controllers/Theme/themes_controller.dart';
 import 'shared/constants/lang_constants.dart';
-import 'shared/constants/stripe_constants.dart';
+import 'shared/constants/stripe_payment_constants.dart';
 import 'themes/themes.dart';
 
 void main() async {

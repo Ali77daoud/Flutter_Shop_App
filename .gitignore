@@ -43,4 +43,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/lib/shared/constants/stripe_constants.dart
+/lib/shared/constants/stripe_payment_constants.dart

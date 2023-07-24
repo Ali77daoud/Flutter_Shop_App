@@ -1,7 +1,6 @@
 import 'package:agora_shop/controllers/CheckOut/checkout_controller.dart';
 import 'package:agora_shop/views/CheckOut/component/payment_type_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
 
 class ChoosePaymentTypeWidget extends StatelessWidget {
   const ChoosePaymentTypeWidget({

@@ -1,3 +1,4 @@
+lib/shared/constants/stripe_constants.dart/
 # Miscellaneous
 *.class
 *.log

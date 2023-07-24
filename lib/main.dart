@@ -1,17 +1,20 @@
 import 'package:agora_shop/language/localization.dart';
 import 'package:agora_shop/routes/routes.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'app_binding.dart';
 import 'controllers/Theme/themes_controller.dart';
 import 'shared/constants/lang_constants.dart';
+import 'shared/constants/stripe_constants.dart';
 import 'themes/themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  Stripe.publishableKey = StripConstants.publishableKey;
   runApp(MyApp());
 }
 

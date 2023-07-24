@@ -1,4 +1,3 @@
-/lib/shared/constants/stripe_constants.dart
 # Miscellaneous
 *.class
 *.log
@@ -43,3 +42,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+/lib/shared/constants/stripe_constants.dart

@@ -1,4 +1,4 @@
-lib/shared/constants/stripe_constants.dart/
+/lib/shared/constants/stripe_constants.dart/
 # Miscellaneous
 *.class
 *.log

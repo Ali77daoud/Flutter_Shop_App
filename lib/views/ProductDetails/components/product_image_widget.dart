@@ -32,7 +32,7 @@ class ProductImageWidget extends StatelessWidget {
 
   Widget backButton() {
     return Positioned(
-      top: 5,
+      top: 10,
       left: lanLocal == ene ? 15 : null,
       right: lanLocal == ara ? 15 : null,
       child: CircleAvatar(
@@ -87,7 +87,7 @@ class ProductImageWidget extends StatelessWidget {
         ),
         errorWidget: (context, url, error) => const Icon(Icons.error),
         imageUrl: productDetailsController.productDetailsData.data.image,
-        fit: BoxFit.cover,
+        fit: BoxFit.contain,
       ),
     );
   }

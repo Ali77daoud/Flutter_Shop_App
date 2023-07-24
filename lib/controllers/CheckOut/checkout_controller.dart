@@ -22,6 +22,8 @@ class CheckOutController extends GetxController {
   bool newAddressAdded = false;
   late int addressCurrentId;
 
+  int paymentType = 1;
+
   GetStorage addressIdBox = GetStorage();
   final MainController mainController = Get.find<MainController>();
 
@@ -97,6 +99,12 @@ class CheckOutController extends GetxController {
     update();
   }
 
+  ///////////////////
+  void changePaymentType(int type) {
+    paymentType = type;
+    update();
+  }
+
 /////////////////////////////
   void chooseAddress(int id) async {
     addressCurrentId = id;
@@ -112,6 +120,12 @@ class CheckOutController extends GetxController {
 
     addressCurrentId =
         addressIdBox.read<int>('addressId') ?? addressData.data.data[0].id;
+
+    addressData.data.data
+            .where((element) => element.id == addressCurrentId)
+            .isEmpty
+        ? addressCurrentId = addressData.data.data[0].id
+        : null;
 
     print(addressCurrentId);
   }

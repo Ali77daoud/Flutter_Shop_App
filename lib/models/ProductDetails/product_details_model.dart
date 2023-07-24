@@ -13,9 +13,9 @@ class ProductDetailsModel {
 
 class Data {
   final int id;
-  final int price;
-  final int oldPrice;
-  final int discount;
+  final dynamic price;
+  final dynamic oldPrice;
+  final dynamic discount;
   final String image;
   final String name;
   final String description;

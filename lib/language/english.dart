@@ -36,6 +36,7 @@ const Map<String, String> en = {
   'Select Color': 'Select Color',
   'Description': 'Description',
   'Add To Cart': 'Add To Cart',
+  'Remove From Cart': 'Remove From Cart',
   'Shipping Address': 'Shipping Address',
   'Add Order': 'Add Order',
   'Add Address': 'Add Address',

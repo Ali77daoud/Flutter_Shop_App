@@ -5,6 +5,7 @@ import 'package:agora_shop/shared/helpers/screen_size_utils.dart';
 import 'package:agora_shop/shared/widgets/check_out_product_widget.dart';
 import 'package:agora_shop/shared/widgets/item_animation_widget.dart';
 import 'package:agora_shop/shared/widgets/text_widget.dart';
+import 'package:agora_shop/views/CheckOut/component/choose_payment_type_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'address_widget.dart';
@@ -63,8 +64,36 @@ class CheckOut extends StatelessWidget {
           ),
         ),
         /////////////////////
-        sectionTitle(txt: 'Products'.tr),
+        sectionTitle(txt: 'Payment Type'),
+        /////////////////
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: getHeightInPercent(context, 3),
+          ),
+        ),
+        /////////////////////
+        SliverToBoxAdapter(
+          child:
+              ChoosePaymentTypeWidget(checkOutController: checkOutController),
+        ),
+        ////////////////////
+        SliverToBoxAdapter(
+          child: Container(
+            margin: const EdgeInsets.only(top: 10),
+            width: double.infinity,
+            height: 2,
+            color: Get.isDarkMode ? AppColors.grey : AppColors.lightGray,
+          ),
+        ),
         //////////////////
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: getHeightInPercent(context, 3),
+          ),
+        ),
+        /////////////////////
+        sectionTitle(txt: 'Products'.tr),
+        /////////////////
         SliverToBoxAdapter(
           child: SizedBox(
             height: getHeightInPercent(context, 3),

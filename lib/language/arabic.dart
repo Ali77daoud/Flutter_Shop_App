@@ -36,6 +36,7 @@ const Map<String, String> ar = {
   'Select Color': 'اختار اللون',
   'Description': 'التفاصيل',
   'Add To Cart': 'أضف للسلة',
+  'Remove From Cart': 'إزالة من السلة',
   'Add Order': 'إضافة طلب',
   'Shipping Address': 'عنوان التوصيل',
   'Add Address': 'إضافة عنوان',

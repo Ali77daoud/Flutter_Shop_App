@@ -63,6 +63,7 @@ class ProductDetails extends StatelessWidget {
                 children: [
                   ProductImageWidget(
                       productDetailsController: productDetailsController),
+                  const SizedBox(height: 5),
                   ProductNameAndPriceWidget(
                       productDetailsController: productDetailsController,
                       mainController: mainController),
@@ -119,8 +120,7 @@ class ProductDetails extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextWidget(
           text: txt,
-          color:
-              Get.isDarkMode ? AppColors.primaryLight : AppColors.primaryDark,
+          color: Get.isDarkMode ? AppColors.secondary : AppColors.primaryDark,
           fontSize: 15,
           fontWeight: FontWeight.bold,
           textAlign: TextAlign.start,

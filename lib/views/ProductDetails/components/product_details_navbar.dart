@@ -52,7 +52,9 @@ class ProductDetailsNavBar extends StatelessWidget {
             const SizedBox(width: 35),
             Expanded(
               child: AppButton.normalButton(
-                  title: 'Add To Cart'.tr,
+                  title: productDetailsController.productDetailsData.data.inCart
+                      ? 'Remove From Cart'.tr
+                      : 'Add To Cart'.tr,
                   height: 40,
                   shadow: false,
                   backgroundColor: AppColors.secondary,
